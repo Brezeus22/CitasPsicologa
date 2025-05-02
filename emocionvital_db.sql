@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2025 a las 21:50:54
+-- Tiempo de generación: 02-05-2025 a las 23:31:27
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `emocionvital_db`
+-- Base de datos: `psicologia`
 --
 
 -- --------------------------------------------------------
@@ -106,6 +106,13 @@ CREATE TABLE `historia_clinica_psicologia` (
   `cargo_responsable` varchar(255) NOT NULL,
   `universidad_responsable` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `historia_clinica_psicologia`
+--
+
+INSERT INTO `historia_clinica_psicologia` (`id_historia_clinica`, `id_paciente`, `entrevistador`, `fecha_consulta`, `motivo_consulta`, `sintomas`, `episodios_previos`, `tiempo_problema`, `desencadenantes`, `tratamientos_previos`, `auto_descripcion`, `antecedentes_familiares`, `desarrollo_psicomotor`, `escolaridad`, `problemas_afectivos`, `vida_laboral`, `relaciones_interpersonales`, `conducta_sexual`, `sumario_diagnostico`, `evaluacion_psicologica`, `tratamiento`, `evolucion`, `firma_responsable`, `cargo_responsable`, `universidad_responsable`) VALUES
+(1, 1, 'Dra. Martínez', '2025-05-02', 'Ansiedad severa', 'Palpitaciones, sudoración excesiva, pensamientos intrusivos', 'Hace dos años comenzó con síntomas de ansiedad relacionados con su vida laboral', 'Desde hace aproximadamente 6 meses', 'Estrés laboral y problemas familiares', 'Terapia cognitivo-conductual y medicación ansiolítica', 'Paciente describe su personalidad como perfeccionista y analítica', 'Padre con antecedentes de trastornos de ansiedad', 'Desarrollo psicomotor normal', 'Universidad completada, dificultades con exámenes orales', 'Experimentó dificultades emocionales en la adolescencia', 'Trabaja en el sector financiero con alta carga laboral', 'Relaciones interpersonales estables pero con conflictos en el ámbito laboral', 'Vida sexual activa, sin problemas reportados', 'Ansiedad severa con episodios de pánico', 'Evaluación a través de inventario de ansiedad Beck', 'Terapia cognitivo-conductual con seguimiento psiquiátrico', 'Mejoría moderada tras dos meses de tratamiento', 'Dr. Pérez', 'Psiquiatra', 'Universidad Central de Venezuela');
 
 -- --------------------------------------------------------
 
@@ -359,7 +366,7 @@ ALTER TABLE `historial_medico`
 -- AUTO_INCREMENT de la tabla `historia_clinica_psicologia`
 --
 ALTER TABLE `historia_clinica_psicologia`
-  MODIFY `id_historia_clinica` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_historia_clinica` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `horario`
