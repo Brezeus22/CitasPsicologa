@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2025 a las 18:49:29
+-- Tiempo de generación: 02-05-2025 a las 15:13:00
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -31,11 +31,12 @@ CREATE TABLE `cita` (
   `id_cita` int(10) UNSIGNED NOT NULL,
   `id_paciente` int(10) UNSIGNED NOT NULL,
   `id_psicologa` int(10) UNSIGNED NOT NULL,
+  `id_horario` int(10) UNSIGNED NOT NULL,
   `tipo_cita` enum('online','presencial') NOT NULL,
   `categoria` enum('Infantil','Jovenes','Adulto','Pareja') NOT NULL,
   `costo_consulta` float NOT NULL,
-  `dias laborables` date NOT NULL,
-  `horario laboral` time NOT NULL,
+  `fecha_cita` date NOT NULL,
+  `hora_cita` time NOT NULL,
   `metodo_pago` enum('Divisas','Pago Movil') NOT NULL,
   `Status` enum('Confirmada','Cancelada','Reprogramada') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -56,6 +57,20 @@ CREATE TABLE `historial_medico` (
   `observaciones` text DEFAULT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('Registrado','Actualizado','Inactivo') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `horario`
+--
+
+CREATE TABLE `horario` (
+  `id_horario` int(10) UNSIGNED NOT NULL,
+  `id_psicologa` int(10) UNSIGNED NOT NULL,
+  `dias_laborables` date NOT NULL,
+  `horario_laboral` time NOT NULL,
+  `status` enum('Activo','Inactivo','Pendiente') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -87,10 +102,10 @@ CREATE TABLE `informe_medico` (
 CREATE TABLE `paciente` (
   `id_paciente` int(10) UNSIGNED NOT NULL,
   `id_usuario` int(10) UNSIGNED NOT NULL,
-  `primer nombre` varchar(50) NOT NULL,
-  `segundo nombre` varchar(50) NOT NULL,
-  `primer apellido` varchar(50) NOT NULL,
-  `segundo apellido` varchar(50) NOT NULL,
+  `primer_nombre` varchar(50) NOT NULL,
+  `segundo_nombre` varchar(50) NOT NULL,
+  `primer_apellido` varchar(50) NOT NULL,
+  `segundo_apellido` varchar(50) NOT NULL,
   `cedula` varchar(15) NOT NULL,
   `edad` int(10) UNSIGNED NOT NULL,
   `fecha de nacimiento` date NOT NULL,
@@ -109,10 +124,10 @@ CREATE TABLE `paciente` (
 CREATE TABLE `psicologa` (
   `id_psicologa` int(10) UNSIGNED NOT NULL,
   `id_usuario` int(10) UNSIGNED NOT NULL,
-  `primer nombre` int(11) NOT NULL,
-  `segundo nombre` varchar(50) NOT NULL,
-  `primer apellido` varchar(50) NOT NULL,
-  `segundo apellido` varchar(50) NOT NULL,
+  `primer_nombre` varchar(50) NOT NULL,
+  `segundo_nombre` varchar(50) NOT NULL,
+  `primer_apellido` varchar(50) NOT NULL,
+  `segundo_apellido` varchar(50) NOT NULL,
   `telefono` varchar(15) NOT NULL,
   `direccion` text NOT NULL,
   `especialidad` text NOT NULL,
@@ -128,6 +143,7 @@ CREATE TABLE `psicologa` (
 CREATE TABLE `reprogramacion_cita` (
   `id_reprogramacion` int(10) UNSIGNED NOT NULL,
   `id_cita` int(10) UNSIGNED NOT NULL,
+  `id_horaio` int(10) UNSIGNED NOT NULL,
   `id_psicologa` int(10) UNSIGNED NOT NULL,
   `motivo_reprogramacion` text NOT NULL,
   `nueva_fecha_cita` date NOT NULL,
@@ -160,7 +176,8 @@ CREATE TABLE `usuarios` (
 ALTER TABLE `cita`
   ADD PRIMARY KEY (`id_cita`),
   ADD KEY `id_paciente` (`id_paciente`),
-  ADD KEY `id_psicologa` (`id_psicologa`);
+  ADD KEY `id_psicologa` (`id_psicologa`),
+  ADD KEY `id_horario` (`id_horario`);
 
 --
 -- Indices de la tabla `historial_medico`
@@ -168,6 +185,13 @@ ALTER TABLE `cita`
 ALTER TABLE `historial_medico`
   ADD PRIMARY KEY (`id_historial_medico`),
   ADD KEY `id_paciente` (`id_paciente`);
+
+--
+-- Indices de la tabla `horario`
+--
+ALTER TABLE `horario`
+  ADD PRIMARY KEY (`id_horario`),
+  ADD KEY `id_psicologa` (`id_psicologa`);
 
 --
 -- Indices de la tabla `informe_medico`
@@ -200,7 +224,8 @@ ALTER TABLE `psicologa`
 ALTER TABLE `reprogramacion_cita`
   ADD PRIMARY KEY (`id_reprogramacion`),
   ADD KEY `id_cita` (`id_cita`),
-  ADD KEY `id_psicologa` (`id_psicologa`);
+  ADD KEY `id_psicologa` (`id_psicologa`),
+  ADD KEY `id_horaio` (`id_horaio`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -224,6 +249,12 @@ ALTER TABLE `cita`
 --
 ALTER TABLE `historial_medico`
   MODIFY `id_historial_medico` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `horario`
+--
+ALTER TABLE `horario`
+  MODIFY `id_horario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `informe_medico`
