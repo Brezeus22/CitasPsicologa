@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2025 a las 21:20:40
+-- Tiempo de generación: 02-05-2025 a las 21:50:54
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -72,6 +72,40 @@ CREATE TABLE `historial_medico` (
 
 INSERT INTO `historial_medico` (`id_historial_medico`, `id_paciente`, `fecha_consulta`, `diagnostico`, `tratamiento`, `antecedentes`, `observaciones`, `fecha_registro`, `status`) VALUES
 (1, 1, '2025-05-10', 'Ansiedad Generalizada', 'Terapia cognitivo-conductual', 'Ninguno', 'Paciente muestra mejoría', '2025-05-02 16:02:28', 'Registrado');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historia_clinica_psicologia`
+--
+
+CREATE TABLE `historia_clinica_psicologia` (
+  `id_historia_clinica` int(10) UNSIGNED NOT NULL,
+  `id_paciente` int(10) UNSIGNED NOT NULL,
+  `entrevistador` varchar(255) NOT NULL,
+  `fecha_consulta` date NOT NULL,
+  `motivo_consulta` text NOT NULL,
+  `sintomas` text NOT NULL,
+  `episodios_previos` text NOT NULL,
+  `tiempo_problema` varchar(50) NOT NULL,
+  `desencadenantes` text NOT NULL,
+  `tratamientos_previos` text NOT NULL,
+  `auto_descripcion` text NOT NULL,
+  `antecedentes_familiares` text NOT NULL,
+  `desarrollo_psicomotor` text NOT NULL,
+  `escolaridad` text NOT NULL,
+  `problemas_afectivos` text NOT NULL,
+  `vida_laboral` text NOT NULL,
+  `relaciones_interpersonales` text NOT NULL,
+  `conducta_sexual` text NOT NULL,
+  `sumario_diagnostico` text NOT NULL,
+  `evaluacion_psicologica` text NOT NULL,
+  `tratamiento` text NOT NULL,
+  `evolucion` text NOT NULL,
+  `firma_responsable` varchar(255) NOT NULL,
+  `cargo_responsable` varchar(255) NOT NULL,
+  `universidad_responsable` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -158,6 +192,7 @@ INSERT INTO `paciente` (`id_paciente`, `id_usuario`, `primer_nombre`, `segundo_n
 
 CREATE TABLE `paciente_cita` (
   `id_paciente_cita` int(10) UNSIGNED NOT NULL,
+  `id_paciente` int(11) NOT NULL,
   `id_cita` int(10) UNSIGNED NOT NULL,
   `status` enum('Activo','Inactivo','Pendiente') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -242,13 +277,21 @@ INSERT INTO `usuarios` (`id_usuario`, `correo`, `nombre_usuario`, `contraseña`,
 -- Indices de la tabla `cita`
 --
 ALTER TABLE `cita`
-  ADD PRIMARY KEY (`id_cita`);
+  ADD PRIMARY KEY (`id_cita`),
+  ADD KEY `id_paciente` (`id_paciente`);
 
 --
 -- Indices de la tabla `historial_medico`
 --
 ALTER TABLE `historial_medico`
   ADD PRIMARY KEY (`id_historial_medico`);
+
+--
+-- Indices de la tabla `historia_clinica_psicologia`
+--
+ALTER TABLE `historia_clinica_psicologia`
+  ADD PRIMARY KEY (`id_historia_clinica`),
+  ADD KEY `id_paciente` (`id_paciente`);
 
 --
 -- Indices de la tabla `horario`
@@ -269,6 +312,14 @@ ALTER TABLE `informe_medico`
 --
 ALTER TABLE `paciente`
   ADD PRIMARY KEY (`id_paciente`);
+
+--
+-- Indices de la tabla `paciente_cita`
+--
+ALTER TABLE `paciente_cita`
+  ADD PRIMARY KEY (`id_paciente_cita`),
+  ADD KEY `id_cita` (`id_cita`),
+  ADD KEY `id_paciente` (`id_paciente`);
 
 --
 -- Indices de la tabla `psicologa`
@@ -303,6 +354,12 @@ ALTER TABLE `cita`
 --
 ALTER TABLE `historial_medico`
   MODIFY `id_historial_medico` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `historia_clinica_psicologia`
+--
+ALTER TABLE `historia_clinica_psicologia`
+  MODIFY `id_historia_clinica` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `horario`
