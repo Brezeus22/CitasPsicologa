@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2025 a las 01:44:25
+-- Tiempo de generación: 03-05-2025 a las 02:37:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `psicologia`
+-- Base de datos: `emocionvital_db`
 --
 
 -- --------------------------------------------------------
@@ -621,7 +621,6 @@ CREATE TABLE `historial_medico` (
   `diagnostico` text DEFAULT NULL,
   `tratamiento` text DEFAULT NULL,
   `antecedentes` text DEFAULT NULL,
-  `observaciones` text DEFAULT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('Registrado','Actualizado','Inactivo') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -630,8 +629,8 @@ CREATE TABLE `historial_medico` (
 -- Volcado de datos para la tabla `historial_medico`
 --
 
-INSERT INTO `historial_medico` (`id_historial_medico`, `id_paciente`, `fecha_consulta`, `diagnostico`, `tratamiento`, `antecedentes`, `observaciones`, `fecha_registro`, `status`) VALUES
-(1, 1, '2025-05-10', 'Ansiedad Generalizada', 'Terapia cognitivo-conductual', 'Ninguno', 'Paciente muestra mejoría', '2025-05-02 16:02:28', 'Registrado');
+INSERT INTO `historial_medico` (`id_historial_medico`, `id_paciente`, `fecha_consulta`, `diagnostico`, `tratamiento`, `antecedentes`, `fecha_registro`, `status`) VALUES
+(1, 1, '2025-05-10', 'Ansiedad Generalizada', 'Terapia cognitivo-conductual', 'Ninguno', '2025-05-02 16:02:28', 'Registrado');
 
 -- --------------------------------------------------------
 
@@ -2354,7 +2353,9 @@ INSERT INTO `usuarios` (`id_usuario`, `correo`, `nombre_usuario`, `contraseña`,
 --
 ALTER TABLE `cita`
   ADD PRIMARY KEY (`id_cita`),
-  ADD KEY `id_paciente` (`id_paciente`);
+  ADD KEY `id_paciente` (`id_paciente`),
+  ADD KEY `id_psicologa` (`id_psicologa`),
+  ADD KEY `id_horario` (`id_horario`);
 
 --
 -- Indices de la tabla `ciudades`
@@ -2373,7 +2374,8 @@ ALTER TABLE `estados`
 -- Indices de la tabla `historial_medico`
 --
 ALTER TABLE `historial_medico`
-  ADD PRIMARY KEY (`id_historial_medico`);
+  ADD PRIMARY KEY (`id_historial_medico`),
+  ADD KEY `id_paciente` (`id_paciente`);
 
 --
 -- Indices de la tabla `historia_clinica_psicologia`
@@ -2394,7 +2396,10 @@ ALTER TABLE `horario`
 -- Indices de la tabla `informe_medico`
 --
 ALTER TABLE `informe_medico`
-  ADD PRIMARY KEY (`id_informe_medico`);
+  ADD PRIMARY KEY (`id_informe_medico`),
+  ADD KEY `id_paciente` (`id_paciente`),
+  ADD KEY `id_psicologa` (`id_psicologa`),
+  ADD KEY `id_cita` (`id_cita`);
 
 --
 -- Indices de la tabla `municipios`
@@ -2407,7 +2412,10 @@ ALTER TABLE `municipios`
 -- Indices de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  ADD PRIMARY KEY (`id_paciente`);
+  ADD PRIMARY KEY (`id_paciente`),
+  ADD UNIQUE KEY `cedula` (`cedula`),
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_direccion` (`id_direccion`);
 
 --
 -- Indices de la tabla `paciente_cita`
@@ -2428,19 +2436,24 @@ ALTER TABLE `parroquias`
 -- Indices de la tabla `psicologa`
 --
 ALTER TABLE `psicologa`
-  ADD PRIMARY KEY (`id_psicologa`);
+  ADD PRIMARY KEY (`id_psicologa`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `reprogramacion_cita`
 --
 ALTER TABLE `reprogramacion_cita`
-  ADD PRIMARY KEY (`id_reprogramacion`);
+  ADD PRIMARY KEY (`id_reprogramacion`),
+  ADD KEY `id_cita` (`id_cita`),
+  ADD KEY `id_horario` (`id_horario`),
+  ADD KEY `id_psicologa` (`id_psicologa`);
 
 --
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuario`);
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `correo` (`correo`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
