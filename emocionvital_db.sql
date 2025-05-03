@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2025 a las 02:37:54
+-- Tiempo de generación: 03-05-2025 a las 04:16:46
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -692,7 +692,7 @@ CREATE TABLE `horario` (
 --
 
 INSERT INTO `horario` (`id_horario`, `id_psicologa`, `dias_laborables`, `horario_laboral`, `status`) VALUES
-(1, 0, '2025-05-12', '07:29:16', 'Activo');
+(1, 1, '2025-05-12', '07:29:16', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -1111,7 +1111,7 @@ INSERT INTO `paciente` (`id_paciente`, `id_usuario`, `primer_nombre`, `segundo_n
 
 CREATE TABLE `paciente_cita` (
   `id_paciente_cita` int(10) UNSIGNED NOT NULL,
-  `id_paciente` int(11) NOT NULL,
+  `id_paciente` int(10) UNSIGNED NOT NULL,
   `id_cita` int(10) UNSIGNED NOT NULL,
   `status` enum('Activo','Inactivo','Pendiente') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -2296,7 +2296,7 @@ CREATE TABLE `psicologa` (
 --
 
 INSERT INTO `psicologa` (`id_psicologa`, `id_usuario`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `telefono`, `direccion`, `especialidad`, `status`) VALUES
-(1, 2, 'Maria', 'Luisa', 'Gómez', 'Fernández', '04125678901', 'Av. Libertador, Caracas', 'Terapia Cognitivo-Conductual', 'activo');
+(1, 1, 'Maria', 'Luisa', 'Gómez', 'Fernández', '04125678901', 'Av. Libertador, Caracas', 'Terapia Cognitivo-Conductual', 'activo');
 
 -- --------------------------------------------------------
 
@@ -2320,7 +2320,7 @@ CREATE TABLE `reprogramacion_cita` (
 --
 
 INSERT INTO `reprogramacion_cita` (`id_reprogramacion`, `id_cita`, `id_horario`, `id_psicologa`, `motivo_reprogramacion`, `nueva_fecha_cita`, `nueva_hora_cita`, `status`) VALUES
-(1, 1, 0, 1, 'Inconveniente personal', '2025-05-15', '14:00:00', 'Confirmada');
+(1, 1, 1, 1, 'Inconveniente personal', '2025-05-15', '14:00:00', 'Confirmada');
 
 -- --------------------------------------------------------
 
@@ -2514,6 +2514,12 @@ ALTER TABLE `paciente`
   MODIFY `id_paciente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `paciente_cita`
+--
+ALTER TABLE `paciente_cita`
+  MODIFY `id_paciente_cita` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `parroquias`
 --
 ALTER TABLE `parroquias`
@@ -2542,10 +2548,44 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- Filtros para la tabla `cita`
+--
+ALTER TABLE `cita`
+  ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id_paciente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cita_ibfk_2` FOREIGN KEY (`id_psicologa`) REFERENCES `psicologa` (`id_psicologa`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cita_ibfk_3` FOREIGN KEY (`id_horario`) REFERENCES `horario` (`id_horario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `ciudades`
 --
 ALTER TABLE `ciudades`
   ADD CONSTRAINT `ciudades_ibfk_1` FOREIGN KEY (`id_estado`) REFERENCES `estados` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `historial_medico`
+--
+ALTER TABLE `historial_medico`
+  ADD CONSTRAINT `historial_medico_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id_paciente`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `historia_clinica_psicologia`
+--
+ALTER TABLE `historia_clinica_psicologia`
+  ADD CONSTRAINT `historia_clinica_psicologia_ibfk_1` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id_paciente`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `horario`
+--
+ALTER TABLE `horario`
+  ADD CONSTRAINT `horario_ibfk_1` FOREIGN KEY (`id_psicologa`) REFERENCES `psicologa` (`id_psicologa`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `informe_medico`
+--
+ALTER TABLE `informe_medico`
+  ADD CONSTRAINT `informe_medico_ibfk_1` FOREIGN KEY (`id_psicologa`) REFERENCES `psicologa` (`id_psicologa`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `informe_medico_ibfk_2` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id_paciente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `informe_medico_ibfk_3` FOREIGN KEY (`id_cita`) REFERENCES `cita` (`id_cita`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `municipios`
@@ -2554,10 +2594,37 @@ ALTER TABLE `municipios`
   ADD CONSTRAINT `municipios_ibfk_1` FOREIGN KEY (`id_estado`) REFERENCES `estados` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `paciente`
+--
+ALTER TABLE `paciente`
+  ADD CONSTRAINT `paciente_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `paciente_cita`
+--
+ALTER TABLE `paciente_cita`
+  ADD CONSTRAINT `paciente_cita_ibfk_1` FOREIGN KEY (`id_cita`) REFERENCES `cita` (`id_cita`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `paciente_cita_ibfk_2` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id_paciente`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `parroquias`
 --
 ALTER TABLE `parroquias`
   ADD CONSTRAINT `parroquias_ibfk_1` FOREIGN KEY (`id_municipio`) REFERENCES `municipios` (`id_municipio`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `psicologa`
+--
+ALTER TABLE `psicologa`
+  ADD CONSTRAINT `psicologa_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `reprogramacion_cita`
+--
+ALTER TABLE `reprogramacion_cita`
+  ADD CONSTRAINT `reprogramacion_cita_ibfk_1` FOREIGN KEY (`id_cita`) REFERENCES `cita` (`id_cita`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reprogramacion_cita_ibfk_2` FOREIGN KEY (`id_horario`) REFERENCES `horario` (`id_horario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reprogramacion_cita_ibfk_3` FOREIGN KEY (`id_psicologa`) REFERENCES `psicologa` (`id_psicologa`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
