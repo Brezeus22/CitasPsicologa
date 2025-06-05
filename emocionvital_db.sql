@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2025 a las 19:05:27
+-- Tiempo de generación: 04-06-2025 a las 22:10:55
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `emocionvital_db`
+-- Base de datos: `psicologia`
 --
 
 -- --------------------------------------------------------
@@ -171,11 +171,10 @@ CREATE TABLE `paciente` (
   `id_paciente` int(10) UNSIGNED NOT NULL,
   `id_usuario` int(10) UNSIGNED NOT NULL,
   `primer_nombre` varchar(50) NOT NULL,
-  `segundo_nombre` varchar(50) NOT NULL,
+  `segundo_nombre` varchar(50) DEFAULT NULL,
   `primer_apellido` varchar(50) NOT NULL,
-  `segundo_apellido` varchar(50) NOT NULL,
-  `cedula` varchar(15) NOT NULL,
-  `edad` int(10) UNSIGNED NOT NULL,
+  `segundo_apellido` varchar(50) DEFAULT NULL,
+  `cedula` varchar(15) DEFAULT NULL,
   `fecha_de_nacimiento` date NOT NULL,
   `sexo` enum('Masculino','Femenino') NOT NULL,
   `telefono` varchar(15) NOT NULL,
@@ -187,8 +186,8 @@ CREATE TABLE `paciente` (
 -- Volcado de datos para la tabla `paciente`
 --
 
-INSERT INTO `paciente` (`id_paciente`, `id_usuario`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `cedula`, `edad`, `fecha_de_nacimiento`, `sexo`, `telefono`, `direccion`, `status`) VALUES
-(1, 1, 'Juan', 'Carlos', 'Pérez', 'Ramírez', 'V-12345678', 30, '1995-06-15', 'Masculino', '04121234567', '', 'activo');
+INSERT INTO `paciente` (`id_paciente`, `id_usuario`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `cedula`, `fecha_de_nacimiento`, `sexo`, `telefono`, `direccion`, `status`) VALUES
+(1, 1, 'Juan', 'Carlos', 'Pérez', 'Ramírez', 'V-12345678', '1995-06-15', 'Masculino', '04121234567', '', 'activo');
 
 -- --------------------------------------------------------
 
@@ -263,7 +262,20 @@ CREATE TABLE `usuarios` (
   `id_usuario` int(10) UNSIGNED NOT NULL,
   `correo` varchar(100) NOT NULL,
   `nombre_usuario` varchar(50) NOT NULL,
+  `Primer_Nombre` varchar(50) NOT NULL,
+  `Segundo_Nombre` varchar(50) DEFAULT NULL,
+  `Primer_Apellido` varchar(50) NOT NULL,
+  `Segundo_Apellido` varchar(50) DEFAULT NULL,
+  `fecha_nacimiento` DATE NOT NULL,
+  `Cedula` varchar(15) DEFAULT NULL,
+  `sexo` enum('Masculino', 'Femenino', 'Otro') NOT NULL,
+  `telefono` VARCHAR(20) NOT NULL,
+  `estado` VARCHAR(100) NOT NULL,
+  `ciudad` VARCHAR(100) NOT NULL,
+  `municipio` VARCHAR(100) NOT NULL,
+  `parroquia` VARCHAR(100) NOT NULL,
   `contraseña` varchar(255) NOT NULL,
+  CONSTRAINT `chk_contraseña` CHECK (LENGTH(`contraseña`) >= 8),
   `tipo_usuario` enum('paciente','psicologa') NOT NULL,
   `status` enum('activo','inactivo','pendiente') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -272,8 +284,8 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `correo`, `nombre_usuario`, `contraseña`, `tipo_usuario`, `status`) VALUES
-(1, 'juan.perez@example.com', 'juanp', 'hashedpassword1', 'paciente', 'activo');
+INSERT INTO `usuarios` (`id_usuario`, `correo`, `nombre_usuario`, `Primer_Nombre`, `Segundo_Nombre`, `Primer_Apellido`, `Segundo_Apellido`, `Cedula`, `contraseña`, `tipo_usuario`, `status`) VALUES
+(1, 'juan.perez@example.com', 'juanp', '', NULL, '', NULL, NULL, 'hashedpassword1', 'paciente', 'activo');
 
 --
 -- Índices para tablas volcadas
