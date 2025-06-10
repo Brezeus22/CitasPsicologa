@@ -1286,7 +1286,7 @@ INSERT INTO `parroquias` (`id_parroquia`, `id_municipio`, `parroquia`) VALUES
 (148, 52, 'Urdaneta'),
 (149, 52, 'Las Peñitas'),
 (150, 52, 'San Francisco de Cara'),
-(151, 52, 'Taguay'),
+(151,  52, 'Taguay'),
 (152, 53, 'Zamora'),
 (153, 53, 'Magdaleno'),
 (154, 53, 'San Francisco de Asís'),
@@ -1823,7 +1823,7 @@ INSERT INTO `parroquias` (`id_parroquia`, `id_municipio`, `parroquia`) VALUES
 (685, 265, 'San Vicente'),
 (686, 266, 'Aparicio'),
 (687, 266, 'Aragua de Maturín'),
-(688, 266, 'Chaguamal'),
+(688, 266, 'Chaguamal',
 (689, 266, 'El Pinto'),
 (690, 266, 'Guanaguana'),
 (691, 266, 'La Toscana'),
@@ -2335,21 +2335,33 @@ CREATE TABLE `usuarios` (
   `id_usuario` int(10) UNSIGNED NOT NULL,
   `correo` varchar(100) NOT NULL,
   `nombre_usuario` varchar(50) NOT NULL,
+  `Primer_Nombre` varchar(50) NOT NULL,
+  `Segundo_Nombre` varchar(50) DEFAULT NULL,
+  `Primer_Apellido` varchar(50) NOT NULL,
+  `Segundo_Apellido` varchar(50) DEFAULT NULL,
+  `fecha_nacimiento` DATE NOT NULL,
+  `Cedula` varchar(15) DEFAULT NULL,
+  `sexo` enum('Masculino', 'Femenino', 'Otro') NOT NULL,
+  `telefono` VARCHAR(20) NOT NULL,
+  `estado` VARCHAR(100) NOT NULL,
+  `ciudad` VARCHAR(100) NOT NULL,
+  `municipio` VARCHAR(100) NOT NULL,
+  `parroquia` VARCHAR(100) NOT NULL,
   `contraseña` varchar(255) NOT NULL,
   `1era_pregunta` varchar(100) NOT NULL,
   `1era_respuesta` varchar(100) NOT NULL,
   `2da_pregunta` varchar(100) NOT NULL,
   `2da_respuesta` varchar(100) NOT NULL,
+  CONSTRAINT `chk_contraseña` CHECK (LENGTH(`contraseña`) >= 8),
   `tipo_usuario` enum('paciente','psicologa') NOT NULL,
   `status` enum('activo','inactivo','pendiente') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
 -- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`id_usuario`, `correo`, `nombre_usuario`, `contraseña`, `1era_pregunta`, `1era_respuesta`, `2da_pregunta`, `2da_respuesta`, `tipo_usuario`, `status`) VALUES
-(1, 'juan.perez@example.com', 'juanp', 'hashedpassword1', '', '', '', '', 'paciente', 'activo');
+INSERT INTO `usuarios` (
+  `id_usuario`, `correo`, `nombre_usuario`, `Primer_Nombre`, `Segundo_Nombre`, `Primer_Apellido`, `Segundo_Apellido`, `fecha_nacimiento`, `Cedula`, `sexo`, `telefono`, `estado`, `ciudad`, `municipio`, `parroquia`, `contraseña`, `1era_pregunta`, `1era_respuesta`, `2da_pregunta`, `2da_respuesta`, `tipo_usuario`, `status`
+) VALUES
+(1, 'juan.perez@example.com', 'juanp', 'Juan', 'Carlos', 'Pérez', 'Ramírez', '1995-06-15', 'V-12345678', 'Masculino', '04121234567', 'Amazonas', 'Puerto Ayacucho', 'Atures', 'Fernando Girón Tovar', 'hashedpassword1', '¿Color favorito?', 'Azul', '¿Mascota?', 'Firulais', 'paciente', 'activo');
 
 --
 -- Índices para tablas volcadas
