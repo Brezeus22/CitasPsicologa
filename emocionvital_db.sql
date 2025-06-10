@@ -1823,7 +1823,7 @@ INSERT INTO `parroquias` (`id_parroquia`, `id_municipio`, `parroquia`) VALUES
 (685, 265, 'San Vicente'),
 (686, 266, 'Aparicio'),
 (687, 266, 'Aragua de Maturín'),
-(688, 266, 'Chaguamal',
+(688, 266, 'Chaguamal'),
 (689, 266, 'El Pinto'),
 (690, 266, 'Guanaguana'),
 (691, 266, 'La Toscana'),
