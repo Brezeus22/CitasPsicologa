@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2025 a las 19:01:43
+-- Tiempo de generación: 24-06-2025 a las 19:43:18
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `emocionvital_db`
+-- Base de datos: `psicologia`
 --
 
 -- --------------------------------------------------------
@@ -34,7 +34,6 @@ CREATE TABLE `cita` (
   `id_horario` int(10) UNSIGNED NOT NULL,
   `tipo_cita` enum('online','presencial') NOT NULL,
   `categoria` enum('Infantil','Jovenes','Adulto','Pareja') NOT NULL,
-  `costo_consulta` float NOT NULL,
   `fecha_cita` date NOT NULL,
   `hora_cita` time NOT NULL,
   `metodo_pago` enum('Divisas','Pago Movil') NOT NULL,
@@ -45,8 +44,8 @@ CREATE TABLE `cita` (
 -- Volcado de datos para la tabla `cita`
 --
 
-INSERT INTO `cita` (`id_cita`, `id_paciente`, `id_psicologa`, `id_horario`, `tipo_cita`, `categoria`, `costo_consulta`, `fecha_cita`, `hora_cita`, `metodo_pago`, `Status`) VALUES
-(1, 1, 1, 1, 'online', 'Adulto', 50, '2025-05-10', '10:00:00', 'Pago Movil', 'Confirmada');
+INSERT INTO `cita` (`id_cita`, `id_paciente`, `id_psicologa`, `id_horario`, `tipo_cita`, `categoria`, `fecha_cita`, `hora_cita`, `metodo_pago`, `Status`) VALUES
+(1, 1, 1, 1, 'online', 'Adulto', '2025-05-10', '10:00:00', 'Pago Movil', 'Confirmada');
 
 -- --------------------------------------------------------
 
@@ -1286,7 +1285,7 @@ INSERT INTO `parroquias` (`id_parroquia`, `id_municipio`, `parroquia`) VALUES
 (148, 52, 'Urdaneta'),
 (149, 52, 'Las Peñitas'),
 (150, 52, 'San Francisco de Cara'),
-(151,  52, 'Taguay'),
+(151, 52, 'Taguay'),
 (152, 53, 'Zamora'),
 (153, 53, 'Magdaleno'),
 (154, 53, 'San Francisco de Asís'),
@@ -2339,29 +2338,29 @@ CREATE TABLE `usuarios` (
   `Segundo_Nombre` varchar(50) DEFAULT NULL,
   `Primer_Apellido` varchar(50) NOT NULL,
   `Segundo_Apellido` varchar(50) DEFAULT NULL,
-  `fecha_nacimiento` DATE NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
   `Cedula` varchar(15) DEFAULT NULL,
-  `sexo` enum('Masculino', 'Femenino', 'Otro') NOT NULL,
-  `telefono` VARCHAR(20) NOT NULL,
-  `estado` VARCHAR(100) NOT NULL,
-  `ciudad` VARCHAR(100) NOT NULL,
-  `municipio` VARCHAR(100) NOT NULL,
-  `parroquia` VARCHAR(100) NOT NULL,
+  `sexo` enum('Masculino','Femenino','Otro') NOT NULL,
+  `telefono` varchar(20) NOT NULL,
+  `estado` varchar(100) NOT NULL,
+  `ciudad` varchar(100) NOT NULL,
+  `municipio` varchar(100) NOT NULL,
+  `parroquia` varchar(100) NOT NULL,
   `contraseña` varchar(255) NOT NULL,
-  `1era_pregunta` varchar(100) NOT NULL,
+  `1era_pregunta` varchar(100) NOT NULL DEFAULT 'Color Favorito',
   `1era_respuesta` varchar(100) NOT NULL,
-  `2da_pregunta` varchar(100) NOT NULL,
+  `2da_pregunta` varchar(100) NOT NULL DEFAULT 'Animal Favorito',
   `2da_respuesta` varchar(100) NOT NULL,
-  CONSTRAINT `chk_contraseña` CHECK (LENGTH(`contraseña`) >= 8),
-  `tipo_usuario` enum('paciente','psicologa') NOT NULL,
-  `status` enum('activo','inactivo','pendiente') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `tipo_usuario` enum('paciente','psicologa') NOT NULL DEFAULT 'paciente',
+  `status` enum('activo','inactivo','pendiente') NOT NULL DEFAULT 'activo'
+) ;
 
+--
 -- Volcado de datos para la tabla `usuarios`
-INSERT INTO `usuarios` (
-  `id_usuario`, `correo`, `nombre_usuario`, `Primer_Nombre`, `Segundo_Nombre`, `Primer_Apellido`, `Segundo_Apellido`, `fecha_nacimiento`, `Cedula`, `sexo`, `telefono`, `estado`, `ciudad`, `municipio`, `parroquia`, `contraseña`, `1era_pregunta`, `1era_respuesta`, `2da_pregunta`, `2da_respuesta`, `tipo_usuario`, `status`
-) VALUES
-(1, 'juan.perez@example.com', 'juanp', 'Juan', 'Carlos', 'Pérez', 'Ramírez', '1995-06-15', 'V-12345678', 'Masculino', '04121234567', 'Amazonas', 'Puerto Ayacucho', 'Atures', 'Fernando Girón Tovar', 'hashedpassword1', '¿Color favorito?', 'Azul', '¿Mascota?', 'Firulais', 'paciente', 'activo');
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `correo`, `nombre_usuario`, `Primer_Nombre`, `Segundo_Nombre`, `Primer_Apellido`, `Segundo_Apellido`, `fecha_nacimiento`, `Cedula`, `sexo`, `telefono`, `estado`, `ciudad`, `municipio`, `parroquia`, `contraseña`, `1era_pregunta`, `1era_respuesta`, `2da_pregunta`, `2da_respuesta`, `tipo_usuario`, `status`) VALUES
+(1, 'juan.perez@example.com', 'juanp', 'Juan', 'Carlos', 'Pérez', 'Ramírez', '1995-06-15', 'V-12345678', 'Masculino', '04121234567', 'Amazonas', 'Puerto Ayacucho', 'Atures', 'Fernando Girón Tovar', 'hashedpassword1', 'Color favorito', 'Azul', 'Animal Favorito', 'Perro', 'paciente', 'activo');
 
 --
 -- Índices para tablas volcadas
@@ -2561,7 +2560,7 @@ ALTER TABLE `reprogramacion_cita`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
