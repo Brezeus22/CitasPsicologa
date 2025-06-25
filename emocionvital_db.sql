@@ -2350,21 +2350,7 @@ CREATE TABLE `usuarios` (
   `correo` varchar(100) NOT NULL,
   `nombre_usuario` varchar(50) NOT NULL,
   `Primer_Nombre` varchar(50) NOT NULL,
-<<<<<<< HEAD
   `Primer_Apellido` varchar(50) NOT NULL,
-=======
-  `Segundo_Nombre` varchar(50) DEFAULT NULL,
-  `Primer_Apellido` varchar(50) NOT NULL,
-  `Segundo_Apellido` varchar(50) DEFAULT NULL,
-  `fecha_nacimiento` date NOT NULL,
-  `Cedula` varchar(15) DEFAULT NULL,
-  `sexo` enum('Masculino','Femenino','Otro') NOT NULL,
-  `telefono` varchar(20) NOT NULL,
-  `estado` varchar(100) NOT NULL,
-  `ciudad` varchar(100) NOT NULL,
-  `municipio` varchar(100) NOT NULL,
-  `parroquia` varchar(100) NOT NULL,
->>>>>>> bd83ca650d0a481eb36c41327cb8e0140c6abb95
   `contraseña` varchar(255) NOT NULL,
   `1era_pregunta` varchar(100) NOT NULL DEFAULT 'Color Favorito',
   `1era_respuesta` varchar(100) NOT NULL,
@@ -2372,23 +2358,14 @@ CREATE TABLE `usuarios` (
   `2da_respuesta` varchar(100) NOT NULL,
   `tipo_usuario` enum('paciente','psicologa') NOT NULL DEFAULT 'paciente',
   `status` enum('activo','inactivo','pendiente') NOT NULL DEFAULT 'activo'
-<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-=======
-) ;
->>>>>>> bd83ca650d0a481eb36c41327cb8e0140c6abb95
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-<<<<<<< HEAD
 INSERT INTO `usuarios` (`id_usuario`, `correo`, `nombre_usuario`, `Primer_Nombre`, `Primer_Apellido`, `contraseña`, `1era_pregunta`, `1era_respuesta`, `2da_pregunta`, `2da_respuesta`, `tipo_usuario`, `status`) VALUES
 (1, 'juan.perez@example.com', 'juanp', 'Juan', 'Pérez', 'hashedpassword1', 'Color favorito', 'Azul', 'Animal Favorito', 'Perro', 'paciente', 'activo');
-=======
-INSERT INTO `usuarios` (`id_usuario`, `correo`, `nombre_usuario`, `Primer_Nombre`, `Segundo_Nombre`, `Primer_Apellido`, `Segundo_Apellido`, `fecha_nacimiento`, `Cedula`, `sexo`, `telefono`, `estado`, `ciudad`, `municipio`, `parroquia`, `contraseña`, `1era_pregunta`, `1era_respuesta`, `2da_pregunta`, `2da_respuesta`, `tipo_usuario`, `status`) VALUES
-(1, 'juan.perez@example.com', 'juanp', 'Juan', 'Carlos', 'Pérez', 'Ramírez', '1995-06-15', 'V-12345678', 'Masculino', '04121234567', 'Amazonas', 'Puerto Ayacucho', 'Atures', 'Fernando Girón Tovar', 'hashedpassword1', 'Color favorito', 'Azul', 'Animal Favorito', 'Perro', 'paciente', 'activo');
->>>>>>> bd83ca650d0a481eb36c41327cb8e0140c6abb95
 
 --
 -- Índices para tablas volcadas

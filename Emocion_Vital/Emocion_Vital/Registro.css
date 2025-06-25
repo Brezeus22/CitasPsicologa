@@ -1,4 +1,4 @@
- .u-section-1 {
+.u-section-1 {
   background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../images/psicologia-infantil.jpg');
   background-position: 50% 50%;
   background-size: cover, cover;
@@ -28,6 +28,17 @@
 .u-section-1 .u-form-1 {
   height: 727px;
   margin: 8px 5px 0 0;
+  min-height: 600px; /* Ajusta según el diseño de tu contenedor */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.u-section-1 .u-inner-form {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .u-section-1 .u-form-group-1 {
@@ -136,6 +147,36 @@
   padding: 0;
 }
 
+.u-section-1 .u-form-group {
+  margin-bottom: 32px !important; /* Espacio generoso entre campos */
+}
+
+.u-section-1 .u-form-group:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Ajuste para que los campos de dos columnas siempre ocupen el ancho correcto */
+.u-section-1 .u-form-partition-factor-2 {
+  width: 48%;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 4%;
+  min-width: 0 !important;
+}
+
+.u-section-1 .u-form-partition-factor-2:nth-child(2n) {
+  margin-right: 0;
+}
+
+/* En móviles, que ocupen el 100% */
+@media (max-width: 900px) {
+  .u-section-1 .u-form-partition-factor-2 {
+    width: 100% !important;
+    margin-right: 0 !important;
+    display: block;
+  }
+}
+
 @media (max-width: 1199px) {
    .u-section-1 {
     min-height: 503px;
@@ -218,4 +259,46 @@
   .u-section-1 .u-text-2 {
     font-size: 2.25rem;
   }
+}
+
+/* Todos los campos de entrada del formulario con el mismo largo (ancho) */
+.u-section-1 .u-input,
+.u-section-1 .u-input-rectangle,
+.u-section-1 input[type="text"],
+.u-section-1 input[type="email"],
+.u-section-1 input[type="password"],
+.u-section-1 input[type="tel"],
+.u-section-1 input[type="date"],
+.u-section-1 textarea,
+u-section-1 select {
+  width: 100% !important;
+  min-width: 0 !important; /* <-- Cambia aquí */
+  max-width: 100% !important;
+  height: 48px !important;
+  font-size: 1.1rem !important;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.u-form-submit {
+  margin-top: auto !important;
+}
+
+/* Botones de navegación alineados horizontalmente y del mismo tamaño */
+.u-form-group.u-form-submit {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.u-form-group.u-form-submit .u-btn {
+  min-width: 140px;
+  height: 44px;
+  font-size: 1.05rem;
+  padding: 0 24px;
+  margin: 0;
+  box-sizing: border-box;
 }
