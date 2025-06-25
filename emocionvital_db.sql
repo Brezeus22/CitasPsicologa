@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
+<<<<<<< HEAD
+-- Tiempo de generación: 25-06-2025 a las 20:01:50
+=======
 -- Tiempo de generación: 24-06-2025 a las 19:43:18
+>>>>>>> bd83ca650d0a481eb36c41327cb8e0140c6abb95
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -1087,10 +1091,21 @@ CREATE TABLE `paciente` (
   `primer_apellido` varchar(50) NOT NULL,
   `segundo_apellido` varchar(50) NOT NULL,
   `cedula` varchar(15) NOT NULL,
-  `edad` int(10) UNSIGNED NOT NULL,
   `fecha_de_nacimiento` date NOT NULL,
+  `lugar_nacimiento` text NOT NULL,
+  `instruccion` text NOT NULL,
+  `ocupacion` text NOT NULL,
+  `estado_civil` enum('Soltero(a)','Casado(a)','Viudo(a)') NOT NULL,
+  `religion` text NOT NULL,
+  `nombre_conyuge` varchar(100) NOT NULL,
+  `telefono_conyuge` varchar(15) NOT NULL,
+  `hijos` enum('0','1','2','mas de 2') NOT NULL,
+  `centro_estudio_y/o_trabajo` text NOT NULL,
+  `grado` varchar(100) NOT NULL,
+  `tiempo_residencia` year(4) NOT NULL,
   `sexo` enum('Masculino','Femenino') NOT NULL,
   `telefono` varchar(15) NOT NULL,
+  `correo` varchar(100) NOT NULL,
   `direccion` text NOT NULL,
   `id_estado` int(11) NOT NULL,
   `id_municipio` int(11) NOT NULL,
@@ -1102,8 +1117,8 @@ CREATE TABLE `paciente` (
 -- Volcado de datos para la tabla `paciente`
 --
 
-INSERT INTO `paciente` (`id_paciente`, `id_usuario`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `cedula`, `edad`, `fecha_de_nacimiento`, `sexo`, `telefono`, `direccion`, `id_estado`, `id_municipio`, `id_parroquia`, `status`) VALUES
-(1, 1, 'Juan', 'Carlos', 'Pérez', 'Ramírez', 'V-12345678', 30, '1995-06-15', 'Masculino', '04121234567', '', 1, 4, 2, 'activo');
+INSERT INTO `paciente` (`id_paciente`, `id_usuario`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `cedula`, `fecha_de_nacimiento`, `lugar_nacimiento`, `instruccion`, `ocupacion`, `estado_civil`, `religion`, `nombre_conyuge`, `telefono_conyuge`, `hijos`, `centro_estudio_y/o_trabajo`, `grado`, `tiempo_residencia`, `sexo`, `telefono`, `correo`, `direccion`, `id_estado`, `id_municipio`, `id_parroquia`, `status`) VALUES
+(1, 1, 'Juan', 'Carlos', 'Pérez', 'Ramírez', 'V-12345678', '1995-06-15', '', '', '', 'Soltero(a)', '', '', '', '0', '', '', '0000', 'Masculino', '04121234567', '', '', 1, 4, 2, 'activo');
 
 -- --------------------------------------------------------
 
@@ -2335,6 +2350,9 @@ CREATE TABLE `usuarios` (
   `correo` varchar(100) NOT NULL,
   `nombre_usuario` varchar(50) NOT NULL,
   `Primer_Nombre` varchar(50) NOT NULL,
+<<<<<<< HEAD
+  `Primer_Apellido` varchar(50) NOT NULL,
+=======
   `Segundo_Nombre` varchar(50) DEFAULT NULL,
   `Primer_Apellido` varchar(50) NOT NULL,
   `Segundo_Apellido` varchar(50) DEFAULT NULL,
@@ -2346,6 +2364,7 @@ CREATE TABLE `usuarios` (
   `ciudad` varchar(100) NOT NULL,
   `municipio` varchar(100) NOT NULL,
   `parroquia` varchar(100) NOT NULL,
+>>>>>>> bd83ca650d0a481eb36c41327cb8e0140c6abb95
   `contraseña` varchar(255) NOT NULL,
   `1era_pregunta` varchar(100) NOT NULL DEFAULT 'Color Favorito',
   `1era_respuesta` varchar(100) NOT NULL,
@@ -2353,14 +2372,23 @@ CREATE TABLE `usuarios` (
   `2da_respuesta` varchar(100) NOT NULL,
   `tipo_usuario` enum('paciente','psicologa') NOT NULL DEFAULT 'paciente',
   `status` enum('activo','inactivo','pendiente') NOT NULL DEFAULT 'activo'
+<<<<<<< HEAD
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+=======
 ) ;
+>>>>>>> bd83ca650d0a481eb36c41327cb8e0140c6abb95
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
+<<<<<<< HEAD
+INSERT INTO `usuarios` (`id_usuario`, `correo`, `nombre_usuario`, `Primer_Nombre`, `Primer_Apellido`, `contraseña`, `1era_pregunta`, `1era_respuesta`, `2da_pregunta`, `2da_respuesta`, `tipo_usuario`, `status`) VALUES
+(1, 'juan.perez@example.com', 'juanp', 'Juan', 'Pérez', 'hashedpassword1', 'Color favorito', 'Azul', 'Animal Favorito', 'Perro', 'paciente', 'activo');
+=======
 INSERT INTO `usuarios` (`id_usuario`, `correo`, `nombre_usuario`, `Primer_Nombre`, `Segundo_Nombre`, `Primer_Apellido`, `Segundo_Apellido`, `fecha_nacimiento`, `Cedula`, `sexo`, `telefono`, `estado`, `ciudad`, `municipio`, `parroquia`, `contraseña`, `1era_pregunta`, `1era_respuesta`, `2da_pregunta`, `2da_respuesta`, `tipo_usuario`, `status`) VALUES
 (1, 'juan.perez@example.com', 'juanp', 'Juan', 'Carlos', 'Pérez', 'Ramírez', '1995-06-15', 'V-12345678', 'Masculino', '04121234567', 'Amazonas', 'Puerto Ayacucho', 'Atures', 'Fernando Girón Tovar', 'hashedpassword1', 'Color favorito', 'Azul', 'Animal Favorito', 'Perro', 'paciente', 'activo');
+>>>>>>> bd83ca650d0a481eb36c41327cb8e0140c6abb95
 
 --
 -- Índices para tablas volcadas
