@@ -121,6 +121,33 @@
     </script>
 <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
   <body data-path-to-root="../" data-include-products="false" class="u-body u-xl-mode" data-lang="es">
+  <!-- Botón Home con estética igual a los botones del formulario -->
+  <a href="Home.html"
+     title="Ir a Home"
+     style="
+        position: absolute;
+        top: 24px;
+        right: 48px;
+        z-index: 1000;
+        font-size: 3.5rem;
+        font-family: 'Aclonica', Arial, sans-serif;
+        font-weight: bold;
+        color: #fff;
+        text-decoration: none;
+        background: none;
+        border: none;
+        box-shadow: none;
+        cursor: pointer;
+        transition: color 0.2s;
+        line-height: 1;
+        padding: 0;
+        display: inline-block;
+        text-align: right;
+     "
+     onmouseover="this.style.color='#9CC78D';"
+     onmouseout="this.style.color='#fff';">
+    Home
+  </a>
     <section class="u-align-center u-clearfix u-image u-shading u-section-1" id="block-2" data-image-width="1200" data-image-height="675">
       <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
         <div class="custom-expanded u-align-left u-container-align-left u-container-style u-group u-radius-30 u-shape-round u-white u-group-1">
@@ -128,75 +155,221 @@
             <h4 class="u-align-center u-custom-font u-text u-text-1"><span style="font-size: 1.875rem;">Registrate Con Nosotro</span><span style="font-size: 1.875rem;">s</span>
             </h4>
             <div class="u-form u-form-1">
-              <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 0px;">
-                <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-1">
-                  <label for="first-name-dbd1" class="u-label">Primer Nombre</label>
-                  <input type="text" placeholder="Ingrese su primer nombre" id="first-name-dbd1" name="name" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius u-input-1" required="">
-                </div>
-                <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-2">
-                  <label for="last-name-dbd1" class="u-label">Segundo Nombre</label>
-                  <input type="text" placeholder="Ingrese su segundo nombre" id="last-name-dbd1" name="name-3" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius u-input-2" required="">
-                </div>
-                <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-3">
-                  <label for="first-name-87e0" class="u-label">Primer Apellido</label>
-                  <input type="text" placeholder="Ingrese su primer apellido" id="first-name-87e0" name="name-1" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius u-input-3" required="">
-                </div>
-                <div class="u-form-group u-form-name u-form-partition-factor-2 u-form-group-4">
-                  <label for="last-name-87e0" class="u-label">Segundo Apellido</label>
-                  <input type="text" placeholder="Ingrese su segundo apellido" id="last-name-87e0" name="name-2" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius u-input-4" required="">
-                </div>
-                <div class="u-form-group u-form-name u-form-group-5">
-                  <label for="name-2e59" class="u-label">Cédula</label>
-                  <input type="text" placeholder="V-" id="name-2e59" name="name-4" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius u-input-5" required="">
-                </div>
-                <div class="u-form-email u-form-group u-form-group-6">
-                  <label for="email-61df" class="u-label">Email</label>
-                  <input type="email" placeholder="Introduzca una dirección de correo electrónico válida" id="email-61df" name="email" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius u-input-6" required="">
-                </div>
-                <div class="u-form-group u-form-phone u-form-group-7">
-                  <label for="phone-e1df" class="u-label">Teléfono</label>
-                  <input type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{2,3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})" placeholder="Ingrese su teléfono (por ejemplo, +58 412 0545 892)" id="phone-e1df" name="phone" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius u-input-7" required="">
-                </div>
-                <div class="u-form-checkbox-group u-form-group u-form-group-8">
-                  <label class="u-label u-label-8">Sexo</label>
-                  <div class="u-form-checkbox-group-wrapper">
-                    <div class="u-input-row">
-                      <input id="field-1de6" type="checkbox" name="checkbox[]" value="Masculino" class="u-field-input" checked="checked" data-calc="">
-                      <label class="u-field-label" for="field-1de6">Masculino</label>
-                    </div>
-                    <div class="u-input-row">
-                      <input id="field-ec66" type="checkbox" name="checkbox[]" value="Femenino" class="u-field-input" data-calc="">
-                      <label class="u-field-label" for="field-ec66">Femenino</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="u-form-date u-form-group u-form-group-9">
-                  <label for="date-bf93" class="u-label">Fecha de Nacimiento</label>
-                  <input type="text" placeholder="MM/DD/AAAA" id="date-bf93" name="date" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius u-input-8" required="" data-date-format="mm/dd/yyyy">
-                </div>
-                <div class="u-align-right u-form-group u-form-submit">
-                  <a href="#" class="u-active-palette-1-dark-1 u-border-5 u-border-active-palette-1-dark-1 u-border-hover-palette-1-light-1 u-border-palette-1-base u-btn u-btn-round u-btn-submit u-button-style u-custom-color-1 u-custom-font u-hover-palette-4-dark-2 u-radius-10 u-btn-1">Registrarse</a>
-                  <input type="submit" value="submit" class="u-form-control-hidden">
-                </div>
-                <div class="u-form-send-message u-form-send-success">Gracias! Tu mensaje ha sido enviado.</div>
-                <div class="u-form-send-error u-form-send-message">No se puede enviar su mensaje. Por favor, corrija los errores y vuelva a intentarlo.</div>
-                <input type="hidden" value="" name="recaptchaResponse">
-                <input type="hidden" name="formServices" value="">
-                <input type="hidden" name="siteKey" value="6Ld8uFYrAAAAAJFixeoyloaEyZCmzOS8Jt8UVcnn">
-              </form>
-            </div>
-            <a href="Inicio-Sesion.html" data-page-id="456204691" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-2 u-custom-font u-hover-custom-color-1 u-radius u-btn-2" title="Inicio Sesion">Iniciar Sesión </a>
-          </div>
+              <!-- Primer página: usuario, correo, contraseña, preguntas de seguridad -->
+              <form id="form-pagina-1" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 0px;">
+  <div class="u-form-group">
+    <label for="username" class="u-label">Nombre de usuario</label>
+    <input type="text" placeholder="Ingrese su nombre de usuario" id="username" name="username" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" required>
+  </div>
+  <div class="u-form-group">
+    <label for="email" class="u-label">Correo electrónico</label>
+    <input type="email" placeholder="Ingrese su correo electrónico" id="email" name="email" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" required>
+  </div>
+  <div class="u-form-group">
+    <label for="password" class="u-label">Contraseña</label>
+    <input type="password" placeholder="Ingrese su contraseña" id="password" name="password" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" required>
+  </div>
+  <div class="u-form-group">
+    <label for="confirm-password" class="u-label">Confirmar contraseña</label>
+    <input type="password" placeholder="Repita su contraseña" id="confirm-password" name="confirm-password" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" required>
+  </div>
+  <div class="u-form-group">
+    <label for="color-favorito" class="u-label">¿Cuál es tu color favorito?</label>
+    <input type="text" placeholder="Ejemplo: Azul" id="color-favorito" name="color-favorito" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" required>
+  </div>
+  <div class="u-form-group">
+    <label for="animal-favorito" class="u-label">¿Cuál es tu animal favorito?</label>
+    <input type="text" placeholder="Ejemplo: Perro" id="animal-favorito" name="animal-favorito" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" required>
+  </div>
+  <div class="u-align-right u-form-group u-form-submit">
+    <button type="button" onclick="mostrarPagina(2)" class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-1 u-custom-font u-radius-10 u-btn-1">Siguiente</button>
+  </div>
+</form>
+
+<!-- Segunda página: nombres, apellidos, cédula, teléfono (sin fecha de nacimiento ni sexo) -->
+<form id="form-pagina-2" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 0px; display:none;">
+  <div class="u-form-group">
+    <label for="first-name-dbd1" class="u-label">Primer Nombre</label>
+    <input type="text" placeholder="Ingrese su primer nombre" id="first-name-dbd1" name="name" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" required>
+  </div>
+  <div class="u-form-group">
+    <label for="last-name-dbd1" class="u-label">Segundo Nombre</label>
+    <input type="text" placeholder="Ingrese su segundo nombre" id="last-name-dbd1" name="name-3" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" required>
+  </div>
+  <div class="u-form-group">
+    <label for="first-name-87e0" class="u-label">Primer Apellido</label>
+    <input type="text" placeholder="Ingrese su primer apellido" id="first-name-87e0" name="name-1" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" required>
+  </div>
+  <div class="u-form-group">
+    <label for="last-name-87e0" class="u-label">Segundo Apellido</label>
+    <input type="text" placeholder="Ingrese su segundo apellido" id="last-name-87e0" name="name-2" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" required>
+  </div>
+  <div class="u-form-group">
+    <label for="name-2e59" class="u-label">Cédula</label>
+    <input type="text" placeholder="V-" id="name-2e59" name="name-4" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" required>
+  </div>
+  <div class="u-form-group">
+    <label for="phone-e1df" class="u-label">Teléfono</label>
+    <input type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{2,3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})" placeholder="Ingrese su teléfono (por ejemplo, +58 412 0545 892)" id="phone-e1df" name="phone" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" required>
+  </div>
+  <div class="u-align-right u-form-group u-form-submit">
+    <button type="button" onclick="mostrarPagina(1)" class="u-btn u-btn-round u-button-style u-custom-color-2 u-custom-font u-radius-10">Anterior</button>
+    <button type="button" onclick="mostrarPagina(3)" class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-1 u-custom-font u-radius-10 u-btn-1">Siguiente</button>
+  </div>
+</form>
+
+<!-- Tercera página: fecha de nacimiento y sexo (solo aquí), más los siguientes campos -->
+<form id="form-pagina-3" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 0px; display:none;">
+    <div class="u-form-group u-form-partition-factor-2">
+      <label for="date-bf93" class="u-label">Fecha de Nacimiento</label>
+      <input type="text" placeholder="MM/DD/AAAA" id="date-bf93" name="date" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius u-input-8" required data-date-format="mm/dd/yyyy" style="font-size: 1.1rem; height: 48px;">
+    </div>
+    <div class="u-form-group u-form-partition-factor-2">
+      <label class="u-label u-label-8">Sexo</label>
+      <div class="u-form-checkbox-group-wrapper" style="display: flex; gap: 20px; align-items: center;">
+        <div class="u-input-row">
+          <input id="field-1de6" type="checkbox" name="checkbox[]" value="Masculino" class="u-field-input" checked="checked" data-calc="">
+          <label class="u-field-label" for="field-1de6">Masculino</label>
         </div>
-        <h1 class="u-custom-font u-text u-text-default u-text-2">
-          <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-white u-btn-3" href="Home.html" data-page-id="1019423345" title="Home">Home</a>
-        </h1>
+        <div class="u-input-row">
+          <input id="field-ec66" type="checkbox" name="checkbox[]" value="Femenino" class="u-field-input" data-calc="">
+          <label class="u-field-label" for="field-ec66">Femenino</label>
+        </div>
       </div>
-    </section>
-    
-    
-    
-    
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="lugar_nacimiento" class="u-label">Lugar de Nacimiento</label>
+      <input type="text" placeholder="Ciudad, Estado, País" id="lugar_nacimiento" name="lugar_nacimiento" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;">
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="instruccion" class="u-label">Nivel de Instrucción</label>
+      <input type="text" placeholder="Ej: Universitario" id="instruccion" name="instruccion" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;">
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="ocupacion" class="u-label">Ocupación</label>
+      <input type="text" placeholder="Ej: Estudiante, Empleado" id="ocupacion" name="ocupacion" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;">
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="estado_civil" class="u-label">Estado Civil</label>
+      <input type="text" placeholder="Ej: Soltero, Casado" id="estado_civil" name="estado_civil" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;">
+    </div>
+    <div class="u-align-right u-form-group u-form-submit">
+      <button type="button" onclick="mostrarPagina(2)" class="u-btn u-btn-round u-button-style u-custom-color-2 u-custom-font u-radius-10">Anterior</button>
+      <button type="button" onclick="mostrarPagina(4)" class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-1 u-custom-font u-radius-10 u-btn-1">Siguiente</button>
+    </div>
+  </form>
+
+  <!-- Cuarta página: siguientes 6 campos -->
+  <form id="form-pagina-4" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 0px; display:none;">
+    <div class="u-form-group" style="width: 100%;">
+      <label for="religion" class="u-label">Religión</label>
+      <input type="text" placeholder="Ej: Católica, Evangélica" id="religion" name="religion" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;">
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="nombre_conyuge" class="u-label">Nombre del Cónyuge</label>
+      <input type="text" placeholder="Nombre completo" id="nombre_conyuge" name="nombre_conyuge" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;">
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="telefono_conyuge" class="u-label">Teléfono del Cónyuge</label>
+      <input type="tel" placeholder="Ej: +58 412 1234567" id="telefono_conyuge" name="telefono_conyuge" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;">
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="hijos" class="u-label">Hijos</label>
+      <input type="text" placeholder="Cantidad o nombres" id="hijos" name="hijos" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;">
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="centro_estudio_trabajo" class="u-label">Centro de Estudio y/o Trabajo</label>
+      <input type="text" placeholder="Nombre del centro" id="centro_estudio_trabajo" name="centro_estudio_trabajo" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;">
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="grado" class="u-label">Grado</label>
+      <input type="text" placeholder="Ej: 5to año, Licenciado" id="grado" name="grado" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;">
+    </div>
+    <div class="u-align-right u-form-group u-form-submit">
+      <button type="button" onclick="mostrarPagina(3)" class="u-btn u-btn-round u-button-style u-custom-color-2 u-custom-font u-radius-10">Anterior</button>
+      <button type="button" onclick="mostrarPagina(5)" class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-1 u-custom-font u-radius-10 u-btn-1">Siguiente</button>
+    </div>
+  </form>
+
+  <!-- Quinta página: resto de campos -->
+  <form id="form-pagina-5" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 0px; display:none;">
+    <div class="u-form-group" style="width: 100%;">
+      <label for="tiempo_residencia" class="u-label">Tiempo de Residencia</label>
+      <input type="text" placeholder="Ej: 5 años" id="tiempo_residencia" name="tiempo_residencia" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;">
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="correo" class="u-label">Correo alternativo</label>
+      <input type="email" placeholder="Ingrese un correo alternativo" id="correo" name="correo" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;">
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="direccion" class="u-label">Dirección</label>
+      <input type="text" placeholder="Dirección completa" id="direccion" name="direccion" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;">
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="estado" class="u-label">Estado</label>
+      <select id="estado" name="estado" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;" required>
+        <option value="">Seleccione un estado</option>
+        <!-- Opciones de ejemplo, puedes llenarlas dinámicamente con JS en el futuro -->
+        <option value="1">Amazonas</option>
+        <option value="2">Anzoátegui</option>
+        <option value="3">Apure</option>
+        <option value="4">Aragua</option>
+        <!-- ...etc... -->
+      </select>
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="municipio" class="u-label">Municipio</label>
+      <select id="municipio" name="municipio" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;" required>
+        <option value="">Seleccione un municipio</option>
+        <!-- Opciones a cargar dinámicamente según el estado -->
+      </select>
+    </div>
+    <div class="u-form-group" style="width: 100%;">
+      <label for="parroquia" class="u-label">Parroquia</label>
+      <select id="parroquia" name="parroquia" class="u-border-2 u-border-grey-5 u-grey-5 u-input u-input-rectangle u-radius" style="font-size: 1.1rem; height: 48px; width: 100%;" required>
+        <option value="">Seleccione una parroquia</option>
+        <!-- Opciones a cargar dinámicamente según el municipio -->
+      </select>
+    </div>
+    <div class="u-align-right u-form-group u-form-submit">
+      <button type="button" onclick="mostrarPagina(4)" class="u-btn u-btn-round u-button-style u-custom-color-2 u-custom-font u-radius-10">Anterior</button>
+      <button type="submit" class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-1 u-custom-font u-radius-10 u-btn-1">Registrarse</button>
+    </div>
+  </form>
+</div>
+
+<div class="u-form-page-indicator" style="position: absolute; right: 30px; bottom: 30px; color: #888; font-size: 1.1rem; z-index: 10;">
+  <span id="pagina-indicador"></span>
+</div>
+
+<script>
+// Muestra solo la página indicada, oculta las demás y sube al tope
+function mostrarPagina(num) {
+  for (let i = 1; i <= 5; i++) {
+    document.getElementById('form-pagina-' + i).style.display = (i === num) ? 'block' : 'none';
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  actualizarIndicador(num);
+}
+
+// Actualiza la numeración de página
+function actualizarIndicador(num) {
+  const total = 5;
+  document.getElementById('pagina-indicador').textContent = `Página ${num} de ${total}`;
+}
+
+// Inicializa el indicador en la página 1 al cargar
+document.addEventListener('DOMContentLoaded', function() {
+  actualizarIndicador(1);
+  const form5 = document.getElementById('form-pagina-5');
+  if (form5) {
+    form5.addEventListener('submit', function(e) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+});
+</script>
+<!-- ...resto del código... -->
     <section class="u-backlink u-clearfix u-grey-80"></section>
   
 </body></html>
