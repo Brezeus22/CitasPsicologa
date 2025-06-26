@@ -509,3 +509,20 @@ select:focus {
   background: #164940;
   color: #fff;
 }
+
+/* Centrar los botones verticalmente y quitar el cuadro */
+#principal-botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  min-height: 80vh;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  max-width: none;
+  width: 100%;
+}
+
