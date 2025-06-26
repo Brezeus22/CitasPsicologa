@@ -40,3 +40,17 @@
   word-break: break-word;
 }
 
+#pacientes-seccion .tabla-citas-wrapper {
+  max-width: 100%;
+  width: 100%;
+  overflow-x: visible;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+#pacientes-seccion .tabla-citas {
+  width: 100%;
+  min-width: 600px;
+  table-layout: auto;
+}
+
