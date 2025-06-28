@@ -79,12 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('pacientes-seccion').style.display = 'block';
     cargarTablaPacientes();
   });
-  document.getElementById('menu-pacientes').addEventListener('click', function(e) {
-    e.preventDefault();
-    ocultarSecciones();
-    document.getElementById('pacientes-seccion').style.display = 'block';
-    cargarTablaPacientes();
-  });
 
   // Editar perfil
   document.getElementById('editar-perfil').addEventListener('click', function(e) {
