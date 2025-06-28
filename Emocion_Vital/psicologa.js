@@ -1,3 +1,13 @@
+function ocultarSecciones() {
+  document.getElementById('principal-botones').style.display = 'none';
+  document.getElementById('pendientes-seccion').style.display = 'none';
+  document.getElementById('historial-seccion').style.display = 'none';
+  document.getElementById('editar-perfil-seccion').style.display = 'none';
+  document.getElementById('pacientes-seccion').style.display = 'none';
+  document.getElementById('historial-paciente-seccion').style.display = 'none';
+  document.getElementById('horario-seccion').style.display = 'none'; // <-- agrega esta línea
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   // Menú desplegable (igual que antes)
   const menuToggle = document.getElementById('menu-toggle');
@@ -33,10 +43,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('principal-botones').style.display = 'none';
     document.getElementById('pendientes-seccion').style.display = 'none';
     document.getElementById('historial-seccion').style.display = 'none';
-    document.getElementById('informe-seccion').style.display = 'none';
     document.getElementById('editar-perfil-seccion').style.display = 'none';
     document.getElementById('pacientes-seccion').style.display = 'none';
     document.getElementById('historial-paciente-seccion').style.display = 'none';
+    document.getElementById('horario-seccion').style.display = 'none'; // <-- agrega esta línea
   }
 
   // Mostrar botones principales
@@ -51,10 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('pendientes-seccion').style.display = 'block';
     mostrarPendientes();
   });
-  document.getElementById('btn-informe').addEventListener('click', function() {
-    ocultarSecciones();
-    document.getElementById('informe-seccion').style.display = 'block';
-  });
 
   // Menú lateral
   document.getElementById('menu-inicio').addEventListener('click', function(e) {
@@ -66,11 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
     ocultarSecciones();
     document.getElementById('pendientes-seccion').style.display = 'block';
     mostrarPendientes();
-  });
-  document.getElementById('menu-informe').addEventListener('click', function(e) {
-    e.preventDefault();
-    ocultarSecciones();
-    document.getElementById('informe-seccion').style.display = 'block';
   });
   document.getElementById('menu-pacientes').addEventListener('click', function(e) {
     e.preventDefault();
@@ -374,32 +375,38 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     let html = `
       <tr>
-        <th>Fecha</th>
-        <th>Hora</th>
-        <th>Paciente</th>
-        <th>Categoría</th>
-        <th>Modalidad</th>
-        <th>Pago</th>
-        <th>Estado</th>
-        <th>Acciones</th>
+        <th style="min-width:100px;"></th>
+        <th style="min-width:80px;">Hora</th>
+        <th style="min-width:150px;">Paciente</th>
+        <th style="min-width:120px;">Categoría</th>
+        <th style="min-width:100px;">Modalidad</th>
+        <th style="min-width:110px;">Pago</th>
+        <th style="min-width:110px;">Estado</th>
+        <th style="min-width:420px;">Acciones</th>
       </tr>
     `;
     citasPendientes.forEach((cita, idx) => {
       html += `
-        <tr>
-          <td>${cita.fecha}</td>
-          <td>${cita.hora}</td>
-          <td>${cita.paciente}</td>
-          <td>${cita.categoria}</td>
-          <td>${cita.modalidad === 'presencial' ? 'Presencial' : 'Online'}</td>
-          <td>${cita.pago}</td>
-          <td>${cita.estado}</td>
-          <td>
-            <button class="btn-confirmar" data-idx="${idx}">Confirmar</button>
-            <button class="btn-reprogramar" data-idx="${idx}">Reprogramar</button>
-          </td>
-        </tr>
-      `;
+  <tr>
+    <td>${cita.fecha}</td>
+    <td>${cita.hora}</td>
+    <td>${cita.paciente}</td>
+    <td>${cita.categoria}</td>
+    <td>${cita.modalidad === 'presencial' ? 'Presencial' : 'Online'}</td>
+    <td>${cita.pago}</td>
+    <td>${cita.estado}</td>
+    <td>
+      <div style="display:flex; gap:6px; flex-wrap:wrap;">
+        <button class="btn-confirmar" data-idx="${idx}">Confirmar</button>
+        <button class="btn-reprogramar" data-idx="${idx}">Reprogramar</button>
+        <button class="btn-informe" data-idx="${idx}">Informe médico</button>
+        <button class="btn-historial" data-idx="${idx}">
+          <i class="fa-solid fa-notes-medical"></i> Historial clínico
+        </button>
+      </div>
+    </td>
+  </tr>
+`;
     });
     contenedor.innerHTML = html;
 
@@ -420,15 +427,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Listener para historial clínico
     contenedor.querySelectorAll('.btn-historial').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const idx = this.getAttribute('data-idx');
-        abrirModalHistorial(idx);
-        document.getElementById('modal-historial-clinico').style.display = 'flex';
-      });
-    });
+  btn.addEventListener('click', function() {
+    const idx = this.getAttribute('data-idx');
+    if (idx !== null) window.verHistorialPaciente(Number(idx));
+  });
+});
   }
 
-  // Cerrar modal
+  // Cerrar modal reprogramar
   document.getElementById('cerrar-modal-reprogramar').onclick = cerrarModalReprogramar;
   document.getElementById('cancelar-reprogramar').onclick = cerrarModalReprogramar;
 
@@ -554,15 +560,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 2000);
     this.reset();
   });
-  document.getElementById('form-informe').addEventListener('submit', function(e) {
-    e.preventDefault();
-    document.getElementById('mensaje-informe').textContent = '¡Informe guardado!';
-    document.getElementById('mensaje-informe').style.display = 'block';
-    setTimeout(() => {
-      document.getElementById('mensaje-informe').style.display = 'none';
-    }, 2000);
-    this.reset();
-  });
 
   // Mostrar inicio al cargar
   mostrarInicio();
@@ -582,12 +579,6 @@ document.addEventListener('DOMContentLoaded', function() {
     cargarTablaPacientes();
   });
 
-  // Botón informe (menú)
-  document.getElementById('menu-informe').addEventListener('click', function(e) {
-    e.preventDefault();
-    ocultarSecciones();
-    document.getElementById('informe-seccion').style.display = 'block';
-  });
 
   // Botón pendientes (menú)
   document.getElementById('menu-pendientes').addEventListener('click', function(e) {
@@ -604,10 +595,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('principal-botones').style.display = 'flex';
   });
 
-  // Botón informe principal
-  document.getElementById('btn-informe').addEventListener('click', function() {
+  // Botón Horario (menú)
+  document.getElementById('menu-horario').addEventListener('click', function(e) {
+    e.preventDefault();
     ocultarSecciones();
-    document.getElementById('informe-seccion').style.display = 'block';
+    document.getElementById('horario-seccion').style.display = 'block';
+    mostrarHorarioLaboral();
   });
 
   // Botón pendientes principal
@@ -732,7 +725,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Guarda los pacientes en window para acceso global
     window._pacientesClinicos = pacientes;
 
-    // Listener SOLO aquí, después de llenar la tabla
+    // Listener hist
     tabla.removeEventListener('click', tabla._historialListener); // Limpia si ya existe
     tabla._historialListener = function(e) {
       const btn = e.target.closest('.btn-historial');
@@ -747,6 +740,354 @@ document.addEventListener('DOMContentLoaded', function() {
   window.verHistorialPaciente = function(idx) {
     ocultarSecciones();
     document.getElementById('historial-paciente-seccion').style.display = 'block';
-    // Aquí puedes cargar los datos del paciente seleccionado si lo deseas
+    mostrarPaginaHistorial(1);
   };
+
+  // Navegación entre páginas del historial clínico
+  function mostrarPaginaHistorial(n) {
+    for (let i = 1; i <= 5; i++) {
+      const page = document.getElementById('historial-page-' + i);
+      if (page) page.style.display = (i === n) ? 'block' : 'none';
+    }
+  }
+  // Página 1
+  const btn = document.getElementById('btn-siguiente-historial-1');
+  if (btn) btn.addEventListener('click', () => mostrarPaginaHistorial(2));
+
+  // Página 2
+  const btnAtr2 = document.getElementById('btn-atras-historial-2');
+  const btnSig2 = document.getElementById('btn-siguiente-historial-2');
+  if (btnAtr2) btnAtr2.onclick = () => mostrarPaginaHistorial(1);
+  if (btnSig2) btnSig2.onclick = () => mostrarPaginaHistorial(3);
+
+  // Página 3
+  const btnAtr3 = document.getElementById('btn-atras-historial-3');
+  const btnSig3 = document.getElementById('btn-siguiente-historial-3');
+  if (btnAtr3) btnAtr3.onclick = () => mostrarPaginaHistorial(2);
+  if (btnSig3) btnSig3.onclick = () => mostrarPaginaHistorial(4);
+
+  // Página 4
+  const btnAtr4 = document.getElementById('btn-atras-historial-4');
+  const btnSig4 = document.getElementById('btn-siguiente-historial-4');
+  if (btnAtr4) btnAtr4.onclick = () => mostrarPaginaHistorial(3);
+  if (btnSig4) btnSig4.onclick = () => mostrarPaginaHistorial(5);
+
+  // Página 5
+  const btnAtr5 = document.getElementById('btn-atras-historial-5');
+  if (btnAtr5) btnAtr5.onclick = () => mostrarPaginaHistorial(4);
+
+  // Permitir agregar una fila extra en la tabla de sumario diagnóstico (máximo 7 filas, la última es la de aproximación diagnóstica)
+  document.addEventListener('DOMContentLoaded', function() {
+    const tbodyDiag = document.getElementById('tbody-sumario-diagnostico');
+    const btnAgregarDiag = document.getElementById('agregar-fila-diagnostico');
+    if (tbodyDiag && btnAgregarDiag) {
+      btnAgregarDiag.addEventListener('click', function() {
+        const filas = tbodyDiag.querySelectorAll('tr');
+        // La última fila es la de aproximación diagnóstica
+        if (filas.length < 7) {
+          const nuevaFila = document.createElement('tr');
+          nuevaFila.innerHTML = `
+            <td><input type="text" style="width:100%;"></td>
+            <td><input type="text" style="width:100%;"></td>
+            <td><input type="text" style="width:100%;"></td>
+            <td>
+              <select style="width:100%;">
+                <option value=""></option>
+                <option value="Leve">Leve</option>
+                <option value="Moderado">Moderado</option>
+                <option value="Grave">Grave</option>
+              </select>
+            </td>
+          `;
+          // Inserta antes de la fila de aproximación diagnóstica
+          tbodyDiag.insertBefore(nuevaFila, filas[filas.length - 1]);
+        }
+      });
+    }
+  });
+
+  // Permitir agregar una fila extra en la tabla de baterías (máximo 5 filas)
+  document.addEventListener('DOMContentLoaded', function() {
+    const tbodyBat = document.getElementById('tbody-baterias');
+    const btnAgregarBat = document.getElementById('agregar-fila-bateria');
+    if (tbodyBat && btnAgregarBat) {
+      btnAgregarBat.addEventListener('click', function() {
+        const filas = tbodyBat.querySelectorAll('tr');
+        if (filas.length < 5) {
+          const nuevaFila = document.createElement('tr');
+          nuevaFila.innerHTML = `
+            <td><input type="text" style="width:100%;"></td>
+            <td><input type="text" style="width:100%;"></td>
+          `;
+          tbodyBat.appendChild(nuevaFila);
+        }
+      });
+    }
+  });
+
+  // --- HORARIO LABORAL MEJORADO ---
+
+  // Días de la semana
+  const DIAS_SEMANA = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+
+  // Simulación de horarios actuales (estructura nueva)
+  let horarioLaboral = {
+    presencial: [
+      // Ejemplo: { dia: 1, desde: "09:00 AM", hasta: "12:00 PM" }, ...
+      { dia: 1, desde: "09:00 AM", hasta: "12:00 PM" },
+      { dia: 1, desde: "01:00 PM", hasta: "04:00 PM" },
+      { dia: 2, desde: "09:00 AM", hasta: "12:00 PM" },
+      { dia: 2, desde: "01:00 PM", hasta: "04:00 PM" },
+      { dia: 3, desde: "09:00 AM", hasta: "12:00 PM" },
+      { dia: 3, desde: "01:00 PM", hasta: "04:00 PM" },
+      { dia: 4, desde: "09:00 AM", hasta: "12:00 PM" },
+      { dia: 4, desde: "01:00 PM", hasta: "04:00 PM" },
+      { dia: 5, desde: "09:00 AM", hasta: "12:00 PM" },
+      { dia: 5, desde: "01:00 PM", hasta: "04:00 PM" },
+      { dia: 6, desde: "09:00 AM", hasta: "01:00 PM" }
+      // Puedes agregar domingo si quieres
+    ],
+    online: [
+      { dia: 1, desde: "06:00 PM", hasta: "08:00 PM" },
+      { dia: 2, desde: "06:00 PM", hasta: "08:00 PM" },
+      { dia: 3, desde: "06:00 PM", hasta: "08:00 PM" },
+      { dia: 4, desde: "06:00 PM", hasta: "08:00 PM" },
+      { dia: 5, desde: "06:00 PM", hasta: "08:00 PM" },
+      { dia: 6, desde: "04:00 PM", hasta: "07:00 PM" }
+      // Puedes agregar domingo si quieres
+    ]
+  };
+
+  // Mostrar la sección de horario laboral
+  function mostrarHorarioLaboral() {
+    ocultarSecciones();
+    document.getElementById('horario-seccion').style.display = 'block';
+    // Siempre renderiza el formulario y el horario actual
+    renderizarFormularioHorario(document.getElementById('tipo-horario').value);
+    renderizarHorarioActual();
+  }
+
+  // Renderiza el formulario de horario laboral permitiendo varias franjas por día
+  function renderizarFormularioHorario(tipo) {
+    const horario = horarioLaboral[tipo] || [];
+    // Agrupa franjas por día
+    const franjasPorDia = {};
+    horario.forEach(f => {
+      if (!franjasPorDia[f.dia]) franjasPorDia[f.dia] = [];
+      franjasPorDia[f.dia].push({ desde: f.desde, hasta: f.hasta });
+    });
+
+    let html = `<div style="margin-bottom:12px;"><b>Días:</b><br>`;
+    for (let i = 1; i <= 6; i++) { // Lunes a Sábado
+      html += `<label style="margin-right:10px;">
+        <input type="checkbox" class="dia-checkbox" value="${i}" ${franjasPorDia[i] ? 'checked' : ''}> ${DIAS_SEMANA[i]}
+      </label>`;
+    }
+    html += `</div>`;
+
+    html += `<div id="horas-por-dia">`;
+    for (let i = 1; i <= 6; i++) {
+      if (!franjasPorDia[i]) continue;
+      html += `<div style="margin-bottom:10px;border:1px solid #eee;padding:8px 12px;border-radius:6px;max-width:350px;">
+        <b>${DIAS_SEMANA[i]}:</b>
+        <div class="franjas-dia" data-dia="${i}">`;
+      franjasPorDia[i].forEach((franja, idx) => {
+        html += `
+          <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+            <span style="width:50px;">Desde:</span>
+            ${renderizarSelectHora('desde', franja.desde, i, idx)}
+            <span style="width:40px;">Hasta:</span>
+            ${renderizarSelectHora('hasta', franja.hasta, i, idx)}
+            <button type="button" class="btn-eliminar-franja" data-dia="${i}" data-idx="${idx}" style="color:#c00;font-size:1.1em;">&times;</button>
+          </div>
+        `;
+      });
+      html += `
+          <button type="button" class="btn-agregar-franja" data-dia="${i}" style="margin-top:6px;">+ Agregar franja</button>
+        </div>
+      </div>`;
+    }
+    html += `</div>`;
+    document.getElementById('horario-formulario').innerHTML = html;
+
+    // Listeners para checkboxes de días
+    document.querySelectorAll('.dia-checkbox').forEach(cb => {
+      cb.addEventListener('change', function() {
+        const dia = parseInt(this.value);
+        if (this.checked) {
+          // Si se selecciona, agrega una franja vacía
+          if (!horarioLaboral[tipo].some(f => f.dia === dia)) {
+            horarioLaboral[tipo].push({ dia, desde: "", hasta: "" });
+          }
+        } else {
+          // Si se deselecciona, elimina todas las franjas de ese día
+          horarioLaboral[tipo] = horarioLaboral[tipo].filter(f => f.dia !== dia);
+        }
+        renderizarFormularioHorario(tipo);
+      });
+    });
+
+    // Listener para agregar franja
+    document.querySelectorAll('.btn-agregar-franja').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const dia = parseInt(this.getAttribute('data-dia'));
+        horarioLaboral[tipo].push({ dia, desde: "", hasta: "" });
+        renderizarFormularioHorario(tipo);
+      });
+    });
+
+    // Listener para eliminar franja
+    document.querySelectorAll('.btn-eliminar-franja').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const dia = parseInt(this.getAttribute('data-dia'));
+        const idx = parseInt(this.getAttribute('data-idx'));
+        let franjas = horarioLaboral[tipo].filter(f => f.dia === dia);
+        franjas.splice(idx, 1);
+        // Elimina todas las franjas de ese día y vuelve a agregar las restantes
+        horarioLaboral[tipo] = horarioLaboral[tipo].filter(f => f.dia !== dia).concat(
+          franjas.map(f => ({ dia, desde: f.desde, hasta: f.hasta }))
+        );
+        renderizarFormularioHorario(tipo);
+      });
+    });
+
+    // Listener para selects de hora
+    document.querySelectorAll('.select-hora-desde, .select-hora-hasta').forEach(sel => {
+      sel.addEventListener('change', function() {
+        const dia = parseInt(this.getAttribute('data-dia'));
+        const idx = parseInt(this.getAttribute('data-idx'));
+        const tipoHora = this.classList.contains('select-hora-desde') ? 'desde' : 'hasta';
+        let franjas = horarioLaboral[tipo].filter(f => f.dia === dia);
+        if (franjas[idx]) franjas[idx][tipoHora] = this.value;
+        // Actualiza el array global
+        horarioLaboral[tipo] = horarioLaboral[tipo].filter(f => f.dia !== dia).concat(
+          franjas.map(f => ({ dia, desde: f.desde, hasta: f.hasta }))
+        );
+      });
+    });
+  }
+
+  // Renderiza un select de hora en formato 12h
+  function renderizarSelectHora(tipo, valor, diaIdx, franjaIdx) {
+    let opciones = '<option value="">--</option>';
+    for (let h = 6; h <= 22; h++) {
+      for (let m = 0; m < 60; m += 30) {
+        let hora24 = h;
+        let sufijo = hora24 >= 12 ? 'PM' : 'AM';
+        let hora12 = hora24 % 12;
+        if (hora12 === 0) hora12 = 12;
+        let horaStr = `${hora12.toString().padStart(2, '0')}:${m === 0 ? '00' : '30'} ${sufijo}`;
+        opciones += `<option value="${horaStr}" ${valor === horaStr ? 'selected' : ''}>${horaStr}</option>`;
+      }
+    }
+    return `<select class="select-hora-${tipo}" data-dia="${diaIdx}" data-idx="${franjaIdx}" required style="min-width:110px;">
+    ${opciones}
+  </select>`;
+  }
+
+  // Guardar horario laboral (con validaciones)
+  document.getElementById('form-horario-laboral').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const tipo = document.getElementById('tipo-horario').value;
+    let error = false;
+    // Validar todas las franjas
+    for (const f of horarioLaboral[tipo]) {
+      if (!f.desde || !f.hasta) {
+        error = true;
+        break;
+      }
+      const desdeMin = horaStrAMPMaMinutos(f.desde);
+      const hastaMin = horaStrAMPMaMinutos(f.hasta);
+      if (desdeMin >= hastaMin) {
+        error = true;
+        break;
+      }
+    }
+    if (error) {
+      alert('Por favor, seleccione horas válidas para cada franja (la hora de inicio debe ser menor que la de fin).');
+      return;
+    }
+    document.getElementById('modal-exito-horario').style.display = 'flex';
+    renderizarHorarioActual();
+  });
+
+  // Convierte "09:00 AM" a minutos desde las 00:00
+  function horaStrAMPMaMinutos(str) {
+    if (!str) return 0;
+    const match = str.match(/^(\d+):(\d+) (AM|PM)$/);
+    if (!match) return 0;
+    let h = parseInt(match[1], 10);
+    const m = parseInt(match[2], 10);
+    const ampm = match[3];
+    if (ampm === 'PM' && h !== 12) h += 12;
+    if (ampm === 'AM' && h === 12) h = 0;
+    return h * 60 + m;
+  }
+
+  // Cancelar horario
+  document.getElementById('cancelar-horario').addEventListener('click', function() {
+    mostrarHorarioLaboral();
+  });
+
+  // Cambiar tipo de horario
+  document.getElementById('tipo-horario').addEventListener('change', function() {
+    renderizarFormularioHorario(this.value);
+  });
+
+  // Modal éxito
+  document.getElementById('btn-aceptar-exito-horario').addEventListener('click', function() {
+    document.getElementById('modal-exito-horario').style.display = 'none';
+    mostrarHorarioLaboral();
+  });
+
+  // Mostrar horario actual como calendario compacto
+  function renderizarHorarioActual() {
+    let html = `<h3 style="margin-top:24px;">Horario actual</h3>`;
+    ['presencial', 'online'].forEach(tipo => {
+      html += `<div style="margin-bottom:6px;"><b>${tipo.charAt(0).toUpperCase() + tipo.slice(1)}:</b></div>`;
+      if (!horarioLaboral[tipo] || horarioLaboral[tipo].length === 0) {
+        html += `<div style="margin-bottom:10px;color:#888;">Sin horario definido</div>`;
+        return;
+      }
+      html += `<table class="tabla-citas" style="margin-bottom:14px;max-width:420px;"><tr><th>Día</th><th>Horario</th></tr>`;
+      horarioLaboral[tipo].forEach(h => {
+        html += `<tr>
+          <td>${DIAS_SEMANA[h.dia]}</td>
+          <td>${h.desde} - ${h.hasta}</td>
+        </tr>`;
+      });
+      html += `</table>`;
+    });
+    document.getElementById('horario-actual').innerHTML = html;
+  }
+
+  // Botón principal de horario laboral
+  const btnHorario = document.getElementById('btn-horario');
+  if (btnHorario) {
+    btnHorario.addEventListener('click', function() {
+      mostrarHorarioLaboral();
+    });
+  }
+
+  // Botón del menú lateral de horario laboral
+  const menuHorario = document.getElementById('menu-horario');
+  if (menuHorario) {
+    menuHorario.addEventListener('click', function(e) {
+      e.preventDefault();
+      mostrarHorarioLaboral();
+    });
+  }
+
+  // Mostrar modal de éxito al guardar historial clínico multipágina
+  document.getElementById('form-historial-clinico').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('modal-exito-historial').style.display = 'flex';
+  });
+
+  // Cerrar modal de éxito y volver al panel principal
+  document.getElementById('btn-aceptar-exito-historial').addEventListener('click', function() {
+    document.getElementById('modal-exito-historial').style.display = 'none';
+    ocultarSecciones();
+    document.getElementById('principal-botones').style.display = 'flex';
+  });
 });

@@ -14,15 +14,16 @@
 
 .tabla-citas-wrapper {
   width: 100%;
-  overflow-x: auto;
+  max-width: 1200px;      /* O el tamaño que desees para el cuadro */
+  margin: 0 auto;
+  overflow-x: auto;       /* SOLO el cuadro tiene scroll horizontal */
   padding: 0 0.5vw;
   box-sizing: border-box;
 }
 
 .tabla-citas {
   width: 100%;
-  min-width: 900px;
-  max-width: 100%;
+  min-width: 1100px;      /* O el ancho mínimo que requiera tu tabla para no romper los botones */
   border-collapse: collapse;
   background: #fff;
   border-radius: 8px;
@@ -52,5 +53,31 @@
   width: 100%;
   min-width: 600px;
   table-layout: auto;
+}
+
+/* Ajusta solo el horario actual dentro del formulario */
+#horario-actual {
+  width: 100%;
+  max-width: 100%;
+  margin: 32px 0 0 0;
+  padding: 0;
+}
+
+#horario-actual .tabla-citas {
+  width: 100%;
+  min-width: unset;
+  max-width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* Opcional: mejora la visualización en pantallas pequeñas */
+@media (max-width: 600px) {
+  #form-horario-laboral {
+    max-width: 98vw;
+    padding: 0 2vw;
+  }
+  #horario-actual {
+    margin-top: 18px;
+  }
 }
 

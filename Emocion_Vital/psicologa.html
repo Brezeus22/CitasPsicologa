@@ -20,7 +20,7 @@
         <li><a href="psicologa.html" id="menu-inicio">Inicio</a></li>
         <li><a href="pendientes.html" id="menu-pendientes">Citas pendientes</a></li>
         <li><a href="#" id="menu-pacientes">Pacientes</a></li>
-        <li><a href="#" id="menu-informe">Informe</a></li>
+        <li><a href="#" id="menu-horario">Horario laboral</a></li>
       </ul>
     </nav>
     <div class="user-dropdown" id="user-dropdown">
@@ -44,9 +44,9 @@
     <i class="fa-solid fa-users"></i>
     Pacientes
   </button>
-  <button class="boton-principal" id="btn-informe">
-    <i class="fa-solid fa-file-medical"></i>
-    Informe
+  <button class="boton-principal" id="btn-horario">
+    <i class="fa-solid fa-clock"></i>
+    Horario laboral
   </button>
 </div>
 
@@ -130,16 +130,6 @@
     <button type="submit" class="btn">Guardar</button>
   </form>
   <div id="mensaje-historial" style="display:none;"></div>
-</section>
-
-<section class="seccion" id="informe-seccion" style="display:none;">
-  <h2>Informe</h2>
-  <form id="form-informe">
-    <label>Paciente:<br><input type="text" required></label><br>
-    <label>Resumen del informe:<br><textarea required></textarea></label><br>
-    <button type="submit" class="btn">Guardar</button>
-  </form>
-  <div id="mensaje-informe" style="display:none;"></div>
 </section>
 
 <!-- Modal para reprogramar cita -->
@@ -392,18 +382,309 @@
 
     <!-- Página 5: Sumario diagnóstico - Resultados del examen - Tratamiento y evolución -->
     <div class="historial-page" id="historial-page-5" style="display:none;">
-      <h2 style="text-align:center;margin-bottom:18px;">Sumario diagnóstico - Resultados del examen - Tratamiento y evolución</h2>
-      <!-- Aquí van los campos de la página 5 -->
-      <div id="campos-pagina-5"></div>
-      <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
-        <button type="button" class="btn-modal" id="btn-atras-historial-5">Atrás</button>
-        <button type="submit" class="btn-modal">Guardar</button>
-      </div>
-      <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">5 / 5</div>
+  <h2 style="text-align:center;margin-bottom:18px;">Sumario diagnóstico - Resultados del examen - Tratamiento y evolución</h2>
+  
+  <!-- Sumario diagnóstico -->
+  <h3 style="margin-top:18px;">Sumario diagnóstico</h3>
+  <table id="tabla-sumario-diagnostico" style="width:100%;border-collapse:collapse;margin-bottom:16px;">
+    <thead>
+      <tr>
+        <th style="border:1px solid #ccc;padding:6px;">Signos y síntomas</th>
+        <th style="border:1px solid #ccc;padding:6px;">Patologías y síndromes</th>
+        <th style="border:1px solid #ccc;padding:6px;">Trastornos</th>
+        <th style="border:1px solid #ccc;padding:6px;">Nivel de afectación<br>(leve, moderado, grave)</th>
+        <th style="border:1px solid #ccc;padding:6px;width:40px;"></th>
+      </tr>
+    </thead>
+    <tbody id="tbody-sumario-diagnostico">
+      <!-- 6 filas editables -->
+      <tr>
+        <td><input type="text" name="signos_1" style="width:100%;"></td>
+        <td><input type="text" name="patologias_1" style="width:100%;"></td>
+        <td><input type="text" name="trastornos_1" style="width:100%;"></td>
+        <td>
+          <select name="afectacion_1" style="width:100%;">
+            <option value=""></option>
+            <option value="Leve">Leve</option>
+            <option value="Moderado">Moderado</option>
+            <option value="Grave">Grave</option>
+          </select>
+        </td>
+        <td rowspan="7" style="vertical-align:top;text-align:center;">
+          <button type="button" id="agregar-fila-diagnostico" style="font-size:1.2em;padding:2px 8px;">+</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="text" name="signos_2" style="width:100%;"></td>
+        <td><input type="text" name="patologias_2" style="width:100%;"></td>
+        <td><input type="text" name="trastornos_2" style="width:100%;"></td>
+        <td>
+          <select name="afectacion_2" style="width:100%;">
+            <option value=""></option>
+            <option value="Leve">Leve</option>
+            <option value="Moderado">Moderado</option>
+            <option value="Grave">Grave</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="text" name="signos_3" style="width:100%;"></td>
+        <td><input type="text" name="patologias_3" style="width:100%;"></td>
+        <td><input type="text" name="trastornos_3" style="width:100%;"></td>
+        <td>
+          <select name="afectacion_3" style="width:100%;">
+            <option value=""></option>
+            <option value="Leve">Leve</option>
+            <option value="Moderado">Moderado</option>
+            <option value="Grave">Grave</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="text" name="signos_4" style="width:100%;"></td>
+        <td><input type="text" name="patologias_4" style="width:100%;"></td>
+        <td><input type="text" name="trastornos_4" style="width:100%;"></td>
+        <td>
+          <select name="afectacion_4" style="width:100%;">
+            <option value=""></option>
+            <option value="Leve">Leve</option>
+            <option value="Moderado">Moderado</option>
+            <option value="Grave">Grave</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="text" name="signos_5" style="width:100%;"></td>
+        <td><input type="text" name="patologias_5" style="width:100%;"></td>
+        <td><input type="text" name="trastornos_5" style="width:100%;"></td>
+        <td>
+          <select name="afectacion_5" style="width:100%;">
+            <option value=""></option>
+            <option value="Leve">Leve</option>
+            <option value="Moderado">Moderado</option>
+            <option value="Grave">Grave</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="text" name="signos_6" style="width:100%;"></td>
+        <td><input type="text" name="patologias_6" style="width:100%;"></td>
+        <td><input type="text" name="trastornos_6" style="width:100%;"></td>
+        <td>
+          <select name="afectacion_6" style="width:100%;">
+            <option value=""></option>
+            <option value="Leve">Leve</option>
+            <option value="Moderado">Moderado</option>
+            <option value="Grave">Grave</option>
+          </select>
+        </td>
+      </tr>
+      <!-- Fila especial: aproximación diagnóstica -->
+      <tr>
+        <td colspan="1" style="font-weight:bold;">Aproximación diagnóstica:</td>
+        <td colspan="3"><input type="text" name="aproximacion_diagnostica" style="width:100%;"></td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+    // Permite agregar una fila extra (máximo 7 filas, la última es la de aproximación diagnóstica)
+    document.addEventListener('DOMContentLoaded', function() {
+      const tbody = document.getElementById('tbody-sumario-diagnostico');
+      const btnAgregar = document.getElementById('agregar-fila-diagnostico');
+      btnAgregar.addEventListener('click', function() {
+        // Solo permite agregar una fila extra antes de la fila de aproximación diagnóstica
+        const filas = tbody.querySelectorAll('tr');
+        // La última fila es la de aproximación diagnóstica
+        if (filas.length < 7) {
+          const nuevaFila = document.createElement('tr');
+          nuevaFila.innerHTML = `
+            <td><input type="text" style="width:100%;"></td>
+            <td><input type="text" style="width:100%;"></td>
+            <td><input type="text" style="width:100%;"></td>
+            <td>
+              <select style="width:100%;">
+                <option value=""></option>
+                <option value="Leve">Leve</option>
+                <option value="Moderado">Moderado</option>
+                <option value="Grave">Grave</option>
+              </select>
+            </td>
+          `;
+          // Inserta antes de la fila de aproximación diagnóstica
+          tbody.insertBefore(nuevaFila, filas[filas.length - 1]);
+        }
+      });
+    });
+  </script>
+
+  <!-- Conclusión -->
+  <h3 style="margin-top:24px;">Conclusión</h3>
+  <textarea name="conclusion" rows="5" style="width:100%;resize:vertical;margin-bottom:18px;" placeholder="Escriba aquí la conclusión..."></textarea>
+
+  <!-- Examen conductual y de las facultades psíquicas -->
+  <h3 style="margin-top:24px;">Examen conductual y de las facultades psíquicas</h3>
+  <div style="margin-bottom:8px;">Síntesis de lo encontrado:</div>
+  <textarea name="sintesis_examen" rows="5" style="width:100%;resize:vertical;margin-bottom:18px;" placeholder="Redacte la síntesis de lo encontrado..."></textarea>
+
+  <!-- Evaluación psicológica -->
+  <h3 style="margin-top:24px;">Evaluación psicológica</h3>
+  <div style="margin-bottom:8px;">Baterías aplicadas:</div>
+  <table id="tabla-baterias" style="width:100%;border-collapse:collapse;margin-bottom:8px;">
+    <thead>
+      <tr>
+        <th style="border:1px solid #ccc;padding:6px;">Batería</th>
+        <th style="border:1px solid #ccc;padding:6px;">Resultado</th>
+        <th style="border:1px solid #ccc;padding:6px;width:40px;"></th>
+      </tr>
+    </thead>
+    <tbody id="tbody-baterias">
+      <tr>
+        <td><input type="text" name="bateria_1" style="width:100%;"></td>
+        <td><input type="text" name="resultado_1" style="width:100%;"></td>
+        <td rowspan="5" style="vertical-align:top;text-align:center;">
+          <button type="button" id="agregar-fila-bateria" style="font-size:1.2em;padding:2px 8px;">+</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="text" name="bateria_2" style="width:100%;"></td>
+        <td><input type="text" name="resultado_2" style="width:100%;"></td>
+      </tr>
+      <tr>
+        <td><input type="text" name="bateria_3" style="width:100%;"></td>
+        <td><input type="text" name="resultado_3" style="width:100%;"></td>
+      </tr>
+      <tr>
+        <td><input type="text" name="bateria_4" style="width:100%;"></td>
+        <td><input type="text" name="resultado_4" style="width:100%;"></td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+    // Permite agregar una fila extra (máximo 5 filas)
+    document.addEventListener('DOMContentLoaded', function() {
+      const tbody = document.getElementById('tbody-baterias');
+      const btnAgregar = document.getElementById('agregar-fila-bateria');
+      btnAgregar.addEventListener('click', function() {
+        const filas = tbody.querySelectorAll('tr');
+        if (filas.length < 5) {
+          const nuevaFila = document.createElement('tr');
+          nuevaFila.innerHTML = `
+            <td><input type="text" style="width:100%;"></td>
+            <td><input type="text" style="width:100%;"></td>
+          `;
+          // Inserta antes de la última fila (si quieres permitir solo una fila extra)
+          tbody.appendChild(nuevaFila);
+        }
+      });
+    });
+  </script>
+  <div style="margin-bottom:8px;">Síntesis de los hallazgos en las baterías:</div>
+  <textarea name="sintesis_baterias" rows="5" style="width:100%;resize:vertical;margin-bottom:18px;" placeholder="Redacte la síntesis de los hallazgos..."></textarea>
+
+  <!-- Programa de tratamiento propuesto -->
+  <h3 style="margin-top:24px;">Programa de tratamiento propuesto</h3>
+  <textarea name="tratamiento_propuesto" rows="5" style="width:100%;resize:vertical;margin-bottom:18px;" placeholder="Redacte el programa de tratamiento propuesto..."></textarea>
+
+  <!-- Evolución -->
+  <h3 style="margin-top:24px;">Evolución</h3>
+  <textarea name="evolucion" rows="5" style="width:100%;resize:vertical;margin-bottom:18px;" placeholder="Redacte la evolución..."></textarea>
+
+  <!-- Firma responsable -->
+  <div style="margin-top:32px;display:flex;flex-direction:column;align-items:flex-start;">
+    <div style="font-weight:bold;">Firma responsable</div>
+    <div style="border-bottom:1px solid #333;width:320px;height:32px;margin-bottom:8px;"></div>
+    <div style="display:flex;align-items:center;margin-bottom:6px;">
+      <label style="min-width:70px;">Nombre:</label>
+      <input type="text" name="firma_nombre" style="width:220px;">
     </div>
+    <div style="display:flex;align-items:center;margin-bottom:6px;">
+      <label style="min-width:70px;">Cargo:</label>
+      <input type="text" name="firma_cargo" style="width:220px;">
+    </div>
+    <div style="display:flex;align-items:center;margin-bottom:6px;">
+      <label style="min-width:70px;">Universidad:</label>
+      <input type="text" name="firma_universidad" style="width:220px;">
+    </div>
+    <div style="display:flex;align-items:center;margin-bottom:6px;">
+      <label style="min-width:70px;">Teléfono:</label>
+      <input type="text" name="firma_telefono" style="width:220px;">
+    </div>
+    <div style="display:flex;align-items:center;margin-bottom:6px;">
+      <label style="min-width:70px;">Correo:</label>
+      <input type="email" name="firma_correo" style="width:220px;">
+    </div>
+  </div>
+
+  <div style="display:flex;gap:12px;justify-content:center;margin-top:32px;">
+    <button type="button" class="btn-modal" id="btn-atras-historial-5">Atrás</button>
+    <button type="submit" class="btn-modal">Guardar</button>
+  </div>
+  <!-- ...dentro de la sección historial-paciente-seccion... -->
+    <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">5 / 5</div>
+  </div>
   </form>
 </section>
-  
+</div>
+
+
+
+<!-- Modal de éxito para historial clínico (MUEVE ESTE BLOQUE AQUÍ, FUERA DE LA SECCIÓN Y DEL FORMULARIO) -->
+<div id="modal-exito-historial" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:32px 24px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:350px;text-align:center;margin:auto;">
+    <div style="font-size:1.2em;margin-bottom:18px;">¡Historial guardado exitosamente!</div>
+    <button id="btn-aceptar-exito-historial" class="btn-modal" style="padding:8px 32px;">Aceptar</button>
+  </div>
+</div>
+<!-- Modal informe Medico -->
+<div id="modal-informe-medico" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:32px 24px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:500px;text-align:center;margin:auto;">
+    <h3>Informe médico</h3>
+    <form id="form-informe-medico">
+      <textarea name="informe_texto" rows="8" style="width:100%;resize:vertical;margin-bottom:18px;" placeholder="Redacte el informe médico..."></textarea>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:18px;">
+        <button type="button" class="btn-modal" id="btn-cancelar-informe">Cancelar</button>
+        <button type="submit" class="btn-modal">Enviar</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Modal de éxito para informe médico -->
+<div id="modal-exito-informe" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:32px 24px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:350px;text-align:center;margin:auto;">
+    <div style="font-size:1.2em;margin-bottom:18px;">¡Informe enviado exitosamente!</div>
+    <button id="btn-aceptar-exito-informe" class="btn-modal" style="padding:8px 32px;">Aceptar</button>
+  </div>
+</div>
+<!-- Modal horario laboral -->
+<section class="seccion" id="horario-seccion" style="display:none;">
+  <h2>Horario laboral</h2>
+  <form id="form-horario-laboral" style="max-width:500px;margin:auto;">
+    <div style="margin-bottom:18px;">
+      <label for="tipo-horario" style="font-weight:bold;">Tipo de horario:</label>
+      <select id="tipo-horario" style="margin-left:10px;">
+        <option value="presencial">Presencial</option>
+        <option value="online">Online</option>
+      </select>
+    </div>
+    <div id="horario-formulario"></div>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:18px;">
+      <button type="submit" class="btn-modal">Guardar</button>
+      <button type="button" class="btn-modal btn-cancelar" id="cancelar-horario">Cancelar</button>
+    </div>
+    <!-- Mueve aquí el horario actual -->
+    <div id="horario-actual" style="margin:32px 0 0 0;"></div>
+  </form>
+</section>
+
+<!-- Modal de éxito para horario laboral -->
+<div id="modal-exito-horario" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:32px 24px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:350px;text-align:center;margin:auto;">
+    <div style="font-size:1.2em;margin-bottom:18px;">¡Horario laboral guardado exitosamente!</div>
+    <button id="btn-aceptar-exito-horario" class="btn-modal" style="padding:8px 32px;">Aceptar</button>
+  </div>
+</div>
+
 <script src="psicologa.js"></script>
 </body>
 </html>
+
