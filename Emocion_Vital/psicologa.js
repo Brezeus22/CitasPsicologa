@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('historial-seccion').style.display = 'none';
     document.getElementById('informe-seccion').style.display = 'none';
     document.getElementById('editar-perfil-seccion').style.display = 'none';
+    document.getElementById('pacientes-seccion').style.display = 'none';
+    document.getElementById('historial-paciente-seccion').style.display = 'none';
   }
 
   // Mostrar botones principales
@@ -48,10 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
     ocultarSecciones();
     document.getElementById('pendientes-seccion').style.display = 'block';
     mostrarPendientes();
-  });
-  document.getElementById('btn-historial').addEventListener('click', function() {
-    ocultarSecciones();
-    document.getElementById('historial-seccion').style.display = 'block';
   });
   document.getElementById('btn-informe').addEventListener('click', function() {
     ocultarSecciones();
@@ -69,15 +67,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('pendientes-seccion').style.display = 'block';
     mostrarPendientes();
   });
-  document.getElementById('menu-historial').addEventListener('click', function(e) {
-    e.preventDefault();
-    ocultarSecciones();
-    document.getElementById('historial-seccion').style.display = 'block';
-  });
   document.getElementById('menu-informe').addEventListener('click', function(e) {
     e.preventDefault();
     ocultarSecciones();
     document.getElementById('informe-seccion').style.display = 'block';
+  });
+  document.getElementById('menu-pacientes').addEventListener('click', function(e) {
+    e.preventDefault();
+    ocultarSecciones();
+    document.getElementById('pacientes-seccion').style.display = 'block';
+    cargarTablaPacientes();
   });
 
   // Editar perfil
@@ -398,7 +397,6 @@ document.addEventListener('DOMContentLoaded', function() {
           <td>
             <button class="btn-confirmar" data-idx="${idx}">Confirmar</button>
             <button class="btn-reprogramar" data-idx="${idx}">Reprogramar</button>
-            <button class="btn-historial" data-idx="${idx}">Historial clínico</button>
           </td>
         </tr>
       `;
@@ -568,5 +566,187 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Mostrar inicio al cargar
   mostrarInicio();
-});
 
+  // Botón principal de pacientes
+  document.getElementById('btn-pacientes').addEventListener('click', function() {
+    ocultarSecciones();
+    document.getElementById('pacientes-seccion').style.display = 'block';
+    cargarTablaPacientes();
+  });
+
+  // Botón del menú lateral de pacientes
+  document.getElementById('menu-pacientes').addEventListener('click', function(e) {
+    e.preventDefault();
+    ocultarSecciones();
+    document.getElementById('pacientes-seccion').style.display = 'block';
+    cargarTablaPacientes();
+  });
+
+  // Botón informe (menú)
+  document.getElementById('menu-informe').addEventListener('click', function(e) {
+    e.preventDefault();
+    ocultarSecciones();
+    document.getElementById('informe-seccion').style.display = 'block';
+  });
+
+  // Botón pendientes (menú)
+  document.getElementById('menu-pendientes').addEventListener('click', function(e) {
+    e.preventDefault();
+    ocultarSecciones();
+    document.getElementById('pendientes-seccion').style.display = 'block';
+    mostrarPendientes();
+  });
+
+  // Botón inicio (menú)
+  document.getElementById('menu-inicio').addEventListener('click', function(e) {
+    e.preventDefault();
+    ocultarSecciones();
+    document.getElementById('principal-botones').style.display = 'flex';
+  });
+
+  // Botón informe principal
+  document.getElementById('btn-informe').addEventListener('click', function() {
+    ocultarSecciones();
+    document.getElementById('informe-seccion').style.display = 'block';
+  });
+
+  // Botón pendientes principal
+  document.getElementById('btn-pendientes').addEventListener('click', function() {
+    ocultarSecciones();
+    document.getElementById('pendientes-seccion').style.display = 'block';
+    mostrarPendientes();
+  });
+
+  function cargarTablaPacientes() {
+    const pacientes = [
+      {
+        nombre: 'Juan',
+        apellido: 'Pérez',
+        cedula: '12345678',
+        filiacion: {
+          primer_nombre: 'Juan',
+          segundo_nombre: 'Carlos',
+          primer_apellido: 'Pérez',
+          segundo_apellido: 'Gómez',
+          cedula: '12345678',
+          fecha_nacimiento: '1990-01-01',
+          lugar_nacimiento: 'Caracas',
+          instruccion: 'Universitaria',
+          ocupacion: 'Ingeniero',
+          estado_civil: 'Soltero',
+          religion: 'Católica',
+          nombre_conyuge: '',
+          telefono_conyuge: '',
+          hijos: '2',
+          edades_hijos: '5, 8',
+          centro_estudio_trabajo: 'Empresa X',
+          grado: '',
+          lugar_residencia: 'Caracas',
+          tiempo_residencia: '10 años',
+          procedencia: 'Valencia',
+          telefono: '04141234567',
+          correo: 'juanperez@email.com'
+        },
+        familiares: {
+          paterno_abuelo: 'Pedro Pérez',
+          paterno_abuela: 'María Gómez',
+          paterno_padre: 'Luis Pérez',
+          paterno_tios: 'José, Andrés',
+          materno_abuelo: 'Carlos Gómez',
+          materno_abuela: 'Ana Torres',
+          materno_madre: 'Lucía Gómez',
+          materno_tios: 'Marta, Rosa',
+          otros_hermanos: 'Luis',
+          otros_esposo: '',
+          otros_hijos: '2',
+          otros_colaterales: 'Ninguno'
+        }
+      },
+      {
+        nombre: 'Ana',
+        apellido: 'Gómez',
+        cedula: '87654321',
+        filiacion: {
+          primer_nombre: 'Ana',
+          segundo_nombre: '',
+          primer_apellido: 'Gómez',
+          segundo_apellido: 'Torres',
+          cedula: '87654321',
+          fecha_nacimiento: '1995-05-10',
+          lugar_nacimiento: 'Maracay',
+          instruccion: 'TSU',
+          ocupacion: 'Estudiante',
+          estado_civil: 'Soltera',
+          religion: 'Cristiana',
+          nombre_conyuge: '',
+          telefono_conyuge: '',
+          hijos: '',
+          edades_hijos: '',
+          centro_estudio_trabajo: 'Universidad Y',
+          grado: '3er año',
+          lugar_residencia: 'Maracay',
+          tiempo_residencia: '3 años',
+          procedencia: 'Barquisimeto',
+          telefono: '04145556666',
+          correo: 'anagomez@email.com'
+        },
+        familiares: {
+          paterno_abuelo: '',
+          paterno_abuela: '',
+          paterno_padre: '',
+          paterno_tios: '',
+          materno_abuelo: '',
+          materno_abuela: '',
+          materno_madre: '',
+          materno_tios: '',
+          otros_hermanos: '',
+          otros_esposo: '',
+          otros_hijos: '',
+          otros_colaterales: ''
+        }
+      }
+    ];
+    const tabla = document.getElementById('tabla-pacientes');
+    tabla.innerHTML = `
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Cédula</th>
+        <th>Acciones</th>
+      </tr>
+    `;
+    pacientes.forEach((p, idx) => {
+      tabla.innerHTML += `
+        <tr>
+          <td>${p.nombre}</td>
+          <td>${p.apellido}</td>
+          <td>${p.cedula}</td>
+          <td>
+            <button class="btn-modal btn-historial" data-idx="${idx}">
+              <i class="fa-solid fa-notes-medical"></i> Historial clínico
+            </button>
+          </td>
+        </tr>
+      `;
+    });
+    // Guarda los pacientes en window para acceso global
+    window._pacientesClinicos = pacientes;
+
+    // Listener SOLO aquí, después de llenar la tabla
+    tabla.removeEventListener('click', tabla._historialListener); // Limpia si ya existe
+    tabla._historialListener = function(e) {
+      const btn = e.target.closest('.btn-historial');
+      if (btn) {
+        const idx = btn.getAttribute('data-idx');
+        if (idx !== null) window.verHistorialPaciente(Number(idx));
+      }
+    };
+    tabla.addEventListener('click', tabla._historialListener);
+  }
+
+  window.verHistorialPaciente = function(idx) {
+    ocultarSecciones();
+    document.getElementById('historial-paciente-seccion').style.display = 'block';
+    // Aquí puedes cargar los datos del paciente seleccionado si lo deseas
+  };
+});
