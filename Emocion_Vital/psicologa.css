@@ -55,6 +55,8 @@
   table-layout: auto;
 }
 
+<<<<<<< HEAD
+=======
 /* Ajusta solo el horario actual dentro del formulario */
 #horario-actual {
   width: 100%;
@@ -81,3 +83,4 @@
   }
 }
 
+>>>>>>> Michael
