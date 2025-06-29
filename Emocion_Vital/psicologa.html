@@ -21,6 +21,7 @@
         <li><a href="pendientes.html" id="menu-pendientes">Citas pendientes</a></li>
         <li><a href="#" id="menu-pacientes">Pacientes</a></li>
         <li><a href="#" id="menu-horario">Horario laboral</a></li>
+      
       </ul>
     </nav>
     <div class="user-dropdown" id="user-dropdown">
@@ -48,9 +49,14 @@
     <i class="fa-solid fa-clock"></i>
     Horario laboral
   </button>
+  <button class="boton-principal" id="btn-historial">
+    <i class="fa-solid fa-file-medical"></i>
+    Historial clínico
 </div>
 
+   
   <!-- Nueva sección para editar perfil -->
+  
   <section class="seccion" id="editar-perfil-seccion" style="display:none;">
     <h2>Editar Perfil</h2>
     <div style="display:flex;flex-direction:column;gap:18px;align-items:center;max-width:350px;margin:auto;">
@@ -121,6 +127,7 @@
   </div>
 </section>
 
+
 <section class="seccion" id="historial-seccion" style="display:none;">
   <h2>Historial clínico</h2>
   <form id="form-historial">
@@ -156,6 +163,7 @@
     </form>
   </div>
 </div>
+
 
 <!-- Modal para historial clínico -->
 <div id="modal-historial-clinico" class="modal-editar-perfil" style="display:none;">
@@ -198,6 +206,7 @@
       <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
         <button type="button" class="btn-modal" id="btn-siguiente-historial-1">Siguiente</button>
       </div>
+      
       <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">1 / 5</div>
     </div>
 
