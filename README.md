@@ -32,10 +32,11 @@ El **Sistema Psicológico de Consultas** es una plataforma moderna diseñada par
 
 ## 👥 Integrantes
 
-- [Nombre 1]
-- [Nombre 2]
-- [Nombre 3]
-- [Nombre 4]
+- [@Shai Colmenarez](https://github.com/Shairacc)
+- [@Aaron Arraez](https://github.com/Brezeus22)
+- [@Michael Sangronis](https://github.com/05Michael03)
+- [@Jose Alvarez](https://github.com/alejoprograming26)
+- [@Kevin Rodriguez](https://github.com/kevinwar)
 
 # Guía de Instalación y Configuración
 
