@@ -23,7 +23,7 @@ El **Sistema Psicológico de Consultas** es una plataforma moderna diseñada par
 ## 🛠️ Tecnologías Utilizadas
 
 - ⚛️ **Nicepage(HTML5-CSS)** (Frontend)
-- 🐍 **Php** (Backend)
+- 🐍 **Python** (Backend)
 - 🗄️ **Mysql** (Base de datos)
 - ☁️ **Flask** (Api)
 - 📧 **Email API** (Notificaciones)
