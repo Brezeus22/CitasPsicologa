@@ -116,7 +116,7 @@ Deberías ver la versión de Git instalada en tu sistema.
 🔹 Ve al repositorio en GitHub que deseas clonar
 
 ```plaintext
-https://github.com/Aruajeg/Emocion_Vital-T_T
+(https://github.com/Brezeus22/CitasPsicologa)
 ```
 
 [Link de este repositorio](https://github.com/Brezeus22/CitasPsicologa)
