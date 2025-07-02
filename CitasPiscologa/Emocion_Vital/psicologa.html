@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Psicóloga | Emoción Vital</title>
+  <link rel="stylesheet" href="perfil.css">
+  <link rel="stylesheet" href="psicologa.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+<header class="header-evital">
+  <div class="logo-titulo">
+    <img src="images/WhatsAppImage2025-05-18at6.16-Photoroom.png" alt="Logo Emoción Vital" class="logo-evital">
+    <h1 class="verde">Panel Psicóloga</h1>
+  </div>
+  <div class="menu-logout">
+    <nav class="menu">
+      <button class="btn-menu" id="menu-toggle"><i class="fa-solid fa-bars"></i> Menú</button>
+      <ul class="menu-desplegable" id="menu-list">
+        <li><a href="psicologa.html" id="menu-inicio">Inicio</a></li>
+        <li><a href="pendientes.html" id="menu-pendientes">Citas pendientes</a></li>
+        <li><a href="#" id="menu-pacientes">Pacientes</a></li>
+        <li><a href="#" id="menu-horario">Horario laboral</a></li>
+      
+      </ul>
+    </nav>
+    <div class="user-dropdown" id="user-dropdown">
+      <button class="user-icon-btn" id="user-icon-btn" title="Usuario">
+        <i class="fa-solid fa-user"></i>
+      </button>
+      <ul class="user-dropdown-menu" id="user-dropdown-menu">
+        <li><a href="#" id="editar-perfil">Editar perfil</a></li>
+        <li><a href="logout.html" id="cerrar-sesion">Cerrar sesión</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div class="principal-botones" id="principal-botones">
+  <button class="boton-principal" id="btn-pendientes">
+    <i class="fa-solid fa-calendar-check"></i>
+    Citas pendientes
+  </button>
+  <button class="boton-principal" id="btn-pacientes">
+    <i class="fa-solid fa-users"></i>
+    Pacientes
+  </button>
+  <button class="boton-principal" id="btn-horario">
+    <i class="fa-solid fa-clock"></i>
+    Horario laboral
+  </button>
+  <button class="boton-principal" id="btn-editar-formularios">
+    <i class="fa-solid fa-pen-to-square"></i>
+    Editar formularios
+  </button>
+</div>
+
+   
+  <!-- Nueva sección para editar perfil -->
+  
+  <section class="seccion" id="editar-perfil-seccion" style="display:none;">
+    <h2>Editar Perfil</h2>
+    <div style="display:flex;flex-direction:column;gap:18px;align-items:center;max-width:350px;margin:auto;">
+      <div style="width:100%;display:flex;flex-direction:column;align-items:center;">
+        <button class="btn-modal" id="btn-desplegar-usuario" type="button">Cambiar usuario o correo</button>
+        <div id="desplegable-usuario" class="desplegable-perfil" style="display:none;width:100%;">
+          <label for="tipo-cambio-usuario" style="margin-bottom:8px;display:block;">¿Qué desea cambiar?</label>
+          <select id="tipo-cambio-usuario" style="width:100%;padding:8px;margin-bottom:10px;">
+            <option value="">Seleccione</option>
+            <option value="usuario">Usuario</option>
+            <option value="correo">Correo</option>
+          </select>
+          <input type="text" id="nuevo-usuario" placeholder="Ingrese nuevo usuario" autocomplete="off" style="width:100%;padding:8px;display:none;">
+          <input type="email" id="nuevo-correo" placeholder="Ingrese nuevo correo" autocomplete="off" style="width:100%;padding:8px;display:none;">
+        </div>
+      </div>
+      <div style="width:100%;display:flex;flex-direction:column;align-items:center;">
+        <button class="btn-modal" id="btn-desplegar-contrasena" type="button">Cambiar contraseña</button>
+        <div id="desplegable-contrasena" class="desplegable-perfil" style="display:none;width:100%;">
+          <input type="password" id="nueva-contrasena" placeholder="Ingrese su nueva contraseña" autocomplete="new-password" style="width:100%;padding:8px;margin-bottom:8px;">
+          <input type="password" id="confirmar-contrasena" placeholder="Confirmar contraseña" autocomplete="new-password" style="width:100%;padding:8px;">
+          <div id="mensaje-contrasena" style="color:#e74c3c;font-size:0.95em;margin-top:4px;display:none;"></div>
+        </div>
+      </div>
+      <div style="width:100%;display:flex;flex-direction:column;align-items:center;">
+        <button class="btn-modal" id="btn-desplegar-seguridad" type="button">Cambiar pregunta de seguridad</button>
+        <div id="desplegable-seguridad" class="desplegable-perfil" style="display:none;width:100%;">
+          <label>Pregunta de seguridad:
+            <select id="pregunta-seguridad" style="width:100%;padding:8px;">
+              <option value="">Seleccione una pregunta</option>
+              <option value="color">¿Cuál es tu color favorito?</option>
+              <option value="animal">¿Cuál es tu animal favorito?</option>
+            </select>
+          </label>
+          <input type="text" id="respuesta-seguridad" placeholder="Respuesta" autocomplete="off" style="width:100%;padding:8px;margin-top:8px;">
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:18px;">
+      <button type="button" class="btn-modal" id="guardar-cambios-perfil">Guardar cambios</button>
+      <button type="button" class="btn-modal btn-cancelar" id="cancelar-editar-perfil">Cancelar</button>
+    </div>
+  </section>
+
+<section class="seccion" id="pendientes-seccion" style="display:none;">
+  <h2>Citas pendientes</h2>
+  <div class="tabla-citas-wrapper">
+    <table class="tabla-citas" id="tabla-pendientes">
+      <tr>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Paciente</th>
+        <th>Categoría</th>
+        <th>Modalidad</th>
+        <th>Pago</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+      <!-- Las filas se llenan dinámicamente con JS -->
+    </table>
+  </div>
+</section>
+
+<section class="seccion" id="pacientes-seccion" style="display:none;">
+  <h2>Pacientes</h2>
+  <div class="tabla-citas-wrapper">
+    <table class="tabla-citas" id="tabla-pacientes"></table>
+  </div>
+</section>
+
+
+<section class="seccion" id="historial-seccion" style="display:none;">
+  <h2>Historial clínico</h2>
+  <form id="form-historial">
+    <label>Paciente:<br><input type="text" required></label><br>
+    <label>Diagnóstico:<br><textarea required></textarea></label><br>
+    <label>Tratamiento:<br><textarea required></textarea></label><br>
+    <button type="submit" class="btn">Guardar</button>
+  </form>
+  <div id="mensaje-historial" style="display:none;"></div>
+</section>
+
+<!-- Modal para reprogramar cita -->
+<div id="modal-reprogramar" class="modal-editar-perfil" style="display:none;">
+  <div class="modal-content" style="max-width:400px;">
+    <span class="close-modal" id="cerrar-modal-reprogramar" style="float:right;cursor:pointer;font-size:1.5em;">&times;</span>
+    <h3>Reprogramar cita</h3>
+    <form id="form-reprogramar">
+      <label>Nueva fecha:
+        <input type="date" id="nueva-fecha" required>
+      </label><br>
+      <label>Nueva hora:
+        <select id="nueva-hora" required>
+          <option value="">Seleccione</option>
+        </select>
+      </label><br>
+      <label>Nota:
+        <textarea id="nota-reprogramar" rows="2"></textarea>
+      </label><br>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:12px;">
+        <button type="submit" class="btn-modal">Guardar</button>
+        <button type="button" class="btn-modal btn-cancelar" id="cancelar-reprogramar">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- Modal para historial clínico -->
+<div id="modal-historial-clinico" class="modal-editar-perfil" style="display:none;">
+  <div class="modal-content" style="max-width:600px;max-height:80vh;overflow:auto;">
+    <span class="close-modal" id="cerrar-modal-historial" style="float:right;cursor:pointer;font-size:1.5em;">&times;</span>
+    <h3>Historial clínico del paciente</h3>
+    <div id="historial-clinico-datos"></div>
+  </div>
+</div>
+
+<section class="seccion" id="historial-paciente-seccion" style="display:none;">
+  <form id="form-historial-clinico" style="max-width:700px;margin:auto;">
+    <!-- Páginas del historial clínico, solo los contenedores -->
+    <div class="historial-page" id="historial-page-1" style="display:block;">
+      <h2 style="text-align:center;margin-bottom:18px;">Datos de filiación</h2>
+      <div id="contenedor-historial-1"></div>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
+        <button type="button" class="btn-modal" id="btn-siguiente-historial-1">Siguiente</button>
+      </div>
+      <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">1 / 5</div>
+    </div>
+    <div class="historial-page" id="historial-page-2" style="display:none;">
+      <h2 style="text-align:center;margin-bottom:18px;">Historial personal y social</h2>
+      <div id="contenedor-historial-2"></div>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
+        <button type="button" class="btn-modal" id="btn-atras-historial-2">Atrás</button>
+        <button type="button" class="btn-modal" id="btn-siguiente-historial-2">Siguiente</button>
+      </div>
+      <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">2 / 5</div>
+    </div>
+    <div class="historial-page" id="historial-page-3" style="display:none;">
+      <div id="contenedor-historial-3"></div>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
+        <button type="button" class="btn-modal" id="btn-atras-historial-3">Atrás</button>
+        <button type="button" class="btn-modal" id="btn-siguiente-historial-3">Siguiente</button>
+      </div>
+      <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">3 / 5</div>
+    </div>
+    <div class="historial-page" id="historial-page-4" style="display:none;">
+      <h2 style="text-align:center;margin-bottom:18px;">Antecedentes familiares</h2>
+      <div id="contenedor-historial-4"></div>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
+        <button type="button" class="btn-modal" id="btn-atras-historial-4">Atrás</button>
+        <button type="button" class="btn-modal" id="btn-siguiente-historial-4">Siguiente</button>
+      </div>
+      <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">4 / 5</div>
+    </div>
+    <div class="historial-page" id="historial-page-5" style="display:none;">
+      <h2 style="text-align:center;margin-bottom:18px;">Sumario diagnóstico - Resultados del examen - Tratamiento y evolución</h2>
+      <div id="contenedor-historial-5"></div>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:32px;">
+        <button type="button" class="btn-modal" id="btn-atras-historial-5">Atrás</button>
+        <button type="submit" class="btn-modal">Guardar</button>
+      </div>
+      <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">5 / 5</div>
+    </div>
+  </form>
+</section>
+
+<!-- Informe médico -->
+<div id="modal-informe-medico" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:32px 24px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:500px;text-align:center;margin:auto;">
+    <h3>Informe médico</h3>
+    <form id="form-informe-medico">
+      <div id="contenedor-informe-medico"></div>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:18px;">
+        <button type="button" class="btn-modal" id="btn-cancelar-informe">Cancelar</button>
+        <button type="submit" class="btn-modal">Enviar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal de éxito para historial clínico -->
+<div id="modal-exito-historial" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:32px 24px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:350px;text-align:center;margin:auto;">
+    <div style="font-size:1.2em;margin-bottom:18px;">¡Historial guardado exitosamente!</div>
+    <button id="btn-aceptar-exito-historial" class="btn-modal" style="padding:8px 32px;">Aceptar</button>
+  </div>
+</div>
+<!-- Modal de éxito para informe médico -->
+<div id="modal-exito-informe" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:32px 24px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:350px;text-align:center;margin:auto;">
+    <div style="font-size:1.2em;margin-bottom:18px;">¡Informe enviado exitosamente!</div>
+    <button id="btn-aceptar-exito-informe" class="btn-modal" style="padding:8px 32px;">Aceptar</button>
+  </div>
+</div>
+<!-- Modal horario laboral -->
+<section class="seccion" id="horario-seccion" style="display:none;">
+  <h2>Horario laboral</h2>
+  <form id="form-horario-laboral" style="max-width:500px;margin:auto;">
+    <div style="margin-bottom:18px;">
+      <label for="tipo-horario" style="font-weight:bold;">Tipo de horario:</label>
+      <select id="tipo-horario" style="margin-left:10px;">
+        <option value="presencial">Presencial</option>
+        <option value="online">Online</option>
+      </select>
+    </div>
+    <div id="horario-formulario"></div>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:18px;">
+      <button type="submit" class="btn-modal">Guardar</button>
+      <button type="button" class="btn-modal btn-cancelar" id="cancelar-horario">Cancelar</button>
+    </div>
+    <!-- Mueve aquí el horario actual -->
+    <div id="horario-actual" style="margin:32px 0 0 0;"></div>
+  </form>
+</section>
+
+<!-- Modal de éxito para horario laboral -->
+<div id="modal-exito-horario" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:32px 24px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:350px;text-align:center;margin:auto;">
+    <div style="font-size:1.2em;margin-bottom:18px;">¡Horario laboral guardado exitosamente!</div>
+    <button id="btn-aceptar-exito-horario" class="btn-modal" style="padding:8px 32px;">Aceptar</button>
+  </div>
+</div>
+
+<!-- NUEVA SECCIÓN: Editar Formularios -->
+<section class="seccion" id="editar-formularios-seccion" style="display:none;">
+  <h2>Editar formularios</h2>
+  <div style="margin-bottom:18px;">
+    <label for="tipo-formulario-editar" style="font-weight:bold;">¿Qué formulario desea editar?</label>
+    <select id="tipo-formulario-editar" style="margin-left:10px;">
+      <option value="historial">Historial clínico</option>
+      <option value="informe">Informe médico</option>
+    </select>
+    <button id="btn-agregar-pregunta" class="btn-modal" style="margin-left:18px;">
+      <i class="fa-solid fa-plus"></i> Agregar pregunta
+    </button>
+  </div>
+  <div id="contenedor-preguntas-editar"></div>
+  <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
+    <button type="button" class="btn-modal" id="btn-guardar-formulario">Guardar</button>
+    <button type="button" class="btn-modal btn-cancelar" id="btn-cancelar-formulario">Cancelar</button>
+  </div>
+</section>
+
+<!-- Modal de éxito para editar formularios -->
+<div id="modal-exito-editar-formulario" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:32px 24px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:350px;text-align:center;margin:auto;">
+    <div style="font-size:1.2em;margin-bottom:18px;">¡Los cambios del formulario se han guardado exitosamente!</div>
+    <button id="btn-aceptar-exito-editar-formulario" class="btn-modal" style="padding:8px 32px;">Aceptar</button>
+  </div>
+</div>
+
+<section class="seccion" id="informe-medico-seccion" style="display:none;">
+  <h2 style="text-align:center;margin-bottom:18px;">Informe Médico</h2>
+  <div id="datos-paciente-informe" style="margin-bottom:24px;"></div>
+  <form id="form-informe-medico-dinamico" style="max-width:700px;margin:auto;">
+    <div id="contenedor-informe-medico-dinamico"></div>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
+      <button type="button" id="btn-cancelar-informe-medico" class="btn-modal btn-cancelar">Cancelar</button>
+      <button type="submit" class="btn-modal">Guardar</button>
+    </div>
+  </form>
+</section>
+
+<script src="psicologa.js"></script>
+</body>
+</html>
+

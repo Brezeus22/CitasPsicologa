@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Bienvenido a Emoción Vital</title>
+  <link rel="stylesheet" href="nicepage.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="perfil.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+<header class="header-evital">
+  <div class="logo-titulo">
+    <img src="images/WhatsAppImage2025-05-18at6.16-Photoroom.png" alt="Logo Emoción Vital" class="logo-evital">
+    <h1 class="verde">Bienvenido a Emoción Vital</h1>
+  </div>
+  <div class="menu-logout">
+    <nav class="menu">
+      <button class="btn-menu" id="menu-toggle"><i class="fa-solid fa-bars"></i> Menú</button>
+      <ul class="menu-desplegable" id="menu-list">
+        <li><a href="#" id="menu-perfil">Inicio</a></li>
+        <li><a href="#" id="menu-cita">Crear Cita</a></li>
+        <li><a href="#" id="menu-informe">Informe Médico</a></li>
+        <li><a href="#" id="menu-mis-citas">Mis citas</a></li>
+        <li><a href="#" id="menu-pacientes">Pacientes</a></li>
+      </ul>
+    </nav>
+    <div class="user-dropdown" id="user-dropdown">
+      <button class="user-icon-btn" id="user-icon-btn" title="Usuario">
+        <i class="fa-solid fa-user"></i>
+      </button>
+      <ul class="user-dropdown-menu" id="user-dropdown-menu">
+        <li><a href="#" id="editar-perfil">Editar perfil</a></li>
+        <li><a href="logout.html" id="cerrar-sesion">Cerrar sesión</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- INICIO: Botones principales -->
+<div class="principal-botones seccion" id="principal-botones" style="display:flex;">
+  <a class="boton-principal" id="btn-cita" href="#cita">
+    <i class="fa-solid fa-calendar-plus"></i>
+    Agendar Cita
+  </a>
+  <a class="boton-principal" id="btn-mis-citas" href="#mis-citas">
+    <i class="fa-solid fa-calendar-check"></i>
+    Mis citas
+  </a>
+  <a class="boton-principal" id="btn-informe" href="#informe">
+    <i class="fa-solid fa-file-medical"></i>
+    Informe Médico
+  </a>
+  <a class="boton-principal" id="btn-pacientes" href="#pacientes">
+    <i class="fa-solid fa-users"></i>
+    Pacientes
+  </a>
+</div>
+
+<!-- Sección Crear Cita -->
+<section class="seccion" id="cita" style="display:none;">
+  <h2>Crear Cita</h2>
+  <div id="mensaje-cita" style="display:none;"></div>
+  <form id="form-cita">
+    <!-- Página 1 -->
+    <div class="form-page" id="form-page-1" style="display:block;">
+      <label>Paciente:
+        <select id="cita-paciente" name="cita_paciente" required>
+          <option value="">Seleccione paciente</option>
+        </select>
+      </label><br>
+      <label>Modalidad:
+        <select name="modalidad" id="modalidad" required>
+          <option value="">Seleccione</option>
+          <option value="presencial">Presencial</option>
+          <option value="online">Online</option>
+        </select>
+      </label><br>
+      <label>Fecha:
+        <input type="date" name="fecha" id="fecha" required>
+      </label><br>
+      <label>Hora:
+        <select name="hora" id="hora" required>
+          <option value="">Seleccione</option>
+          <!-- Opciones se llenan dinámicamente -->
+        </select>
+      </label><br>
+      <label>Servicio:
+        <select name="servicio" id="servicio" required>
+          <option value="">Seleccione</option>
+          <option value="psicoterapia_infantil">Psicoterapia Infantil</option>
+          <option value="psicoterapia_adolescentes">Psicoterapia para Adolescentes</option>
+          <option value="psicoterapia_individual">Psicoterapia Individual</option>
+          <option value="psicoterapia_parejas">Psicoterapia para Parejas</option>
+        </select>
+      </label><br>
+      <label>Método de pago:
+        <select name="pago" id="pago" required>
+          <option value="">Seleccione</option>
+          <!-- Opciones se llenan dinámicamente -->
+        </select>
+      </label><br>
+      <div class="form-nav">
+        <button type="button" class="btn-modal" id="btn-continuar">Continuar</button>
+      </div>
+      <div class="form-pages-indicator">1 / 3</div>
+    </div>
+    <!-- Página 2: Problema actual -->
+    <div class="form-page" id="form-page-2" style="display:none;">
+      <h3>Problema actual</h3>
+      <label>Motivo de la consulta:<input type="text" name="motivo_consulta" required></label>
+      <label>Síntoma:<input type="text" name="sintoma" required></label>
+      <h4 style="margin-top:18px;">Episodios previos</h4>
+      <label>Tiempo del problema:<input type="text" name="tiempo_problema"></label>
+      <label>¿Qué le sucedió ese día?:<input type="text" name="que_sucedio"></label>
+      <label>¿Qué pasó el día anterior?:<input type="text" name="dia_anterior"></label>
+      <label>¿Qué hizo?:<input type="text" name="que_hizo"></label>
+      <label>¿Cómo se calmó?:<input type="text" name="como_se_calmo"></label>
+      <label>¿Habló con alguien del problema?:<input type="text" name="hablo_con_alguien"></label>
+      <label>Factores desencadenantes del problema actual:<input type="text" name="factores_desencadenantes"></label>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:18px;">
+        <button type="button" class="btn-modal" id="btn-atras-1">Atrás</button>
+        <button type="button" class="btn-modal" id="btn-siguiente-3">Siguiente</button>
+      </div>
+      <div class="form-pages-indicator">2 / 3</div>
+    </div>
+    <!-- Página 3: Últimos tratamientos y auto descripción -->
+    <div class="form-page" id="form-page-3" style="display:none;">
+      <h3>Últimos tratamientos recibidos (físicos y psicológicos)</h3>
+      <table id="tabla-tratamientos" style="width:100%;margin-bottom:12px;">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="date" name="tratamiento_fecha[]"></td>
+            <td><input type="text" name="tratamiento_tipo[]"></td>
+            <td><button type="button" class="btn-modal btn-agregar-fila">+</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <h4>Auto descripción de la personalidad</h4>
+      <label>¿Cómo podría describir su personalidad?
+        <textarea name="auto_descripcion" rows="2" required></textarea>
+      </label>
+      <label>¿Cuál es su filosofía de vida?
+        <textarea name="filosofia_vida" rows="2" required></textarea>
+      </label>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:18px;">
+        <button type="button" class="btn-modal" id="btn-atras-2">Atrás</button>
+        <button type="submit" class="btn-modal">Agendar</button>
+      </div>
+      <div class="form-pages-indicator">3 / 3</div>
+    </div>
+  </form>
+</section>
+
+<!-- Sección Informe Médico -->
+<section class="seccion" id="informe" style="display:none;">
+  <h2>Informe Médico</h2>
+  <div id="historial-informes">
+    <!-- Aquí se llenará la tabla de informes con JS -->
+  </div>
+</section>
+
+<!-- Sección Editar Perfil -->
+<section class="seccion" id="editar-perfil-seccion" style="display:none;">
+  <h2>Editar Perfil</h2>
+  <div style="display:flex;flex-direction:column;gap:18px;align-items:center;max-width:350px;margin:auto;">
+    <div style="width:100%;display:flex;flex-direction:column;align-items:center;">
+      <button class="btn-modal" id="btn-desplegar-usuario" type="button">Cambiar usuario o correo</button>
+      <div id="desplegable-usuario" class="desplegable-perfil" style="display:none;width:100%;">
+        <label for="tipo-cambio-usuario" style="margin-bottom:8px;display:block;">¿Qué desea cambiar?</label>
+        <select id="tipo-cambio-usuario" style="width:100%;padding:8px;margin-bottom:10px;">
+          <option value="">Seleccione</option>
+          <option value="usuario">Usuario</option>
+          <option value="correo">Correo</option>
+        </select>
+        <input type="text" id="nuevo-usuario" placeholder="Ingrese nuevo usuario" autocomplete="off" style="width:100%;padding:8px;display:none;">
+        <input type="email" id="nuevo-correo" placeholder="Ingrese nuevo correo" autocomplete="off" style="width:100%;padding:8px;display:none;">
+      </div>
+    </div>
+    <div style="width:100%;display:flex;flex-direction:column;align-items:center;">
+      <button class="btn-modal" id="btn-desplegar-contrasena" type="button">Cambiar contraseña</button>
+      <div id="desplegable-contrasena" class="desplegable-perfil" style="display:none;width:100%;">
+        <input type="password" id="nueva-contrasena" placeholder="Ingrese su nueva contraseña" autocomplete="new-password" style="width:100%;padding:8px;margin-bottom:8px;">
+        <input type="password" id="confirmar-contrasena" placeholder="Confirmar contraseña" autocomplete="new-password" style="width:100%;padding:8px;">
+        <div id="mensaje-contrasena" style="color:#e74c3c;font-size:0.95em;margin-top:4px;display:none;"></div>
+      </div>
+    </div>
+    <div style="width:100%;display:flex;flex-direction:column;align-items:center;">
+      <button class="btn-modal" id="btn-desplegar-seguridad" type="button">Cambiar pregunta de seguridad</button>
+      <div id="desplegable-seguridad" class="desplegable-perfil" style="display:none;width:100%;">
+        <label>Pregunta de seguridad:
+          <select id="pregunta-seguridad" style="width:100%;padding:8px;">
+            <option value="">Seleccione una pregunta</option>
+            <option value="color">¿Cuál es tu color favorito?</option>
+            <option value="animal">¿Cuál es tu animal favorito?</option>
+          </select>
+        </label>
+        <input type="text" id="respuesta-seguridad" placeholder="Respuesta" autocomplete="off" style="width:100%;padding:8px;margin-top:8px;">
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:12px;justify-content:center;margin-top:18px;">
+    <button type="button" class="btn-modal" id="guardar-cambios-perfil">Guardar cambios</button>
+    <button type="button" class="btn-modal btn-cancelar" id="cancelar-editar-perfil">Cancelar</button>
+  </div>
+</section>
+
+<!-- Sección Mis Citas -->
+<section class="seccion" id="mis-citas-seccion" style="display:none;">
+  <h2>Mis citas</h2>
+  <div class="tabla-citas-wrapper">
+    <table class="tabla-citas">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Paciente</th>
+          <th>Cédula</th>
+          <th>Categoría</th>
+          <th>Modalidad</th>
+          <th>Método de pago</th>
+          <th>Estado</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-mis-citas">
+        <!-- Las filas se llenan con JS -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Sección Pacientes -->
+<section class="seccion" id="pacientes" style="display:none;">
+  <div style="display:flex;justify-content:space-between;align-items:center;">
+    <h2>Pacientes</h2>
+    <button id="btn-agregar-paciente" class="btn-modal" style="margin-bottom:10px; padding:6px 18px; font-size:1em; min-width:unset; width:auto;">+ Agregar nuevo paciente</button>
+  </div>
+  <div id="mensaje-pacientes" style="display:none;"></div>
+  <div class="tabla-citas-wrapper">
+    <table class="tabla-citas">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-pacientes">
+        <!-- Se llena con JS -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Formulario de datos personales (oculto por defecto) -->
+<section class="seccion" id="form-datos-personales" style="display:none;justify-content:center;align-items:center;">
+  <form id="form-datos-personales-form" style="display:flex;flex-direction:column;gap:10px;max-width:400px;">
+    <h3 style="text-align:center;margin-bottom:10px;">Datos de filiación</h3>
+    <label>Primer nombre:<input type="text" name="primer_nombre" id="dp-primer-nombre" required></label>
+    <label>Segundo nombre:<input type="text" name="segundo_nombre" id="dp-segundo-nombre"></label>
+    <label>Primer apellido:<input type="text" name="primer_apellido" id="dp-primer-apellido" required></label>
+    <label>Segundo apellido:<input type="text" name="segundo_apellido" id="dp-segundo-apellido"></label>
+    <label>Cédula:<input type="text" name="cedula" id="dp-cedula" required></label>
+    <label>Fecha de nacimiento:<input type="date" name="fecha_nacimiento" id="dp-fecha-nac" required></label>
+    <label>Lugar de nacimiento:<input type="text" name="lugar_nacimiento" id="dp-lugar-nacimiento" required></label>
+    <label>Instrucción:<input type="text" name="instruccion" id="dp-instruccion" required></label>
+    <label>Ocupación:<input type="text" name="ocupacion" id="dp-ocupacion" required></label>
+    <label>Estado civil:<input type="text" name="estado_civil" id="dp-estado-civil" required></label>
+    <label>Religión:<input type="text" name="religion" id="dp-religion" required></label>
+    <label>Nombre del cónyuge (opcional):<input type="text" name="nombre_conyuge" id="dp-nombre-conyuge"></label>
+    <label>Teléfono del cónyuge (opcional):<input type="text" name="telefono_conyuge" id="dp-telefono-conyuge"></label>
+    <label>Hijos:<input type="text" name="hijos" id="dp-hijos"></label>
+    <label>Edades de los hijos:<input type="text" name="edades_hijos" id="dp-edades-hijos"></label>
+    <label>Centro de estudio y/o trabajo:<input type="text" name="centro_estudio_trabajo" id="dp-centro-estudio-trabajo"></label>
+    <label>Grado:<input type="text" name="grado" id="dp-grado"></label>
+    <label>Lugar de residencia:<input type="text" name="lugar_residencia" id="dp-lugar-residencia" required></label>
+    <label>Tiempo de residencia:<input type="text" name="tiempo_residencia" id="dp-tiempo-residencia"></label>
+    <label>Procedencia:<input type="text" name="procedencia" id="dp-procedencia"></label>
+    <label>Teléfono:<input type="text" name="telefono" id="dp-telefono" required></label>
+    <label>Correo:<input type="email" name="correo" id="dp-correo" required></label>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:18px;">
+      <button type="submit" class="btn-modal">Guardar</button>
+      <button type="button" class="btn-modal btn-cancelar" id="cancelar-personales">Cancelar</button>
+    </div>
+    <div id="mensaje-personales" style="display:none;color:green;text-align:center;"></div>
+  </form>
+</section>
+
+<!-- Formulario de historial médico (oculto por defecto) -->
+<section class="seccion" id="form-historial-medico" style="display:none;justify-content:center;align-items:center;">
+  <form id="form-historial-paciente" style="max-width:500px;margin:auto;">
+    <h3 style="text-align:center;margin-bottom:10px;">Historial Médico</h3>
+    
+    <h4 style="margin-top:20px;margin-bottom:8px;">Familiares</h4>
+    
+    <h5 style="margin-bottom:6px;">Rama paterna</h5>
+    <label>Abuelo:<input type="text" name="paterno-abuelo" id="hm-paterno-abuelo"></label>
+    <label>Abuela:<input type="text" name="paterno-abuela" id="hm-paterno-abuela"></label>
+    <label>Padre:<input type="text" name="paterno-padre" id="hm-paterno-padre"></label>
+    <label>Tíos:<input type="text" name="paterno-tios" id="hm-paterno-tios"></label>
+    
+    <h5 style="margin-top:14px;margin-bottom:6px;">Rama materna</h5>
+    <label>Abuelo:<input type="text" name="materno-abuelo" id="hm-materno-abuelo"></label>
+    <label>Abuela:<input type="text" name="materno-abuela" id="hm-materno-abuela"></label>
+    <label>Madre:<input type="text" name="materno-madre" id="hm-materno-madre"></label>
+    <label>Tíos:<input type="text" name="materno-tios" id="hm-materno-tios"></label>
+    
+    <h5 style="margin-top:14px;margin-bottom:6px;">Otros familiares</h5>
+    <label>Hermanos(as):<input type="text" name="otros-hermanos" id="hm-otros-hermanos"></label>
+    <label>Esposo(a):<input type="text" name="otros-esposo" id="hm-otros-esposo"></label>
+    <label>Hijos(as):<input type="text" name="otros-hijos" id="hm-otros-hijos"></label>
+    <label>Colaterales (parientes con trastornos mentales, conducta delictiva, etc):<input type="text" name="otros-colaterales" id="hm-otros-colaterales"></label>
+    
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:18px;">
+      <button type="submit" class="btn-modal">Guardar</button>
+      <button type="button" class="btn-modal btn-cancelar" id="cancelar-historial">Cancelar</button>
+    </div>
+    <div id="mensaje-historial-paciente" style="display:none;margin-top:10px;"></div>
+  </form>
+</section>
+
+<!-- Formulario para agregar nuevo paciente (oculto por defecto) -->
+<section class="seccion" id="form-nuevo-paciente" style="display:none;justify-content:center;align-items:center;">
+  <form id="form-nuevo" style="display:flex;flex-direction:column;gap:10px;max-width:400px;">
+    <h3 style="text-align:center;margin-bottom:10px;">Registrar Nuevo Paciente</h3>
+    <label>Primer nombre:<input type="text" name="primer_nombre" id="np-primer-nombre" required></label>
+    <label>Segundo nombre:<input type="text" name="segundo_nombre" id="np-segundo-nombre"></label>
+    <label>Primer apellido:<input type="text" name="primer_apellido" id="np-primer-apellido" required></label>
+    <label>Segundo apellido:<input type="text" name="segundo_apellido" id="np-segundo-apellido"></label>
+    <label>Cédula:<input type="text" name="cedula" id="np-cedula" required></label>
+    <label>Fecha de nacimiento:<input type="date" name="fecha_nac" id="np-fecha-nac" required></label>
+    <label>Lugar de nacimiento:<input type="text" name="lugar_nacimiento" id="np-lugar-nacimiento" required></label>
+    <label>Instrucción:<input type="text" name="instruccion" id="np-instruccion" required></label>
+    <label>Ocupación:<input type="text" name="ocupacion" id="np-ocupacion" required></label>
+    <label>Estado civil:<input type="text" name="estado_civil" id="np-estado-civil" required></label>
+    <label>Religión:<input type="text" name="religion" id="np-religion" required></label>
+    <label>Nombre del cónyuge (opcional):<input type="text" name="nombre_conyuge" id="np-nombre-conyuge"></label>
+    <label>Teléfono del cónyuge (opcional):<input type="text" name="telefono_conyuge" id="np-telefono-conyuge"></label>
+    <label>Hijos:<input type="text" name="hijos" id="np-hijos"></label>
+    <label>Edades de los hijos:<input type="text" name="edades_hijos" id="np-edades-hijos"></label>
+    <label>Centro de estudio y/o trabajo:<input type="text" name="centro_estudio_trabajo" id="np-centro-estudio-trabajo"></label>
+    <label>Grado:<input type="text" name="grado" id="np-grado"></label>
+    <label>Lugar de residencia:<input type="text" name="lugar_residencia" id="np-lugar-residencia" required></label>
+    <label>Tiempo de residencia:<input type="text" name="tiempo_residencia" id="np-tiempo-residencia"></label>
+    <label>Procedencia:<input type="text" name="procedencia" id="np-procedencia"></label>
+    <label>Teléfono:<input type="text" name="telefono" id="np-telefono" required></label>
+    <label>Correo:<input type="email" name="correo" id="np-correo" required></label>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:18px;">
+      <button type="submit" class="btn-modal">Registrar</button>
+      <button type="button" class="btn-modal btn-cancelar" id="cancelar-nuevo-paciente">Cancelar</button>
+    </div>
+    <div id="mensaje-nuevo-paciente" style="display:none;margin-top:10px;"></div>
+  </form>
+</section>
+
+<script src="perfil.js"></script>
+</body>
+</html>

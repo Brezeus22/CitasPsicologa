@@ -1,0 +1,261 @@
+.u-section-1 {
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../images/psicologo-psiquiatra-e-psicanalista-conheca-o-papel-de-cada-um14471.jpg');
+  background-position: 50% 50%, 50% 50%;
+  background-size: cover, cover;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 944px;
+}
+
+.u-section-1 .u-layout-wrap-1 {
+  margin-top: 53px;
+  margin-bottom: 60px;
+}
+
+.u-section-1 .u-layout-cell-1 {
+  min-height: 668px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 0;
+}
+
+.u-section-1 .u-text-1 {
+  font-family: "Abyssinica SIL";
+  font-size: 3.75rem;
+  font-weight: 700;
+  margin: 0 auto 0 10px;
+}
+
+.u-section-1 .u-btn-1 {
+  background-image: none;
+  padding: 0;
+}
+
+.u-section-1 .u-text-2 {
+  font-family: Aclonica;
+  font-size: 3.75rem;
+  margin: 157px auto 0 10px;
+}
+
+.u-section-1 .u-text-3 {
+  font-family: "Abyssinica SIL";
+  margin: 32px 31px 0 50px;
+}
+
+.u-section-1 .u-layout-cell-2 {
+  min-height: 668px;
+}
+
+.u-section-1 .u-container-layout-2 {
+  padding: 30px 0 0;
+}
+
+.u-section-1 .u-form-1 {
+  background: rgba(255,255,255,0.95); /* Fondo blanco translúcido */
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+  border: 2px solid #e0e0e0;
+  height: auto;
+  margin: 100px auto 0 auto;
+  max-width: 420px;
+  padding: 40px 32px 32px 32px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.u-section-1 .u-form-group-1,
+.u-section-1 .u-form-group-2 {
+  margin-bottom: 28px;
+}
+
+.u-section-1 .u-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.u-section-1 .u-input-1,
+.u-section-1 .u-input-2 {
+  border-radius: 12px !important;
+  border: 1.5px solid #bdbdbd;
+  font-size: 1.15rem;
+  padding: 16px 14px;
+  background: #f7f7f7;
+  margin-top: 6px;
+  margin-bottom: 0;
+  transition: border-color 0.2s;
+  box-shadow: none;
+}
+
+.u-section-1 .u-input-1:focus,
+.u-section-1 .u-input-2:focus {
+  border-color: #478ac9;
+  outline: none;
+}
+
+.u-section-1 .u-btn-2 {
+  border-radius: 12px !important;
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 16px 0;
+  background: #478ac9;
+  color: #fff !important;
+  width: 100%;
+  margin-top: 18px;
+  box-shadow: 0 2px 8px rgba(71,138,201,0.10);
+  transition: background 0.2s;
+}
+
+.u-section-1 .u-btn-2:hover {
+  background: #356ba0;
+}
+
+.u-section-1 .u-btn-3 {
+  border-radius: 12px !important;
+  font-size: 1.1rem;
+  margin: 24px auto 0 auto;
+  padding: 12px 0;
+  width: 100%;
+  background: #fff;
+  color: #478ac9 !important;
+  border: 2px solid #478ac9;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(71,138,201,0.07);
+  transition: background 0.2s, color 0.2s;
+}
+
+.u-section-1 .u-btn-3:hover {
+  background: #478ac9;
+  color: #fff !important;
+}
+
+/* Ajuste para el botón de registro dentro del formulario */
+.u-section-1 .u-form-1 .u-btn-3 {
+  display: block;
+  border-radius: 12px !important;
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 16px 0;
+  width: 100%;
+  margin: 18px 0 0 0;
+  background: #fff;
+  color: #478ac9 !important;
+  border: 2px solid #478ac9;
+  box-shadow: 0 2px 8px rgba(71,138,201,0.07);
+  transition: background 0.2s, color 0.2s;
+  text-align: center;
+}
+
+.u-section-1 .u-form-1 .u-btn-3:hover {
+  background: #478ac9;
+  color: #fff !important;
+}
+
+.u-section-1 .u-form-send-message,
+.u-section-1 .u-form-send-error {
+  font-size: 1rem;
+  margin-top: 18px;
+  text-align: center;
+}
+
+.u-btn-home {
+  display: inline-block;
+  padding: 8px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 10px !important;
+  background: #119825;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(71,138,201,0.10);
+  transition: background 0.2s;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.u-btn-home:hover {
+  background: #356ba0;
+  color: #fff !important;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 661px;
+  }
+
+  .u-section-1 .u-layout-cell-1 {
+    min-height: 551px;
+  }
+
+  .u-section-1 .u-text-3 {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-layout-cell-2 {
+    min-height: 551px;
+  }
+
+  .u-section-1 .u-form-1 {
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-btn-3 {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 210px;
+  }
+
+  .u-section-1 .u-layout-cell-1 {
+    min-height: 100px;
+  }
+
+  .u-section-1 .u-layout-cell-2 {
+    min-height: 100px;
+  }
+
+  .u-section-1 .u-form-1 {
+    max-width: 95vw;
+    padding: 32px 12px 24px 12px !important;
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 310px;
+  }
+
+  .u-section-1 .u-text-1 {
+    font-size: 3rem;
+  }
+
+  .u-section-1 .u-text-2 {
+    font-size: 2.8125rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-1 {
+    font-size: 2.25rem;
+  }
+
+  .u-section-1 .u-text-2 {
+    font-size: 2.34375rem;
+  }
+
+  .u-section-1 .u-form-1 {
+    padding: 18px 4vw 18px 4vw !important;
+    margin-top: 30px;
+  }
+}
