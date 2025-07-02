@@ -49,9 +49,10 @@
     <i class="fa-solid fa-clock"></i>
     Horario laboral
   </button>
-  <button class="boton-principal" id="btn-historial">
-    <i class="fa-solid fa-file-medical"></i>
-    Historial clínico
+  <button class="boton-principal" id="btn-editar-formularios">
+    <i class="fa-solid fa-pen-to-square"></i>
+    Editar formularios
+  </button>
 </div>
 
    
@@ -176,485 +177,72 @@
 
 <section class="seccion" id="historial-paciente-seccion" style="display:none;">
   <form id="form-historial-clinico" style="max-width:700px;margin:auto;">
-    <!-- Página 1: Datos de filiación -->
+    <!-- Páginas del historial clínico, solo los contenedores -->
     <div class="historial-page" id="historial-page-1" style="display:block;">
       <h2 style="text-align:center;margin-bottom:18px;">Datos de filiación</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;">
-        <label>Primer nombre:<input type="text" name="primer_nombre" id="dp-primer-nombre"></label>
-        <label>Segundo nombre:<input type="text" name="segundo_nombre" id="dp-segundo-nombre"></label>
-        <label>Primer apellido:<input type="text" name="primer_apellido" id="dp-primer-apellido"></label>
-        <label>Segundo apellido:<input type="text" name="segundo_apellido" id="dp-segundo-apellido"></label>
-        <label>Cédula:<input type="text" name="cedula" id="dp-cedula"></label>
-        <label>Fecha de nacimiento:<input type="date" name="fecha_nacimiento" id="dp-fecha-nac"></label>
-        <label>Lugar de nacimiento:<input type="text" name="lugar_nacimiento" id="dp-lugar-nacimiento"></label>
-        <label>Instrucción:<input type="text" name="instruccion" id="dp-instruccion"></label>
-        <label>Ocupación:<input type="text" name="ocupacion" id="dp-ocupacion"></label>
-        <label>Estado civil:<input type="text" name="estado_civil" id="dp-estado-civil"></label>
-        <label>Religión:<input type="text" name="religion" id="dp-religion"></label>
-        <label>Nombre del cónyuge:<input type="text" name="nombre_conyuge" id="dp-nombre-conyuge"></label>
-        <label>Teléfono del cónyuge:<input type="text" name="telefono_conyuge" id="dp-telefono-conyuge"></label>
-        <label>Hijos:<input type="text" name="hijos" id="dp-hijos"></label>
-        <label>Edades de los hijos:<input type="text" name="edades_hijos" id="dp-edades-hijos"></label>
-        <label>Centro de estudio y/o trabajo:<input type="text" name="centro_estudio_trabajo" id="dp-centro-estudio-trabajo"></label>
-        <label>Grado:<input type="text" name="grado" id="dp-grado"></label>
-        <label>Lugar de residencia:<input type="text" name="lugar_residencia" id="dp-lugar-residencia"></label>
-        <label>Tiempo de residencia:<input type="text" name="tiempo_residencia" id="dp-tiempo-residencia"></label>
-        <label>Procedencia:<input type="text" name="procedencia" id="dp-procedencia"></label>
-        <label>Teléfono:<input type="text" name="telefono" id="dp-telefono"></label>
-        <label>Correo:<input type="email" name="correo" id="dp-correo"></label>
-      </div>
+      <div id="contenedor-historial-1"></div>
       <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
         <button type="button" class="btn-modal" id="btn-siguiente-historial-1">Siguiente</button>
       </div>
-      
       <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">1 / 5</div>
     </div>
-
-    <!-- Página 2: Historial personal y social -->
     <div class="historial-page" id="historial-page-2" style="display:none;">
       <h2 style="text-align:center;margin-bottom:18px;">Historial personal y social</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;">
-        <label>Experiencias durante los estudios primarios (recurso y apoyo, problemas de conducta, indisciplina):
-          <textarea name="primaria_experiencias"></textarea>
-        </label>
-        <label>Dificultades académicas (cómo enfrentaba los exámenes):
-          <textarea name="primaria_dificultades"></textarea>
-        </label>
-        <label>Experiencias durante la secundaria (recurso y apoyo, problemas conducta indisciplina):
-          <textarea name="secundaria_experiencias"></textarea>
-        </label>
-        <label>Dificultades académicas (cómo enfrentaba los exámenes):
-          <textarea name="secundaria_dificultades"></textarea>
-        </label>
-        <label>Experiencias durante los estudios superiores (recurso y apoyo, problemas de conducta, indisciplina):
-          <textarea name="superior_experiencias"></textarea>
-        </label>
-        <label>Dificultades académicas:
-          <textarea name="superior_dificultades"></textarea>
-        </label>
-        <label>Problemas afectivos o conducta durante su niñez:
-          <textarea name="ninez_problemas"></textarea>
-        </label>
-        <label>Problemas afectivos en la Pubertad (cambios fisiológicos, maduración, características sexuales, otras particularidades):
-          <textarea name="pubertad_problemas"></textarea>
-        </label>
-        <label>Particularidades de la adolescencia:
-          <textarea name="adolescencia_particularidades"></textarea>
-        </label>
-        <label>Problemas afectivos o de conducta en la Adolescencia:
-          <textarea name="adolescencia_problemas"></textarea>
-        </label>
-        <label>Grado de armonía entre la Madurez Biológica y Psicológica:
-          <textarea name="madurez_armonia"></textarea>
-        </label>
-        <label>Desarrollo de la Voluntad (rapidez, decisión y ejecución):
-          <textarea name="voluntad_desarrollo"></textarea>
-        </label>
-        <label>Grado de autonomía en la deliberación y la acción:
-          <textarea name="autonomia_grado"></textarea>
-        </label>
-        <label>Persistencia en el esfuerzo:
-          <textarea name="persistencia"></textarea>
-        </label>
-        <label>Jerarquía de valores (concepción de la vida y el mundo): Estilo de vida:
-          <textarea name="valores_estilo"></textarea>
-        </label>
-        <label>Sexualidad activa e inactiva:
-          <textarea name="sexualidad"></textarea>
-        </label>
-        <label>Problemas legales: Norma a nivel familiar:
-          <textarea name="problemas_legales"></textarea>
-        </label>
-        <label>Servicio Militar Obligatorio: Preferencias en el SMO:
-          <textarea name="servicio_militar"></textarea>
-        </label>
-        <label>Hábitos e intereses (consumo de alcohol, drogas, etc.):
-          <textarea name="habitos_intereses"></textarea>
-        </label>
-        <label>Enfermedad y accidentes (desde la niñez hasta la actualidad):
-          <textarea name="enfermedad_accidentes"></textarea>
-        </label>
-        <label>Elección de profesión u Oficio (libre, influenciado o forzado):
-          <textarea name="eleccion_profesion"></textarea>
-        </label>
-      </div>
+      <div id="contenedor-historial-2"></div>
       <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
         <button type="button" class="btn-modal" id="btn-atras-historial-2">Atrás</button>
         <button type="button" class="btn-modal" id="btn-siguiente-historial-2">Siguiente</button>
       </div>
       <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">2 / 5</div>
     </div>
-
-    <!-- Página 3: Continuación de la página 2 -->
     <div class="historial-page" id="historial-page-3" style="display:none;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;">
-        <label>Ambiente social Actual Trabajo (actual y anteriores):
-          <textarea name="trabajo_ambiente"></textarea>
-        </label>
-        <label>Vivienda:
-          <textarea name="vivienda"></textarea>
-        </label>
-        <label>Economía:
-          <textarea name="economia"></textarea>
-        </label>
-        <label>Relaciones con sus jefes, superiores, compañeros, subalternos:
-          <textarea name="relaciones_laborales"></textarea>
-        </label>
-        <label>Crecimiento psicosocial:
-          <textarea name="crecimiento_psicosocial"></textarea>
-        </label>
-        <label>Ambiciones laborales:
-          <textarea name="ambiciones_laborales"></textarea>
-        </label>
-        <label>Cambios de profesión, oficios o trabajo (frecuentes, circunstanciales y sus causas):
-          <textarea name="cambios_profesion"></textarea>
-        </label>
-        <label>Cuadro Familiar:
-          <textarea name="cuadro_familiar"></textarea>
-        </label>
-        <label>Relaciones Interpersonales:
-          <textarea name="relaciones_interpersonales"></textarea>
-        </label>
-        <label>Religión:
-          <textarea name="religion"></textarea>
-        </label>
-        <label>Recreación:
-          <textarea name="recreacion"></textarea>
-        </label>
-        <label>Conducta sexual (inicio y vida sexual, desde los juegos infantiles a la actualidad) Relación con las personas del mismo sexo y del sexo opuesto:
-          <textarea name="conducta_sexual"></textarea>
-        </label>
-        <label>Elección de la pareja:
-          <textarea name="eleccion_pareja"></textarea>
-        </label>
-        <label>¿Le cuesta trabajo elegir pareja?:
-          <textarea name="dificultad_elegir_pareja"></textarea>
-        </label>
-        <label>¿Fiel y exigente?:
-          <textarea name="fiel_exigente"></textarea>
-        </label>
-        <label>Noviazgo (número y duración de ellos):
-          <textarea name="noviazgo"></textarea>
-        </label>
-        <label>Matrimonio (edad del paciente y la pareja):
-          <textarea name="matrimonio"></textarea>
-        </label>
-        <label>¿Qué opina del matrimonio?:
-          <textarea name="opinion_matrimonio"></textarea>
-        </label>
-        <label>Particularidades del día de la boda:
-          <textarea name="boda_particularidades"></textarea>
-        </label>
-        <label>Vida Matrimonial (armonía o desarmonía conyugal):
-          <textarea name="vida_matrimonial"></textarea>
-        </label>
-        <label>Separación:
-          <textarea name="separacion"></textarea>
-        </label>
-        <label>Divorcio (causas):
-          <textarea name="divorcio"></textarea>
-        </label>
-        <label>Problemas y periodos críticos particularidades del climaterio, menopausia y edad crítica:
-          <textarea name="climaterio_menopausia"></textarea>
-        </label>
-      </div>
+      <div id="contenedor-historial-3"></div>
       <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
         <button type="button" class="btn-modal" id="btn-atras-historial-3">Atrás</button>
         <button type="button" class="btn-modal" id="btn-siguiente-historial-3">Siguiente</button>
       </div>
       <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">3 / 5</div>
     </div>
-
-    <!-- Página 4: Antecedentes familiares -->
     <div class="historial-page" id="historial-page-4" style="display:none;">
       <h2 style="text-align:center;margin-bottom:18px;">Antecedentes familiares</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;">
-        <label>Abuelo paterno:<input type="text" name="paterno-abuelo" id="hm-paterno-abuelo"></label>
-        <label>Abuela paterna:<input type="text" name="paterno-abuela" id="hm-paterno-abuela"></label>
-        <label>Padre:<input type="text" name="paterno-padre" id="hm-paterno-padre"></label>
-        <label>Tíos paternos:<input type="text" name="paterno-tios" id="hm-paterno-tios"></label>
-        <label>Abuelo materno:<input type="text" name="materno-abuelo" id="hm-materno-abuelo"></label>
-        <label>Abuela materna:<input type="text" name="materno-abuela" id="hm-materno-abuela"></label>
-        <label>Madre:<input type="text" name="materno-madre" id="hm-materno-madre"></label>
-        <label>Tíos maternos:<input type="text" name="materno-tios" id="hm-materno-tios"></label>
-        <label>Hermanos(as):<input type="text" name="otros-hermanos" id="hm-otros-hermanos"></label>
-        <label>Esposo(a):<input type="text" name="otros-esposo" id="hm-otros-esposo"></label>
-        <label>Hijos(as):<input type="text" name="otros-hijos" id="hm-otros-hijos"></label>
-        <label>Colaterales:<input type="text" name="otros-colaterales" id="hm-otros-colaterales"></label>
-      </div>
+      <div id="contenedor-historial-4"></div>
       <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
         <button type="button" class="btn-modal" id="btn-atras-historial-4">Atrás</button>
         <button type="button" class="btn-modal" id="btn-siguiente-historial-4">Siguiente</button>
       </div>
       <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">4 / 5</div>
     </div>
-
-    <!-- Página 5: Sumario diagnóstico - Resultados del examen - Tratamiento y evolución -->
     <div class="historial-page" id="historial-page-5" style="display:none;">
-  <h2 style="text-align:center;margin-bottom:18px;">Sumario diagnóstico - Resultados del examen - Tratamiento y evolución</h2>
-  
-  <!-- Sumario diagnóstico -->
-  <h3 style="margin-top:18px;">Sumario diagnóstico</h3>
-  <table id="tabla-sumario-diagnostico" style="width:100%;border-collapse:collapse;margin-bottom:16px;">
-    <thead>
-      <tr>
-        <th style="border:1px solid #ccc;padding:6px;">Signos y síntomas</th>
-        <th style="border:1px solid #ccc;padding:6px;">Patologías y síndromes</th>
-        <th style="border:1px solid #ccc;padding:6px;">Trastornos</th>
-        <th style="border:1px solid #ccc;padding:6px;">Nivel de afectación<br>(leve, moderado, grave)</th>
-        <th style="border:1px solid #ccc;padding:6px;width:40px;"></th>
-      </tr>
-    </thead>
-    <tbody id="tbody-sumario-diagnostico">
-      <!-- 6 filas editables -->
-      <tr>
-        <td><input type="text" name="signos_1" style="width:100%;"></td>
-        <td><input type="text" name="patologias_1" style="width:100%;"></td>
-        <td><input type="text" name="trastornos_1" style="width:100%;"></td>
-        <td>
-          <select name="afectacion_1" style="width:100%;">
-            <option value=""></option>
-            <option value="Leve">Leve</option>
-            <option value="Moderado">Moderado</option>
-            <option value="Grave">Grave</option>
-          </select>
-        </td>
-        <td rowspan="7" style="vertical-align:top;text-align:center;">
-          <button type="button" id="agregar-fila-diagnostico" style="font-size:1.2em;padding:2px 8px;">+</button>
-        </td>
-      </tr>
-      <tr>
-        <td><input type="text" name="signos_2" style="width:100%;"></td>
-        <td><input type="text" name="patologias_2" style="width:100%;"></td>
-        <td><input type="text" name="trastornos_2" style="width:100%;"></td>
-        <td>
-          <select name="afectacion_2" style="width:100%;">
-            <option value=""></option>
-            <option value="Leve">Leve</option>
-            <option value="Moderado">Moderado</option>
-            <option value="Grave">Grave</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td><input type="text" name="signos_3" style="width:100%;"></td>
-        <td><input type="text" name="patologias_3" style="width:100%;"></td>
-        <td><input type="text" name="trastornos_3" style="width:100%;"></td>
-        <td>
-          <select name="afectacion_3" style="width:100%;">
-            <option value=""></option>
-            <option value="Leve">Leve</option>
-            <option value="Moderado">Moderado</option>
-            <option value="Grave">Grave</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td><input type="text" name="signos_4" style="width:100%;"></td>
-        <td><input type="text" name="patologias_4" style="width:100%;"></td>
-        <td><input type="text" name="trastornos_4" style="width:100%;"></td>
-        <td>
-          <select name="afectacion_4" style="width:100%;">
-            <option value=""></option>
-            <option value="Leve">Leve</option>
-            <option value="Moderado">Moderado</option>
-            <option value="Grave">Grave</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td><input type="text" name="signos_5" style="width:100%;"></td>
-        <td><input type="text" name="patologias_5" style="width:100%;"></td>
-        <td><input type="text" name="trastornos_5" style="width:100%;"></td>
-        <td>
-          <select name="afectacion_5" style="width:100%;">
-            <option value=""></option>
-            <option value="Leve">Leve</option>
-            <option value="Moderado">Moderado</option>
-            <option value="Grave">Grave</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td><input type="text" name="signos_6" style="width:100%;"></td>
-        <td><input type="text" name="patologias_6" style="width:100%;"></td>
-        <td><input type="text" name="trastornos_6" style="width:100%;"></td>
-        <td>
-          <select name="afectacion_6" style="width:100%;">
-            <option value=""></option>
-            <option value="Leve">Leve</option>
-            <option value="Moderado">Moderado</option>
-            <option value="Grave">Grave</option>
-          </select>
-        </td>
-      </tr>
-      <!-- Fila especial: aproximación diagnóstica -->
-      <tr>
-        <td colspan="1" style="font-weight:bold;">Aproximación diagnóstica:</td>
-        <td colspan="3"><input type="text" name="aproximacion_diagnostica" style="width:100%;"></td>
-      </tr>
-    </tbody>
-  </table>
-  <script>
-    // Permite agregar una fila extra (máximo 7 filas, la última es la de aproximación diagnóstica)
-    document.addEventListener('DOMContentLoaded', function() {
-      const tbody = document.getElementById('tbody-sumario-diagnostico');
-      const btnAgregar = document.getElementById('agregar-fila-diagnostico');
-      btnAgregar.addEventListener('click', function() {
-        // Solo permite agregar una fila extra antes de la fila de aproximación diagnóstica
-        const filas = tbody.querySelectorAll('tr');
-        // La última fila es la de aproximación diagnóstica
-        if (filas.length < 7) {
-          const nuevaFila = document.createElement('tr');
-          nuevaFila.innerHTML = `
-            <td><input type="text" style="width:100%;"></td>
-            <td><input type="text" style="width:100%;"></td>
-            <td><input type="text" style="width:100%;"></td>
-            <td>
-              <select style="width:100%;">
-                <option value=""></option>
-                <option value="Leve">Leve</option>
-                <option value="Moderado">Moderado</option>
-                <option value="Grave">Grave</option>
-              </select>
-            </td>
-          `;
-          // Inserta antes de la fila de aproximación diagnóstica
-          tbody.insertBefore(nuevaFila, filas[filas.length - 1]);
-        }
-      });
-    });
-  </script>
-
-  <!-- Conclusión -->
-  <h3 style="margin-top:24px;">Conclusión</h3>
-  <textarea name="conclusion" rows="5" style="width:100%;resize:vertical;margin-bottom:18px;" placeholder="Escriba aquí la conclusión..."></textarea>
-
-  <!-- Examen conductual y de las facultades psíquicas -->
-  <h3 style="margin-top:24px;">Examen conductual y de las facultades psíquicas</h3>
-  <div style="margin-bottom:8px;">Síntesis de lo encontrado:</div>
-  <textarea name="sintesis_examen" rows="5" style="width:100%;resize:vertical;margin-bottom:18px;" placeholder="Redacte la síntesis de lo encontrado..."></textarea>
-
-  <!-- Evaluación psicológica -->
-  <h3 style="margin-top:24px;">Evaluación psicológica</h3>
-  <div style="margin-bottom:8px;">Baterías aplicadas:</div>
-  <table id="tabla-baterias" style="width:100%;border-collapse:collapse;margin-bottom:8px;">
-    <thead>
-      <tr>
-        <th style="border:1px solid #ccc;padding:6px;">Batería</th>
-        <th style="border:1px solid #ccc;padding:6px;">Resultado</th>
-        <th style="border:1px solid #ccc;padding:6px;width:40px;"></th>
-      </tr>
-    </thead>
-    <tbody id="tbody-baterias">
-      <tr>
-        <td><input type="text" name="bateria_1" style="width:100%;"></td>
-        <td><input type="text" name="resultado_1" style="width:100%;"></td>
-        <td rowspan="5" style="vertical-align:top;text-align:center;">
-          <button type="button" id="agregar-fila-bateria" style="font-size:1.2em;padding:2px 8px;">+</button>
-        </td>
-      </tr>
-      <tr>
-        <td><input type="text" name="bateria_2" style="width:100%;"></td>
-        <td><input type="text" name="resultado_2" style="width:100%;"></td>
-      </tr>
-      <tr>
-        <td><input type="text" name="bateria_3" style="width:100%;"></td>
-        <td><input type="text" name="resultado_3" style="width:100%;"></td>
-      </tr>
-      <tr>
-        <td><input type="text" name="bateria_4" style="width:100%;"></td>
-        <td><input type="text" name="resultado_4" style="width:100%;"></td>
-      </tr>
-    </tbody>
-  </table>
-  <script>
-    // Permite agregar una fila extra (máximo 5 filas)
-    document.addEventListener('DOMContentLoaded', function() {
-      const tbody = document.getElementById('tbody-baterias');
-      const btnAgregar = document.getElementById('agregar-fila-bateria');
-      btnAgregar.addEventListener('click', function() {
-        const filas = tbody.querySelectorAll('tr');
-        if (filas.length < 5) {
-          const nuevaFila = document.createElement('tr');
-          nuevaFila.innerHTML = `
-            <td><input type="text" style="width:100%;"></td>
-            <td><input type="text" style="width:100%;"></td>
-          `;
-          // Inserta antes de la última fila (si quieres permitir solo una fila extra)
-          tbody.appendChild(nuevaFila);
-        }
-      });
-    });
-  </script>
-  <div style="margin-bottom:8px;">Síntesis de los hallazgos en las baterías:</div>
-  <textarea name="sintesis_baterias" rows="5" style="width:100%;resize:vertical;margin-bottom:18px;" placeholder="Redacte la síntesis de los hallazgos..."></textarea>
-
-  <!-- Programa de tratamiento propuesto -->
-  <h3 style="margin-top:24px;">Programa de tratamiento propuesto</h3>
-  <textarea name="tratamiento_propuesto" rows="5" style="width:100%;resize:vertical;margin-bottom:18px;" placeholder="Redacte el programa de tratamiento propuesto..."></textarea>
-
-  <!-- Evolución -->
-  <h3 style="margin-top:24px;">Evolución</h3>
-  <textarea name="evolucion" rows="5" style="width:100%;resize:vertical;margin-bottom:18px;" placeholder="Redacte la evolución..."></textarea>
-
-  <!-- Firma responsable -->
-  <div style="margin-top:32px;display:flex;flex-direction:column;align-items:flex-start;">
-    <div style="font-weight:bold;">Firma responsable</div>
-    <div style="border-bottom:1px solid #333;width:320px;height:32px;margin-bottom:8px;"></div>
-    <div style="display:flex;align-items:center;margin-bottom:6px;">
-      <label style="min-width:70px;">Nombre:</label>
-      <input type="text" name="firma_nombre" style="width:220px;">
+      <h2 style="text-align:center;margin-bottom:18px;">Sumario diagnóstico - Resultados del examen - Tratamiento y evolución</h2>
+      <div id="contenedor-historial-5"></div>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:32px;">
+        <button type="button" class="btn-modal" id="btn-atras-historial-5">Atrás</button>
+        <button type="submit" class="btn-modal">Guardar</button>
+      </div>
+      <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">5 / 5</div>
     </div>
-    <div style="display:flex;align-items:center;margin-bottom:6px;">
-      <label style="min-width:70px;">Cargo:</label>
-      <input type="text" name="firma_cargo" style="width:220px;">
-    </div>
-    <div style="display:flex;align-items:center;margin-bottom:6px;">
-      <label style="min-width:70px;">Universidad:</label>
-      <input type="text" name="firma_universidad" style="width:220px;">
-    </div>
-    <div style="display:flex;align-items:center;margin-bottom:6px;">
-      <label style="min-width:70px;">Teléfono:</label>
-      <input type="text" name="firma_telefono" style="width:220px;">
-    </div>
-    <div style="display:flex;align-items:center;margin-bottom:6px;">
-      <label style="min-width:70px;">Correo:</label>
-      <input type="email" name="firma_correo" style="width:220px;">
-    </div>
-  </div>
-
-  <div style="display:flex;gap:12px;justify-content:center;margin-top:32px;">
-    <button type="button" class="btn-modal" id="btn-atras-historial-5">Atrás</button>
-    <button type="submit" class="btn-modal">Guardar</button>
-  </div>
-  <!-- ...dentro de la sección historial-paciente-seccion... -->
-    <div class="form-pages-indicator" style="text-align:center;margin-top:10px;">5 / 5</div>
-  </div>
   </form>
 </section>
-</div>
 
-
-
-<!-- Modal de éxito para historial clínico (MUEVE ESTE BLOQUE AQUÍ, FUERA DE LA SECCIÓN Y DEL FORMULARIO) -->
-<div id="modal-exito-historial" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;">
-  <div style="background:#fff;padding:32px 24px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:350px;text-align:center;margin:auto;">
-    <div style="font-size:1.2em;margin-bottom:18px;">¡Historial guardado exitosamente!</div>
-    <button id="btn-aceptar-exito-historial" class="btn-modal" style="padding:8px 32px;">Aceptar</button>
-  </div>
-</div>
-<!-- Modal informe Medico -->
+<!-- Informe médico -->
 <div id="modal-informe-medico" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;">
   <div style="background:#fff;padding:32px 24px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:500px;text-align:center;margin:auto;">
     <h3>Informe médico</h3>
     <form id="form-informe-medico">
-      <textarea name="informe_texto" rows="8" style="width:100%;resize:vertical;margin-bottom:18px;" placeholder="Redacte el informe médico..."></textarea>
+      <div id="contenedor-informe-medico"></div>
       <div style="display:flex;gap:12px;justify-content:center;margin-top:18px;">
         <button type="button" class="btn-modal" id="btn-cancelar-informe">Cancelar</button>
         <button type="submit" class="btn-modal">Enviar</button>
       </div>
     </form>
+  </div>
+</div>
+
+<!-- Modal de éxito para historial clínico -->
+<div id="modal-exito-historial" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:32px 24px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:350px;text-align:center;margin:auto;">
+    <div style="font-size:1.2em;margin-bottom:18px;">¡Historial guardado exitosamente!</div>
+    <button id="btn-aceptar-exito-historial" class="btn-modal" style="padding:8px 32px;">Aceptar</button>
   </div>
 </div>
 <!-- Modal de éxito para informe médico -->
@@ -692,6 +280,46 @@
     <button id="btn-aceptar-exito-horario" class="btn-modal" style="padding:8px 32px;">Aceptar</button>
   </div>
 </div>
+
+<!-- NUEVA SECCIÓN: Editar Formularios -->
+<section class="seccion" id="editar-formularios-seccion" style="display:none;">
+  <h2>Editar formularios</h2>
+  <div style="margin-bottom:18px;">
+    <label for="tipo-formulario-editar" style="font-weight:bold;">¿Qué formulario desea editar?</label>
+    <select id="tipo-formulario-editar" style="margin-left:10px;">
+      <option value="historial">Historial clínico</option>
+      <option value="informe">Informe médico</option>
+    </select>
+    <button id="btn-agregar-pregunta" class="btn-modal" style="margin-left:18px;">
+      <i class="fa-solid fa-plus"></i> Agregar pregunta
+    </button>
+  </div>
+  <div id="contenedor-preguntas-editar"></div>
+  <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
+    <button type="button" class="btn-modal" id="btn-guardar-formulario">Guardar</button>
+    <button type="button" class="btn-modal btn-cancelar" id="btn-cancelar-formulario">Cancelar</button>
+  </div>
+</section>
+
+<!-- Modal de éxito para editar formularios -->
+<div id="modal-exito-editar-formulario" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:32px 24px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:350px;text-align:center;margin:auto;">
+    <div style="font-size:1.2em;margin-bottom:18px;">¡Los cambios del formulario se han guardado exitosamente!</div>
+    <button id="btn-aceptar-exito-editar-formulario" class="btn-modal" style="padding:8px 32px;">Aceptar</button>
+  </div>
+</div>
+
+<section class="seccion" id="informe-medico-seccion" style="display:none;">
+  <h2 style="text-align:center;margin-bottom:18px;">Informe Médico</h2>
+  <div id="datos-paciente-informe" style="margin-bottom:24px;"></div>
+  <form id="form-informe-medico-dinamico" style="max-width:700px;margin:auto;">
+    <div id="contenedor-informe-medico-dinamico"></div>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
+      <button type="button" id="btn-cancelar-informe-medico" class="btn-modal btn-cancelar">Cancelar</button>
+      <button type="submit" class="btn-modal">Guardar</button>
+    </div>
+  </form>
+</section>
 
 <script src="psicologa.js"></script>
 </body>

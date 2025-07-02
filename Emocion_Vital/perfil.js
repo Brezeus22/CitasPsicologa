@@ -347,6 +347,7 @@ document.addEventListener('DOMContentLoaded', function() {
       fecha: '2025-06-25',
       hora: '10:00 AM',
       paciente: 'Juan Pérez',
+      cedula: '12345678', // Dato de prueba
       categoria: 'Psicoterapia Individual',
       modalidad: 'online', 
       pago: 'Pago móvil',
@@ -357,6 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
       fecha: '2025-06-28',
       hora: '04:00 PM',
       paciente: 'Ana Gómez',
+      cedula: '87654321', // Dato de prueba
       categoria: 'Psicoterapia Infantil',
       modalidad: 'presencial',
       pago: 'Transferencias',
@@ -369,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const contenedor = document.getElementById('tabla-mis-citas');
     if (!contenedor) return;
     if (citasEjemplo.length === 0) {
-      contenedor.innerHTML = '<tr><td colspan="7">No tienes citas agendadas.</td></tr>';
+      contenedor.innerHTML = '<tr><td colspan="9">No tienes citas agendadas.</td></tr>';
       return;
     }
     let html = '';
@@ -379,6 +381,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <td>${cita.fecha}</td>
           <td>${cita.hora}</td>
           <td>${cita.paciente}</td>
+          <td>${cita.cedula || ''}</td>
           <td>${cita.categoria}</td>
           <td>${cita.modalidad}</td>
           <td>${cita.pago}</td>

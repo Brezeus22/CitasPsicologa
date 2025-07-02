@@ -5,11 +5,12 @@ function ocultarSecciones() {
   document.getElementById('editar-perfil-seccion').style.display = 'none';
   document.getElementById('pacientes-seccion').style.display = 'none';
   document.getElementById('historial-paciente-seccion').style.display = 'none';
-  document.getElementById('horario-seccion').style.display = 'none'; // <-- agrega esta línea
+  document.getElementById('horario-seccion').style.display = 'none';
+  document.getElementById('informe-medico-seccion').style.display = 'none';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Menú desplegable (igual que antes)
+  // Menú desplegable
   const menuToggle = document.getElementById('menu-toggle');
   const menuList = document.getElementById('menu-list');
   menuToggle.addEventListener('click', function(e) {
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Menú usuario (igual que antes)
+  // Menú usuario 
   const userDropdown = document.getElementById('user-dropdown');
   const userIconBtn = document.getElementById('user-icon-btn');
   const userDropdownMenu = document.getElementById('user-dropdown-menu');
@@ -36,17 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
         userDropdown.classList.remove('open');
       }
     });
-  }
-
-  // Ocultar todas las secciones
-  function ocultarSecciones() {
-    document.getElementById('principal-botones').style.display = 'none';
-    document.getElementById('pendientes-seccion').style.display = 'none';
-    document.getElementById('historial-seccion').style.display = 'none';
-    document.getElementById('editar-perfil-seccion').style.display = 'none';
-    document.getElementById('pacientes-seccion').style.display = 'none';
-    document.getElementById('historial-paciente-seccion').style.display = 'none';
-    document.getElementById('horario-seccion').style.display = 'none'; // <-- agrega esta línea
   }
 
   // Mostrar botones principales
@@ -219,6 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
       fecha: '2025-06-25',
       hora: '10:00 AM',
       paciente: 'Juan Pérez',
+      cedula: '12345678',
       categoria: 'Psicoterapia Individual',
       modalidad: 'presencial',
       pago: 'Pago móvil',
@@ -228,6 +219,14 @@ document.addEventListener('DOMContentLoaded', function() {
       fecha: '2025-06-28',
       hora: '07:00 PM',
       paciente: 'Ana Gómez',
+      pago: 'Pago móvil',
+      estado: 'En Espera'
+    },
+    {
+      fecha: '2025-06-28',
+      hora: '07:00 PM',
+      paciente: 'Ana Gómez',
+      cedula: '87654321', 
       categoria: 'Psicoterapia Infantil',
       pago: 'Transferencias',
       modalidad: 'online',
@@ -240,8 +239,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function abrirModalReprogramar(idx) {
     citaAReprogramar = idx;
-    modalidadReprogramar = citasPendientes[idx].modalidad || 'presencial'; // por defecto presencial
-    document.getElementById('modal-reprogramar').style.display = 'flex'; // <-- centrado igual que historial clínico
+    modalidadReprogramar = citasPendientes[idx].modalidad || 'presencial';
+    document.getElementById('modal-reprogramar').style.display = 'flex';
     document.getElementById('nueva-fecha').value = '';
     document.getElementById('nueva-hora').innerHTML = '<option value="">Seleccione</option>';
     document.getElementById('nota-reprogramar').value = '';
@@ -370,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const contenedor = document.getElementById('tabla-pendientes');
     if (!contenedor) return;
     if (citasPendientes.length === 0) {
-      contenedor.innerHTML = '<tr><td colspan="8">No hay citas pendientes.</td></tr>';
+      contenedor.innerHTML = '<tr><td colspan="9">No hay citas pendientes.</td></tr>';
       return;
     }
     let html = `
@@ -378,6 +377,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <th style="min-width:100px;"></th>
         <th style="min-width:80px;">Hora</th>
         <th style="min-width:150px;">Paciente</th>
+        <th style="min-width:100px;">Cédula</th> <!-- NUEVA COLUMNA -->
         <th style="min-width:120px;">Categoría</th>
         <th style="min-width:100px;">Modalidad</th>
         <th style="min-width:110px;">Pago</th>
@@ -391,6 +391,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <td>${cita.fecha}</td>
     <td>${cita.hora}</td>
     <td>${cita.paciente}</td>
+    <td>${cita.cedula || ''}</td> <!-- NUEVA COLUMNA -->
     <td>${cita.categoria}</td>
     <td>${cita.modalidad === 'presencial' ? 'Presencial' : 'Online'}</td>
     <td>${cita.pago}</td>
@@ -432,6 +433,16 @@ document.addEventListener('DOMContentLoaded', function() {
     if (idx !== null) window.verHistorialPaciente(Number(idx));
   });
 });
+
+    // Listener para informe médico
+    contenedor.querySelectorAll('.btn-informe').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const idx = this.getAttribute('data-idx');
+        if (idx !== null) {
+          mostrarInformeMedicoPaciente(Number(idx)); // <--- ESTA ES LA FUNCIÓN CORRECTA
+        }
+      });
+    });
   }
 
   // Cerrar modal reprogramar
@@ -1061,6 +1072,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('horario-actual').innerHTML = html;
   }
 
+
   // Botón principal de horario laboral
   const btnHorario = document.getElementById('btn-horario');
   if (btnHorario) {
@@ -1090,4 +1102,512 @@ document.addEventListener('DOMContentLoaded', function() {
     ocultarSecciones();
     document.getElementById('principal-botones').style.display = 'flex';
   });
+
+  // --- EDITAR FORMULARIOS (NUEVO) ---
+
+  // Estructura de páginas: cada página es un array de preguntas
+let preguntasHistorialPaginas = [
+  [ // Página 1
+    "Primer nombre",
+    "Segundo nombre",
+    "Primer apellido",
+    "Segundo apellido",
+    "Cédula",
+    "Fecha de nacimiento",
+    "Lugar de nacimiento",
+    "Instrucción",
+    "Ocupación",
+    "Estado civil",
+    "Religión",
+    "Nombre del cónyuge",
+    "Teléfono del cónyuge",
+    "Hijos",
+    "Edades de los hijos",
+    "Centro de estudio y/o trabajo",
+    "Grado",
+    "Lugar de residencia",
+    "Tiempo de residencia",
+    "Procedencia",
+    "Teléfono",
+    "Correo"
+  ],
+  [ // Página 2
+    "Experiencias durante los estudios primarios (recurso y apoyo, problemas de conducta, indisciplina)",
+    "Dificultades académicas (cómo enfrentaba los exámenes) - primaria",
+    "Experiencias durante la secundaria (recurso y apoyo, problemas conducta indisciplina)",
+    "Dificultades académicas (cómo enfrentaba los exámenes) - secundaria",
+    "Experiencias durante los estudios superiores (recurso y apoyo, problemas de conducta, indisciplina)",
+    "Dificultades académicas - superior",
+    "Problemas afectivos o conducta durante su niñez",
+    "Problemas afectivos en la Pubertad (cambios fisiológicos, maduración, características sexuales, otras particularidades)",
+    "Particularidades de la adolescencia",
+    "Problemas afectivos o de conducta en la Adolescencia",
+    "Grado de armonía entre la Madurez Biológica y Psicológica",
+    "Desarrollo de la Voluntad (rapidez, decisión y ejecución)",
+    "Grado de autonomía en la deliberación y la acción",
+    "Persistencia en el esfuerzo",
+    "Jerarquía de valores (concepción de la vida y el mundo): Estilo de vida",
+    "Sexualidad activa e inactiva",
+    "Problemas legales: Norma a nivel familiar",
+    "Servicio Militar Obligatorio: Preferencias en el SMO",
+    "Hábitos e intereses (consumo de alcohol, drogas, etc.)",
+    "Enfermedad y accidentes (desde la niñez hasta la actualidad)",
+    "Elección de profesión u Oficio (libre, influenciado o forzado)"
+  ],
+  [ // Página 3
+    "Ambiente social Actual Trabajo (actual y anteriores)",
+    "Vivienda",
+    "Economía",
+    "Relaciones con sus jefes, superiores, compañeros, subalternos",
+    "Crecimiento psicosocial",
+    "Ambiciones laborales",
+    "Cambios de profesión, oficios o trabajo (frecuentes, circunstanciales y sus causas)",
+    "Cuadro Familiar",
+    "Relaciones Interpersonales",
+    "Religión (personal/social)",
+    "Recreación",
+    "Conducta sexual (inicio y vida sexual, desde los juegos infantiles a la actualidad) Relación con las personas del mismo sexo y del sexo opuesto",
+    "Elección de la pareja",
+    "¿Le cuesta trabajo elegir pareja?",
+    "¿Fiel y exigente?",
+    "Noviazgo (número y duración de ellos)",
+    "Matrimonio (edad del paciente y la pareja)",
+    "¿Qué opina del matrimonio?",
+    "Particularidades del día de la boda",
+    "Vida Matrimonial (armonía o desarmonía conyugal)",
+    "Separación",
+    "Divorcio (causas)",
+    "Problemas y periodos críticos particularidades del climaterio, menopausia y edad crítica"
+  ],
+  [ // Página 4
+    "Abuelo paterno",
+    "Abuela paterna",
+    "Padre",
+    "Tíos paternos",
+    "Abuelo materno",
+    "Abuela materna",
+    "Madre",
+    "Tíos maternos",
+    "Hermanos(as)",
+    "Esposo(a)",
+    "Hijos(as)",
+    "Colaterales"
+  ],
+  [ // Página 5
+    "Sumario diagnóstico",
+    "Conclusión",
+    "Examen conductual y de las facultades psíquicas",
+    "Síntesis de lo encontrado",
+    "Baterías aplicadas",
+    "Síntesis de los hallazgos en las baterías",
+    "Programa de tratamiento propuesto",
+    "Evolución",
+    "Firma responsable - Nombre",
+    "Firma responsable - Cargo",
+    "Firma responsable - Universidad",
+    "Firma responsable - Teléfono",
+    "Firma responsable - Correo"
+  ]
+];
+
+// Informe médico (puedes agregar más preguntas si lo deseas)
+let preguntasInforme = [
+  "Redacte el informe médico"
+];
+
+  // Renderiza los campos de cada página del historial clínico
+  function renderizarPaginasHistorial() {
+    preguntasHistorialPaginas.forEach((pregs, pageIdx) => {
+      const cont = document.getElementById('contenedor-historial-' + (pageIdx + 1));
+      if (!cont) return;
+      let html = '';
+      pregs.forEach((preg, idx) => {
+        // Decide si es input o textarea según la página o el texto
+        if (pageIdx === 0 || pageIdx === 3 || preg.toLowerCase().includes('nombre') || preg.toLowerCase().includes('teléfono') || preg.toLowerCase().includes('correo')) {
+          html += `<label style="display:block;margin-bottom:10px;">${preg}:<input type="text" name="historial_${pageIdx}_${idx}" style="width:100%;"></label>`;
+        } else {
+          html += `<label style="display:block;margin-bottom:10px;">${preg}:<textarea name="historial_${pageIdx}_${idx}" style="width:100%;"></textarea></label>`;
+        }
+      });
+      cont.innerHTML = html;
+    });
+  }
+
+  // Renderiza los campos del informe médico
+  function renderizarInformeMedico() {
+    const cont = document.getElementById('contenedor-informe-medico');
+    if (!cont) return;
+    let html = '';
+    preguntasInforme.forEach((preg, idx) => {
+      html += `<label style="display:block;margin-bottom:10px;">${preg}:<textarea name="informe_${idx}" style="width:100%;min-height:180px;"></textarea></label>`;
+    });
+    document.getElementById('contenedor-informe-medico-dinamico').innerHTML = html;
+  }
+
+  // Cuando guardes cambios en el editor de preguntas, vuelve a renderizar los formularios
+  document.getElementById('btn-guardar-formulario').onclick = function() {
+    // Aquí deberías actualizar preguntasHistorialPaginas y preguntasInforme según los cambios del editor
+    // (deberás adaptar tu editor para que modifique estas variables)
+    renderizarPaginasHistorial();
+    renderizarInformeMedico();
+    document.getElementById('modal-exito-editar-formulario').style.display = 'flex';
+  };
+
+  // Al iniciar
+  renderizarPaginasHistorial();
+  renderizarInformeMedico();
+
+  // --- CONTROL DE VISIBILIDAD DE SECCIÓN EDITAR FORMULARIOS ---
+function ocultarEditarFormularios() {
+  const seccion = document.getElementById('editar-formularios-seccion');
+  if (seccion) seccion.style.display = 'none';
+  const modal = document.getElementById('modal-editar-pregunta');
+  if (modal) modal.remove();
+}
+
+// Sobrescribe ocultarSecciones para ocultar también editar formularios
+const _ocultarSeccionesOriginal = ocultarSecciones;
+ocultarSecciones = function() {
+  _ocultarSeccionesOriginal();
+  ocultarEditarFormularios();
+};
+
+  // --- SINCRONIZACIÓN DE PREGUNTAS CON FORMULARIOS REALES ---
+
+  // Actualiza los campos del historial clínico multipágina según preguntasHistorial
+  function actualizarCamposHistorialClinico() {
+    // Página 1: Datos de filiación
+    // (No se actualiza dinámicamente porque los campos están fijos en el HTML)
+    // Página 2, 3, 4, 5: Solo si quieres que las preguntas sean dinámicas, deberías renderizar los labels y campos según preguntasHistorial
+    // Aquí solo se actualizan los labels de las preguntas si cambian
+    // Si quieres que los campos sean 100% dinámicos, deberías renderizar todo el formulario con JS
+    // Por ahora, solo actualiza los labels si coinciden por orden
+    const labels = document.querySelectorAll('#historial-paciente-seccion .historial-page label');
+    preguntasHistorialTmp.forEach((preg, idx) => {
+      if (labels[idx]) {
+        // Si el label tiene un ":", solo cambia el texto antes de los dos puntos
+        let label = labels[idx];
+        let colonIdx = label.innerHTML.indexOf(':');
+        if (colonIdx !== -1) {
+          label.innerHTML = preg + label.innerHTML.substring(colonIdx);
+        } else {
+          // Para textarea, cambia solo el texto antes del textarea
+          let taIdx = label.innerHTML.indexOf('<textarea');
+          if (taIdx !== -1) {
+            label.innerHTML = preg + label.innerHTML.substring(taIdx - 1);
+          } else {
+            // Para input
+            let inIdx = label.innerHTML.indexOf('<input');
+            if (inIdx !== -1) {
+              label.innerHTML = preg + label.innerHTML.substring(inIdx - 1);
+            }
+          }
+        }
+      }
+    });
+  };
+
+  
+
+  // Actualiza el formulario de informe médico (si es dinámico)
+  function actualizarCamposInformeMedico() {
+    // Si tienes un área de informe médico editable, puedes actualizar el placeholder
+    const textarea = document.querySelector('#modal-informe-medico textarea[name="informe_texto"]');
+    if (textarea && preguntasInformeTmp.length > 0) {
+      textarea.placeholder = preguntasInformeTmp[0];
+    }
+  }
+
+  // --- BOTÓN PRINCIPAL DE EDITAR FORMULARIOS ---
+  const btnEditarFormularios = document.getElementById('btn-editar-formularios');
+  if (btnEditarFormularios) {
+    btnEditarFormularios.onclick = function() {
+      ocultarSecciones();
+      document.getElementById('editar-formularios-seccion').style.display = 'block';
+      document.getElementById('tipo-formulario-editar').value = 'historial';
+      preguntasHistorialPaginasTmp = preguntasHistorialPaginas.map(arr => [...arr]);
+      preguntasInformeTmp = [...preguntasInforme];
+      paginaActualEditar = 0;
+      renderizarPreguntasEditar('historial');
+    };
+  }
+
+  // --- NUEVO: Estado temporal para edición multipágina ---
+let preguntasHistorialPaginasTmp = preguntasHistorialPaginas.map(arr => [...arr]);
+let paginaActualEditar = 0; // 0 = página 1
+
+// --- NUEVO: Renderizar editor de preguntas multipágina ---
+function renderizarPreguntasEditar(tipo) {
+  const cont = document.getElementById('contenedor-preguntas-editar');
+  let html = '';
+
+  if (tipo === 'historial') {
+    // Selector de página
+    html += `<div style="margin-bottom:12px;">
+      <label>Página: 
+        <select id="selector-pagina-editar">` +
+      preguntasHistorialPaginasTmp.map((_, i) =>
+        `<option value="${i}" ${i === paginaActualEditar ? 'selected' : ''}>${i + 1}</option>`
+      ).join('') +
+      `</select>
+      </label>
+    </div>`;
+
+    // Preguntas de la página seleccionada
+    let preguntas = preguntasHistorialPaginasTmp[paginaActualEditar];
+    preguntas.forEach((preg, idx) => {
+      html += `
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <span style="flex:1;">${preg}</span>
+          <button class="btn-editar-pregunta" data-idx="${idx}" title="Editar"><i class="fa-solid fa-pen"></i></button>
+          <button class="btn-eliminar-pregunta" data-idx="${idx}" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      `;
+    });
+  } else {
+    // Informe médico (plano)
+    preguntasInformeTmp.forEach((preg, idx) => {
+      html += `
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <span style="flex:1;">${preg}</span>
+          <button class="btn-editar-pregunta" data-idx="${idx}" title="Editar"><i class="fa-solid fa-pen"></i></button>
+          <button class="btn-eliminar-pregunta" data-idx="${idx}" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      `;
+    });
+  }
+
+  cont.innerHTML = html;
+
+  // Selector de página
+  if (tipo === 'historial') {
+    const selector = document.getElementById('selector-pagina-editar');
+    if (selector) {
+      selector.onchange = function () {
+        paginaActualEditar = parseInt(this.value, 10);
+        renderizarPreguntasEditar('historial');
+      };
+    }
+  }
+
+  // Listeners editar
+  cont.querySelectorAll('.btn-editar-pregunta').forEach(btn => {
+    btn.onclick = function() {
+      const idx = parseInt(this.getAttribute('data-idx'));
+      mostrarModalPregunta({
+        modo: 'editar',
+        valorActual: tipo === 'historial'
+          ? preguntasHistorialPaginasTmp[paginaActualEditar][idx]
+          : preguntasInformeTmp[idx],
+        onAceptar: nueva => {
+          if (tipo === 'historial') {
+            preguntasHistorialPaginasTmp[paginaActualEditar][idx] = nueva;
+            renderizarPreguntasEditar(tipo);
+          } else {
+            preguntasInformeTmp[idx] = nueva;
+            renderizarPreguntasEditar(tipo);
+          }
+        }
+      });
+    };
+  });
+
+  // Listeners eliminar
+  cont.querySelectorAll('.btn-eliminar-pregunta').forEach(btn => {
+    btn.onclick = function() {
+      const idx = parseInt(this.getAttribute('data-idx'));
+      if (confirm('¿Eliminar esta pregunta?')) {
+        if (tipo === 'historial') {
+          preguntasHistorialPaginasTmp[paginaActualEditar].splice(idx, 1);
+          renderizarPreguntasEditar(tipo);
+        } else {
+          preguntasInformeTmp.splice(idx, 1);
+          renderizarPreguntasEditar(tipo);
+        }
+      }
+    };
+  });
+}
+
+// --- NUEVO: Agregar pregunta ---
+document.getElementById('btn-agregar-pregunta').onclick = function() {
+  const tipo = document.getElementById('tipo-formulario-editar').value;
+  mostrarModalPregunta({
+    modo: 'agregar',
+    valorActual: '',
+    onAceptar: nueva => {
+      if (tipo === 'historial') {
+        preguntasHistorialPaginasTmp[paginaActualEditar].push(nueva);
+        renderizarPreguntasEditar(tipo);
+      } else {
+        preguntasInformeTmp.push(nueva);
+        renderizarPreguntasEditar(tipo);
+      }
+    }
+  });
+};
+
+// --- NUEVO: Guardar cambios ---
+document.getElementById('btn-guardar-formulario').onclick = function() {
+  preguntasHistorialPaginas = preguntasHistorialPaginasTmp.map(arr => [...arr]);
+  preguntasInforme = [...preguntasInformeTmp];
+  renderizarPaginasHistorial();
+  renderizarInformeMedico();
+  document.getElementById('modal-exito-editar-formulario').style.display = 'flex';
+};
+
+// --- NUEVO: Cambiar tipo de formulario en el editor ---
+document.getElementById('tipo-formulario-editar').addEventListener('change', function() {
+  if (this.value === 'historial') {
+    paginaActualEditar = 0;
+  }
+  renderizarPreguntasEditar(this.value);
+});
+
+// MODAL BONITO PARA AGREGAR/EDITAR PREGUNTA
+function mostrarModalPregunta({modo, valorActual = '', onAceptar}) {
+  // Elimina si ya existe
+  let modal = document.getElementById('modal-editar-pregunta');
+  if (modal) modal.remove();
+
+  modal = document.createElement('div');
+  modal.id = 'modal-editar-pregunta';
+  modal.style = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;';
+  modal.innerHTML = `
+    <div style="background:#fff;padding:28px 22px;border-radius:10px;box-shadow:0 2px 16px #0002;max-width:350px;width:95vw;text-align:center;">
+      <div style="font-size:1.1em;font-weight:bold;margin-bottom:12px;">
+        ${modo === 'agregar' ? 'Agregar nueva pregunta' : 'Editar pregunta'}
+      </div>
+      <input type="text" id="input-modal-pregunta" value="${valorActual.replace(/"/g,'&quot;')}" style="width:100%;padding:8px 10px;font-size:1em;border-radius:6px;border:1px solid #bbb;margin-bottom:18px;" maxlength="200" autofocus>
+      <div style="display:flex;gap:12px;justify-content:center;">
+        <button id="btn-aceptar-modal-pregunta" class="btn-modal" style="padding:7px 22px;">Aceptar</button>
+        <button id="btn-cancelar-modal-pregunta" class="btn-modal btn-cancelar" style="padding:7px 22px;">Cancelar</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  document.getElementById('input-modal-pregunta').focus();
+
+  document.getElementById('btn-aceptar-modal-pregunta').onclick = function() {
+    const val = document.getElementById('input-modal-pregunta').value.trim();
+    if (val) {
+      onAceptar(val);
+      modal.remove();
+    } else {
+      document.getElementById('input-modal-pregunta').focus();
+    }
+  };
+  document.getElementById('btn-cancelar-modal-pregunta').onclick = function() {
+    modal.remove();
+  };
+}
+
+// --- BOTÓN ACEPTAR DEL MODAL DE ÉXITO AL GUARDAR FORMULARIO ---
+document.getElementById('btn-aceptar-exito-editar-formulario').onclick = function() {
+  document.getElementById('modal-exito-editar-formulario').style.display = 'none';
+  ocultarSecciones();
+  document.getElementById('principal-botones').style.display = 'flex';
+};
+
+// --- NUEVO: Muestra la sección de informe médico para la cita seleccionada ---
+function mostrarInformeMedicoPaciente(idxCita) {
+  ocultarSecciones();
+  document.getElementById('informe-medico-seccion').style.display = 'block';
+
+  // Asegúrate de que los pacientes estén cargados
+  if (!window._pacientesClinicos || window._pacientesClinicos.length === 0) {
+    cargarTablaPacientes();
+  }
+
+  const cita = citasPendientes[idxCita];
+  const pacientes = window._pacientesClinicos || [];
+  let paciente = null;
+
+  // Busca por cédula en historial clínico
+  if (cita.cedula) {
+    paciente = pacientes.find(p => p.filiacion && p.filiacion.cedula === cita.cedula);
+  } else {
+    // Si no hay cédula en la cita, intenta buscar por nombre y apellido
+    const nombreCita = (cita.paciente || '').toLowerCase().replace(/\s+/g, ' ').trim();
+    paciente = pacientes.find(p => {
+      const f = p.filiacion || {};
+      const nombreCompleto = [
+        f.primer_nombre, f.segundo_nombre, f.primer_apellido, f.segundo_apellido
+      ].filter(Boolean).join(' ').toLowerCase().replace(/\s+/g, ' ').trim();
+      const nombreSimple = [f.primer_nombre, f.primer_apellido].filter(Boolean).join(' ').toLowerCase().replace(/\s+/g, ' ').trim();
+      return nombreCita === nombreCompleto || nombreCita === nombreSimple;
+    });
+  }
+
+  if (!paciente) {
+    document.getElementById('datos-paciente-informe').innerHTML = '<b>Paciente no encontrado</b>';
+    document.getElementById('contenedor-informe-medico-dinamico').innerHTML = '';
+    return;
+  }
+
+  const filiacion = paciente.filiacion || {};
+  document.getElementById('datos-paciente-informe').innerHTML = `
+    <div style="margin-bottom:10px;"><b>Primer nombre:</b> ${filiacion.primer_nombre || ''}</div>
+    <div style="margin-bottom:10px;"><b>Segundo nombre:</b> ${filiacion.segundo_nombre || ''}</div>
+    <div style="margin-bottom:10px;"><b>Primer apellido:</b> ${filiacion.primer_apellido || ''}</div>
+    <div style="margin-bottom:10px;"><b>Segundo apellido:</b> ${filiacion.segundo_apellido || ''}</div>
+    <div style="margin-bottom:10px;"><b>Cédula:</b> ${filiacion.cedula || ''}</div>
+    <div style="margin-bottom:10px;"><b>Fecha de nacimiento:</b> ${filiacion.fecha_nacimiento || ''}</div>
+  `;
+
+  // Renderiza preguntas del informe médico (solo una vez, sin duplicar redacción)
+  let html = '';
+  preguntasInforme.forEach((preg, idx) => {
+    html += `<label style="display:block;margin-bottom:10px;">${preg}:<textarea name="informe_${idx}" style="width:100%;min-height:180px;"></textarea></label>`;
+  });
+  document.getElementById('contenedor-informe-medico-dinamico').innerHTML = html;
+
+  document.getElementById('form-informe-medico-dinamico').reset();
+}
+
+// Listener para cancelar informe médico
+document.getElementById('btn-cancelar-informe-medico').onclick = function() {
+  ocultarSecciones();
+  document.getElementById('pendientes-seccion').style.display = 'block';
+  mostrarPendientes();
+};
+
+// Listener para guardar informe médico
+document.getElementById('form-informe-medico-dinamico').addEventListener('submit', function(e) {
+  e.preventDefault();
+  // Encuentra el índice de la cita actual (busca por cédula o nombre)
+  let idxCita = null;
+  const datosCedula = document.querySelector('#datos-paciente-informe div:nth-child(5)');
+  let cedula = '';
+  if (datosCedula) {
+    cedula = datosCedula.textContent.replace('Cédula:', '').trim();
+  }
+  if (cedula) {
+    idxCita = citasPendientes.findIndex(c => c.cedula === cedula);
+  }
+  // Si no encuentra por cédula, busca por nombre
+  if (idxCita === -1 || idxCita === null) {
+    const datosNombre = document.querySelector('#datos-paciente-informe div:nth-child(1)');
+    const nombre = datosNombre ? datosNombre.textContent.replace('Primer nombre:', '').trim() : '';
+    idxCita = citasPendientes.findIndex(c => (c.paciente || '').split(' ')[0] === nombre);
+  }
+  // Guarda el índice en window para usarlo al aceptar el modal
+  window._ultimoIdxInformeMedico = idxCita;
+
+  document.getElementById('modal-exito-informe').style.display = 'flex';
+});
+
+// Botón aceptar del modal de éxito informe médico
+document.getElementById('btn-aceptar-exito-informe').onclick = function() {
+  // Elimina la cita pendiente correspondiente
+  const idx = window._ultimoIdxInformeMedico;
+  if (typeof idx === 'number' && idx >= 0) {
+    citasPendientes.splice(idx, 1);
+  }
+  document.getElementById('modal-exito-informe').style.display = 'none';
+  ocultarSecciones();
+  document.getElementById('pendientes-seccion').style.display = 'block';
+  mostrarPendientes(); //
+};
 });
