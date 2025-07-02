@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .principal-botones {
   margin-top: 3em;
 }
@@ -81,3 +82,61 @@
   }
 }
 
+=======
+.principal-botones {
+  margin-top: 3em;
+}
+.boton-principal {
+  min-width: 220px;
+}
+#pendientes-seccion.seccion {
+  max-width: 1100px;
+  width: 98vw;
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.tabla-citas-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0 0.5vw;
+  box-sizing: border-box;
+}
+
+.tabla-citas {
+  width: 100%;
+  min-width: 900px;
+  max-width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  table-layout: auto;
+}
+
+.tabla-citas th, .tabla-citas td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+  white-space: normal;
+  font-size: 1em;
+  word-break: break-word;
+}
+
+#pacientes-seccion .tabla-citas-wrapper {
+  max-width: 100%;
+  width: 100%;
+  overflow-x: visible;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+#pacientes-seccion .tabla-citas {
+  width: 100%;
+  min-width: 600px;
+  table-layout: auto;
+}
+
+>>>>>>> ee4edeebca7b79e86918c27e87c575e5278733d4
